@@ -20,31 +20,33 @@
 
 int main(void)
 {
-   	sei();
-   	_PROTECTED_WRITE (CLKCTRL.OSCHFCTRLA, ((CLKCTRL_FRQSEL_24M_gc)|(CLKCTRL_AUTOTUNE_bm)));
- 	timmer_init();
- 	USART1_init(9600); 	AMS_PORT.DIR |= AMS_PIN;
- 	AMS_PORT.OUT &= ~(AMS_PIN);				//ams
+	sei();
+	_PROTECTED_WRITE (CLKCTRL.OSCHFCTRLA, ((CLKCTRL_FRQSEL_24M_gc)|(CLKCTRL_AUTOTUNE_bm)));
+	timmer_init();
+	USART1_init(9600);
+	AMS_PORT.DIR |= AMS_PIN;
+	AMS_PORT.OUT &= ~(AMS_PIN);				//ams
 	PORTB.DIR |= (1<<0);                     // foot switch detection led pin
 	TCA0_PWM_init();
- 	SPI_0_init();
+	SPI_0_init();
 	FOOT_SW_LED_PORT.DIR |= FOOt_SW_LED_PIN;
 	FOOT_SW_LED_PORT.OUT &= ~(FOOt_SW_LED_PIN);
- 	AMS_5812_init();
+	SUCTION_LED_PORT.DIR |= SUCTION_LED_PIN;
+	AMS_5812_init();
 	eeprom_init_read();
- 	motor_sol_gpio_init();
- 	NTC_init();
- 	keypad_gpio_init();
- 	lcd_uc1698u_init();
- 	foot_switch_init();
- 	STP();
-	 _delay_ms(100);
+	//motor_sol_gpio_init();
+	NTC_init();
+	keypad_gpio_init();
+	lcd_uc1698u_init();
+	foot_switch_init();
+	STP();
+	_delay_ms(100);
 	lcd_loading_page();
 	sei();
- 	USART1_sendString("//////////////////////////// start /////////////////////////////////");   	
-    while (1) 
-    {
-		dc_suction_pressure_main (50);						//argument given to read n times and find average, where n is the argument provided 
+	USART1_sendString("//////////////////////////// start /////////////////////////////////");
+	while (1)
+	{
+		dc_suction_pressure_main (50);						//argument given to read n times and find average, where n is the argument provided
 		keypad_main();
 		foot_switch_main();
 		read_ntc();

@@ -45,24 +45,25 @@ void MOTOR_ON_OFF(bool status)
 {
 	if(status)
 	{
+		SUCTION_LED_PORT.OUT |= SUCTION_LED_PIN;
 		TCA0.SINGLE.CTRLA |= (1 << 0);
-        TCA0.SINGLE.CMP0 = Duty_cycle;
-		//#ifdef _DEBUG
+		TCA0.SINGLE.CMP0 = Duty_cycle;
+		#ifdef _DEBUG
 		USART1_sendString("MOTOR_ON_OFF: motor turned on");
 		USART1_sendInt(Duty_cycle);
-
-		//#endif
+		#endif
 	}
 	else if (!status)
 	{
+		SUCTION_LED_PORT.OUT &= ~(SUCTION_LED_PIN);
 		TCA0.SINGLE.CTRLA |= (1 << 0);
 		TCA0.SINGLE.CMP0 = 0;
 		
- 
-    button_motor_on_off_flag = false;
-	
+		
+		button_motor_on_off_flag = false;
+		#ifdef _DEBUG
 		USART1_sendString("MOTOR_ON_OFF: motor turned off");
-
+		#endif
 	}
 }
 

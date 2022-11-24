@@ -29,14 +29,16 @@
 #define SMART_SW_PIN                    (1<<2)
 #define UNIT_PORT						PORTC
 #define UNIT_PIN						(1<<6)
+#define SUCTION_LED_PORT				PORTE
+#define SUCTION_LED_PIN					(1<<3)
 #define MOTOR_ON_OFF_PORT				PORTE
 #define MOTOR_ON_OFF_PIN                (1<<1)
 #define POWER_SAVE_PORT                 PORTE
 #define POWER_SAVE_PIN                  (1<<2)
 #define POWER_SAVE_LED					PORTB
 #define POWER_SAVE_LED_PIN				(1<<5)
-#define FOOT_SW_LED_PORT				PORTA
-#define FOOt_SW_LED_PIN			        (1<<1)
+#define FOOT_SW_LED_PORT				PORTB
+#define FOOt_SW_LED_PIN			        (1<<0)
 
 #define SPEED_PORT						PORTE
 #define SPEED_PIN						(1<<0)
