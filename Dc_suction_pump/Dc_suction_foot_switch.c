@@ -172,7 +172,7 @@ void power_save_protocol (void) //if smart switch mode and power save mode are b
 			power_save_timer_on_flag = true;
 			power_save_motor_on_timmer = millis;
 		}
-		else if ( (power_save_timer_on_flag) && ((millis-power_save_motor_on_timmer) > power_save_motor_off_time) )
+		else if ( (power_save_timer_on_flag) && ((millis-power_save_motor_on_timmer) > power_save_motor_off_time))
 		{
 			#ifdef _DEBUG
 			USART1_sendString("power_save_protocol: power save timer UP");
@@ -192,6 +192,20 @@ void power_save_protocol (void) //if smart switch mode and power save mode are b
 			//resetting play pause button
 			button_motor_on_off_flag = false;
 		}
+		
+		else if ((power_save_timer_on_flag) && ((millis-power_save_motor_on_timmer) < power_save_motor_off_time))
+		{
+			if ((abs(previous_pressure - currentPressure) > allowedPressureDifference) && (millis-power_save_motor_on_timmer > power_save_motor_off_time - check_before_time))
+			{
+				power_save_motor_on_timmer = millis - (power_save_motor_off_time - check_before_time);
+			}
+			if (millis - currentMillis > 1000)
+			{
+				previous_pressure = currentPressure;
+			}
+		}
+		
+		
 	}
 }
 

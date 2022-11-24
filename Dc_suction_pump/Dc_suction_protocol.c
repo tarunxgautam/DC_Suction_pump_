@@ -91,6 +91,8 @@ void dc_suction_pressure_main (uint8_t avg)
 						#ifdef _DEBUG
 		//				USART1_sendString("PRESSURE MAIN: mmhg calculating.");
 						#endif
+						allowedPressureDifference = allowed_pressure_diff_mmHg;
+						currentPressure = current_pressure_mmhg;
 						break;
 
 	    case mode_cmh2o:
@@ -99,10 +101,13 @@ void dc_suction_pressure_main (uint8_t avg)
 						#endif
 	    
 						current_pressure_cmh2O = (current_pressure_mmhg * 1.3595);
+						allowedPressureDifference = allowed_pressure_diff_cmH2O;
+						
 						if (current_pressure_cmh2O > max_cmh2o_value)
 						{
 							current_pressure_cmh2O = max_cmh2o_value;
 						}
+						currentPressure = current_pressure_cmh2O;
 						break;
 	    
 	    case mode_mpa:
@@ -111,11 +116,14 @@ void dc_suction_pressure_main (uint8_t avg)
 						//						#endif
 	    
 						current_pressure_mpa = (current_pressure_mmhg * 0.13332);
+						allowedPressureDifference = allowed_pressure_diff_MPa;
+						
 						// 		if(current_pressure_mpa > max_mpa_value)
 						// 		{
 						// 			current_pressure_mpa = max_mpa_value;
 						// 		}
 						// 		USART1_sendFloat(current_pressure_mpa,3);
+						currentPressure = current_pressure_mpa;
 						break;
 	    
 	    default:
@@ -124,6 +132,8 @@ void dc_suction_pressure_main (uint8_t avg)
 					#endif
 	    
 					unit_mode = mode_mmhg;
+					allowedPressureDifference = allowed_pressure_diff_mmHg;
+					currentPressure = current_pressure_mmhg;
 					break;
     }
 }

@@ -27,7 +27,6 @@ void timmer_init (void)
 	TCB2_init();
 }
 
-
 ISR (TCB1_INT_vect)
 {
 	millis++;

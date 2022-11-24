@@ -55,4 +55,5 @@ int main(void)
 		power_save_protocol();
 		mode_1();											// just added for pwm mode
 	}
+	return 0;
 }

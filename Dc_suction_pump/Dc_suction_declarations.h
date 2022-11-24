@@ -57,7 +57,11 @@
 #define foot_switch_detc_port			PORTC
 #define foot_switch_detc_pin			(1<<3)
 #define smart_switch_press_time			1000
-#define power_save_motor_off_time		10000
+#define check_before_time				5000
+#define power_save_motor_off_time		10000//1800000	// milliseconds in 30 minutes
+#define allowed_pressure_diff_mmHg		30.0 
+#define allowed_pressure_diff_cmH2O		25.0
+#define allowed_pressure_diff_MPa		0.2
 
 /*********************** NTC *******************************/
 #define NTC_ADC_channel			channel_0
@@ -115,11 +119,12 @@ bool previous_uc_ams_reset_flag = false;
 float current_pressure_mmhg = 0.0;
 float current_pressure_cmh2O =0.0;
 float current_pressure_mpa = 0.0;
-float previous_pressure = 0.0;
+float previous_pressure = 0.0, currentPressure = 0.0;
+float allowedPressureDifference = 0.0;	// Will be used in smart foot mode.
 uint16_t d_pressure = 0;
 
 /***********TIMMER VARIABLES**************/
-unsigned long millis=0, millis1 = 0, millis2 = 0, millis3 = 0;
+unsigned long currentMillis = 0, millis=0, millis1 = 0, millis2 = 0, millis3 = 0;
 bool _1sec = false, _300sec = false;
 
 /*		keypad variables				*/
