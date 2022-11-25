@@ -56,7 +56,14 @@ void foot_switch_detect_check(void)
 		
 		foot_switch_detect_isr_flag = false;
 	}
-
+	
+	if (foot_switch_connected_flag)
+	{
+		PORTB.OUT |= (1<<0);
+		#ifdef _DEBUG
+		USART1_sendString("foot switch detected.");
+		#endif
+	}
 }
 
 /************************************************************************/
@@ -195,11 +202,12 @@ void power_save_protocol (void) //if smart switch mode and power save mode are b
 		
 		else if ((power_save_timer_on_flag) && ((millis-power_save_motor_on_timmer) < power_save_motor_off_time))
 		{
-			if ((abs(previous_pressure - currentPressure) > allowedPressureDifference) && (millis-power_save_motor_on_timmer > power_save_motor_off_time - check_before_time))
+			if ((abs(previous_pressure - currentPressure) > allowedPressureDifference) && (millis - power_save_motor_on_timmer > power_save_motor_off_time - check_before_time))
 			{
-				power_save_motor_on_timmer = millis - (power_save_motor_off_time - check_before_time);
+				//power_save_motor_on_timmer = millis - (power_save_motor_off_time - check_before_time);
+				power_save_motor_on_timmer = millis - check_before_time; // check-before_time(reserved time) reseted to '0' after fluctuation in pressure within 5 sec.
 			}
-			if (millis - currentMillis > 1000)
+			if (millis - currentMillis > 1000)    //reading the current  
 			{
 				previous_pressure = currentPressure;
 			}

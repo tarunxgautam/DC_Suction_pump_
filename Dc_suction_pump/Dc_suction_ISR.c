@@ -1,4 +1,4 @@
-#include "Dc_suction_declarations.h"
+ #include "Dc_suction_declarations.h"
 
 
 ISR(PORTF_PORT_vect)
@@ -77,6 +77,7 @@ ISR(PORTC_PORT_vect)
 				MOTOR_ON_OFF(false);
 				foot_switch_press_count++;
 				foot_switch_release_flag = true;
+				
 			}
 		}
 		else
@@ -101,8 +102,8 @@ ISR(PORTC_PORT_vect)
 		}
 		foot_switch_sens_port.INTFLAGS |= foot_switch_sens_pin;
 	}
-	
-		if (foot_switch_detc_port.INTFLAGS & foot_switch_detc_pin)
+	 
+		if (foot_switch_detc_port.INTFLAGS & foot_switch_detc_pin) 
 		{
 			#ifdef _DEBUG_KEYPAD
 			USART1_sendString("");
@@ -111,6 +112,7 @@ ISR(PORTC_PORT_vect)
 			
 			foot_switch_detect_isr_flag = true;
 			foot_switch_detc_port.INTFLAGS |= foot_switch_detc_pin;
+			
 		}
 }
 

@@ -59,9 +59,9 @@
 #define smart_switch_press_time			1000
 #define check_before_time				5000
 #define power_save_motor_off_time		10000//1800000	// milliseconds in 30 minutes
-#define allowed_pressure_diff_mmHg		30.0 
+#define allowed_pressure_diff_mmHg		15.0 
 #define allowed_pressure_diff_cmH2O		25.0
-#define allowed_pressure_diff_MPa		0.2
+#define allowed_pressure_diff_MPa		2.0   // difference value of current pressure and pervious pressure
 
 /*********************** NTC *******************************/
 #define NTC_ADC_channel			channel_0
