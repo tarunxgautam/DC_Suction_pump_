@@ -64,6 +64,8 @@ void play_pause_button_main(void)
 {
 	if (play_pause_button_press_flag)
 	{
+		USART1_sendString("Play_ Pause_button is pressed");
+		
 		if ( (button_motor_on_off_flag) || (!(TCA0.SINGLE.CMP0 = Duty_cycle)) )
 		{
 
@@ -82,9 +84,12 @@ void play_pause_button_main(void)
 		{
 			button_motor_on_off_flag= true;
 			MOTOR_ON_OFF(true);
+			
 		}
 		play_pause_button_press_flag = false;
+		
 	}
+	
 	// 	if(previous_on_off_button_flag != Speed_change_flag)
 	// 	{
 	// 		previous_on_off_button_flag = Speed_change_flag;

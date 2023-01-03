@@ -37,7 +37,7 @@ void lcd_icon_update (void)
 		unit_icon_update_flag = true;
 		previous_unit_mode = unit_mode;
 	}
-	if (previous_power_save_mode_flag != power_save_mode_on_flag)
+	if (previous_power_save_mode_flag != power_save_mode_on_flag)				//to check the working state of device
 	{
 		previous_power_save_mode_flag = power_save_mode_on_flag;
 		update_power_save_icon_flag = true;
@@ -147,6 +147,26 @@ void lcd_uc1698u_main_screen (void)
 			delete_rectangle(45, 120, 77, 150);
 		}
 		update_power_save_icon_flag = false;
+	}
+	/*             added by Tarun              */
+	
+	if ((power_save_mode_on_flag) && (power_save_icon_blink_flag))  // blinking of power save icon
+	{
+		if (abs(g_foot_sw_blink_millis - millis) > 1000)
+		{
+			BOOOOOOL_TEMP1 ^= 1;
+			if (BOOOOOOL_TEMP1)
+			{
+				POWER_SAVE_LED.OUT &= ~(POWER_SAVE_LED_PIN);
+				delete_rectangle(45, 120, 77, 150);
+			}
+			else
+			{
+				POWER_SAVE_LED.OUT |= (POWER_SAVE_LED_PIN);
+				print_icon(45,120, & temp_powersave_27x40, 27, 42);      // power_save icon
+			}
+			g_foot_sw_blink_millis = millis;
+		}
 	}
 	if (smart_switch_icon_update_flag)
 	{
@@ -310,3 +330,127 @@ void MPa_4digit (uint8_t x1, uint8_t y1)
 		unit_icon_update_flag = false;
 	}
 }
+
+
+void display_runTime_serviceTime(void)
+{
+	delete_rectangle(0,0,70,150);
+	print_icon( 1, 43, &Service_font_30x64, 30, 64);   //printing service and total time icons
+	print_icon( 23, 43, &Hours_font_30x48, 30, 48);
+	print_icon( 1, 103, &Total_font_30x48, 30, 48);
+	print_icon( 17, 103, &Run_font_30x32, 30, 32);
+	print_icon( 28, 103, &Hours_font_30x48, 30,  48);
+	display_print_function_numerics();
+	reset_time();
+	delete_rectangle(0,0,80,150);
+}
+
+int numDigits(long num)
+{
+	int count = 0;
+	while(num / 10)
+	{
+		num = num/10;
+		count++;
+	}
+	count++;
+	return count;
+}
+
+
+void printNumScreen_LeftJustified(uint8_t x_last, uint8_t y_start, long num, uint8_t digits)
+{
+	int temp_x = x_last;
+	int tempVar = numDigits(num);
+	int *tempPtr = (int *)calloc(tempVar, sizeof(int));
+	int loopVal = 0;
+	
+	for (loopVal = 0; loopVal < tempVar - 1; loopVal++)
+	{
+		tempPtr[loopVal] = num % 10;
+		num = num / 10;
+	}
+	tempPtr[tempVar - 1] = num;
+	
+	if (digits > tempVar)
+	{
+		tempPtr = (int *)realloc(tempPtr, (tempVar + (digits - tempVar)) * sizeof(int));
+		for (loopVal = tempVar; loopVal < digits; loopVal++)
+		{
+			tempPtr[loopVal] = 0;
+		}
+		for (loopVal = digits - 1; loopVal >= 0; loopVal--)
+		{
+			print_number(temp_x, y_start, &jersey_numerical_font_24x24_po, 24, 24, tempPtr[loopVal]);
+			temp_x += 6;
+		}
+	}
+	
+	else
+	{
+		for (loopVal = tempVar - 1; loopVal >= 0 ; loopVal--)
+		{
+			print_number(temp_x, y_start, &jersey_numerical_font_24x24_po, 24, 24, tempPtr[loopVal]);
+			temp_x += 6;
+		}
+	}
+	free(tempPtr);
+}
+
+void printNumScreen_RightJustified(uint8_t x_last, uint8_t y_start, long num, uint8_t digits)
+{
+	int temp_x = x_last;
+	int tempVar = numDigits(num);
+	int *tempPtr = (int *)calloc(tempVar, sizeof(int));
+	int loopVal = 0;
+	
+	for (loopVal = 0; loopVal < tempVar - 1; loopVal++)
+	{
+		tempPtr[loopVal] = num % 10;
+		num = num / 10;
+	}
+	tempPtr[tempVar - 1] = num;
+	
+	if (digits > tempVar)
+	{
+		tempPtr = (int *)realloc(tempPtr, (tempVar + (digits - tempVar)) * sizeof(int));
+		for (loopVal = tempVar; loopVal < digits; loopVal++)
+		{
+			tempPtr[loopVal] = 0;
+		}
+		temp_x = temp_x - (6*(digits - 1));
+		for (loopVal = digits - 1; loopVal >= 0; loopVal--)
+		{
+			print_number(temp_x, y_start, &jersey_numerical_font_24x24_po, 24, 24, tempPtr[loopVal]);
+			temp_x += 6;
+		}
+	}
+	
+	else
+	{
+		temp_x = temp_x - (6*(tempVar - 1));
+		for (loopVal = tempVar - 1; loopVal >= 0 ; loopVal--)
+		{
+			print_number(temp_x, y_start, &jersey_numerical_font_24x24_po, 24, 24, tempPtr[loopVal]);
+			temp_x += 6;
+		}
+	}
+	free(tempPtr);
+}
+
+ void display_print_function_numerics(void)                                 // printing service hours
+ {
+	static uint32_t value_1 = 0;
+	value_1 =  read_long_data_in_eeprom_SPM(service_time_addr);	
+	value_1 = value_1 / 3600000;
+	
+	printNumScreen_RightJustified(70, 43, value_1, 4);
+	
+	static uint32_t value_2 = 0;
+	value_2 =  read_long_data_in_eeprom_SPM(total_run_time_addr);
+	value_2 = value_2 / 3600000;
+	
+	printNumScreen_RightJustified(70, 103, value_2, 4);
+	
+ }
+

@@ -104,3 +104,18 @@ uint32_t read_long_data_in_eeprom_SPM(eeprom_addr_t index)
 	data = eeprom_read_dword((uint32_t *)index);
 	return data;
 }
+// added by Tarun
+
+void write_data_in_eeprom_SPM_32bits(uint16_t index, uint32_t data)
+{
+	write_8t_data_in_eeprom_SPM(index++, data & 0x000000ff);
+	write_8t_data_in_eeprom_SPM(index++, (data & 0x0000ff00) >> 8);
+	write_8t_data_in_eeprom_SPM(index++, (data & 0x00ff0000) >> 16);
+	write_8t_data_in_eeprom_SPM(index++, (data & 0xff000000) >> 24);
+}
+
+uint32_t read_data_in_eeprom_SPM_32bits(uint16_t index)
+{
+	
+	return ((read_8t_data_in_eeprom_SPM(index+1) << 8)|(read_8t_data_in_eeprom_SPM(index+2) << 16)|(read_8t_data_in_eeprom_SPM(index+3) << 24)|(read_8t_data_in_eeprom_SPM(index)));
+}

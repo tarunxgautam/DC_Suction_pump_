@@ -48,6 +48,9 @@ void MOTOR_ON_OFF(bool status)
 		SUCTION_LED_PORT.OUT |= SUCTION_LED_PIN;
 		TCA0.SINGLE.CTRLA |= (1 << 0);
 		TCA0.SINGLE.CMP0 = Duty_cycle;
+		countRunTime = true;
+		//less_than_ten_minute_flag = true;
+		g_currentMillis_runTime = millis;
 		#ifdef _DEBUG
 		USART1_sendString("MOTOR_ON_OFF: motor turned on");
 		USART1_sendInt(Duty_cycle);
@@ -58,13 +61,14 @@ void MOTOR_ON_OFF(bool status)
 		SUCTION_LED_PORT.OUT &= ~(SUCTION_LED_PIN);
 		TCA0.SINGLE.CTRLA |= (1 << 0);
 		TCA0.SINGLE.CMP0 = 0;
-		
+		countRunTime = false;
 		
 		button_motor_on_off_flag = false;
 		#ifdef _DEBUG
 		USART1_sendString("MOTOR_ON_OFF: motor turned off");
 		#endif
 	}
+	countRunTime ? USART1_sendString("************************************************************HA BHAI************************************"):USART1_sendString("********************KAISAN BA***********************");
 }
 
 void dc_suction_pressure_main (uint8_t avg)
@@ -79,6 +83,7 @@ void dc_suction_pressure_main (uint8_t avg)
     {
 	    current_pressure_mmhg = max_mmhg_value;					//so that mmhg value does not exceed max mmhg value, and does not give garbage value
     }
+	
 
     //  current_pressure_mmhg = 564.412;
     // 	#ifdef _DEBUG

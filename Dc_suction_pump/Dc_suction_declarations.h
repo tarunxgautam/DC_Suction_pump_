@@ -6,6 +6,7 @@
 #include <avr/io.h>
 #include <stdbool.h>
 #include <math.h>
+#include <stdlib.h>
 #include <avr/interrupt.h>
 #include <avr/sleep.h>
 #include <avr/eeprom.h>
@@ -57,11 +58,11 @@
 #define foot_switch_detc_port			PORTC
 #define foot_switch_detc_pin			(1<<3)
 #define smart_switch_press_time			1000
-#define check_before_time				5000
-#define power_save_motor_off_time		10000//1800000	// milliseconds in 30 minutes
-#define allowed_pressure_diff_mmHg		15.0 
-#define allowed_pressure_diff_cmH2O		25.0
-#define allowed_pressure_diff_MPa		2.0   // difference value of current pressure and pervious pressure
+#define check_before_time				0
+#define power_save_motor_off_time		1800000			// milliseconds in 30 minutes
+#define allowed_pressure_diff_mmHg		40.0 
+#define allowed_pressure_diff_cmH2O		30.0
+#define allowed_pressure_diff_MPa		2.0				// difference value of current pressure and previous pressure
 
 /*********************** NTC *******************************/
 #define NTC_ADC_channel			channel_0
@@ -73,8 +74,10 @@
 #define alarm_temp_value		100.0
 #define high_temp_timer			30000	//0.5 minute
 
+
 /*		timmers		*/
 #define clock_values 23999
+#define reset_time_threshold  10000
 
 /*				lcd_bar						*/
 #define max_mmhg_value		750.0			//max value of mmhg the bar will represent
@@ -104,6 +107,10 @@
 #define flowrate_addr							0x04
 #define Smartswitch_status_addr					0x02
 #define Powersave_status_addr					0x06
+///////  added by tarun//////////////////////////////////////////////////////////////////////////
+
+#define total_run_time_addr						0x11 // four bites for storing seconds
+#define service_time_addr						0x15 // four bites for storing seconds
 
 
 int timeout_count = 0;
@@ -124,8 +131,12 @@ float allowedPressureDifference = 0.0;	// Will be used in smart foot mode.
 uint16_t d_pressure = 0;
 
 /***********TIMMER VARIABLES**************/
-unsigned long currentMillis = 0, millis=0, millis1 = 0, millis2 = 0, millis3 = 0;
-bool _1sec = false, _300sec = false;
+unsigned long currentMillis = 0, millis=0, millis1 = 0, millis2 = 0, millis3 = 0,  g_foot_sw_blink_millis = 0;
+bool _1sec = false, _300sec = false, BOOOOOOL_TEMP1 = false;
+bool set_ten_minutes_flag = false;
+unsigned long g_currentMillis_runTime = 0;
+bool less_than_ten_minute_flag = false;
+
 
 /*		keypad variables				*/
 uint8_t unit_mode = 1;
@@ -172,7 +183,7 @@ bool smart_switch_icon_update_flag = false, smart_switch_delete_flag = false;
 bool foot_switch_connected_flag = false, foot_switch_press_flag = false, foot_switch_release_flag = false;
 bool foot_switch_detect_isr_flag = false, smart_switch_normal_motor_on_flag = false, smart_switch_cont_motor_on_flag = false;
 uint8_t foot_switch_press_count = 0;
-bool power_save_timer_on_flag = false, power_save_mode_on_flag = false;
+bool power_save_timer_on_flag = false, power_save_mode_on_flag = false, power_save_icon_blink_flag = false;
 unsigned long power_save_motor_on_timmer = 0, smart_switch_timmer = 0;
 
 /*				lcd_pressure_bar					*/
@@ -191,7 +202,8 @@ volatile bool value_increment_flag = false;
 volatile bool value_decrement_flag = false;
 volatile bool value_ok_flag = true;
 volatile bool mode_button_flag = false;
-
+bool countRunTime = false;
+ 
 bool value_increment = false;
 bool value_decrement = false;
 bool value_ok = false;
@@ -204,6 +216,10 @@ unsigned long long_press_pwms_set = 0;
 void mode_1(void);
 int settings(void);
 
+/*         ams functions   */   //  by tarun
+void ams_reset (void);
+void ams_check (void);
+
 
 
 
@@ -214,6 +230,7 @@ void power_save_button (void);
 void keypad_main (void);
 void unit_change (void);
 void button_motor_on_off (void);
+void clear_all_keypad_flags(void);
 
 
 typedef uint16_t eeprom_addr_t;		//FOR EEPROM
@@ -225,6 +242,9 @@ void write_32t__data_in_eeprom_SPM(uint16_t, uint32_t);
 uint8_t  read_8t_data_in_eeprom_SPM (eeprom_addr_t);
 uint16_t read_16t_data_in_eeprom_SPM(eeprom_addr_t);
 uint32_t read_long_data_in_eeprom_SPM(eeprom_addr_t);
+uint32_t read_data_in_eeprom_SPM_32bits(uint16_t index);
+void write_data_in_eeprom_SPM_32bits(uint16_t index, uint32_t data);
+
 
 
 /*		AC_suction protocol				*/
@@ -265,6 +285,16 @@ void partitions(void);
 void show_mmgh_4digit (uint8_t,uint8_t);
 void cmH20_4digit (uint8_t , uint8_t );
 void MPa_4digit (uint8_t , uint8_t);
+///////////////////////////////////////////////
+void display_runTime_serviceTime(void);
+void display_print_runservice_time(void);
+void calcutale_run_service_time(void);
+uint8_t buffer_1[] = { };
+uint8_t buffer_2[] = { };
+void lcd_pressure_bar_init(void);
+void bar_draw_delete_rectangle(uint8_t x1, uint8_t y1, uint8_t x2, uint8_t y2);
+void bar_draw_filled_rectangle(uint8_t x1, uint8_t y1, uint8_t x2, uint8_t y2);
+void display_print_function_numerics(void);
 
 /*		NTC		*/
 void NTC_init(void);
@@ -281,6 +311,9 @@ void NTC_check(float);
 /*		timers		*/
 void TCB1_init(void);
 void timmer_init (void);
+////////fuction added by tarun ////////////////
+void reset_time(void);
+void calcutale_run_service_time(void);
 
 /*				lcd_back_led						*/
 void LCD_backlit_gpio_init (void);

@@ -20,7 +20,7 @@
 
 int main(void)
 {
-	sei();
+	cli();
 	_PROTECTED_WRITE (CLKCTRL.OSCHFCTRLA, ((CLKCTRL_FRQSEL_24M_gc)|(CLKCTRL_AUTOTUNE_bm)));
 	timmer_init();
 	USART1_init(9600);
@@ -41,19 +41,23 @@ int main(void)
 	foot_switch_init();
 	STP();
 	_delay_ms(100);
-	lcd_loading_page();
 	sei();
+	display_runTime_serviceTime();                   //service time and total run time display
+	lcd_loading_page();
 	USART1_sendString("//////////////////////////// start /////////////////////////////////");
+
 	while (1)
 	{
-		dc_suction_pressure_main (50);						//argument given to read n times and find average, where n is the argument provided
-		keypad_main();
-		foot_switch_main();
-		read_ntc();
-		dc_suction_protocol_main();
-		lcd_uc1698u_main_screen();
-		power_save_protocol();
-		mode_1();											// just added for pwm mode
-	}
+			dc_suction_pressure_main (50);						//argument given to read n times and find average, where n is the argument provided
+			keypad_main();
+			foot_switch_main();
+			read_ntc();
+			dc_suction_protocol_main();
+			lcd_uc1698u_main_screen();
+			power_save_protocol();
+			mode_1();											// just added for pwm mode
+			calcutale_run_service_time();
+			//USART1_sendInt(millis1);							// test if this works
+		}
 	return 0;
 }

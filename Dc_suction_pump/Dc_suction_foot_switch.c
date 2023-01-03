@@ -168,6 +168,9 @@ void smart_sensing (void)
 }
 
 void power_save_protocol (void) //if smart switch mode and power save mode are both enabled
+
+
+
 {
 	if (power_save_mode_on_flag)
 	{
@@ -178,6 +181,7 @@ void power_save_protocol (void) //if smart switch mode and power save mode are b
 			#endif
 			power_save_timer_on_flag = true;
 			power_save_motor_on_timmer = millis;
+			power_save_icon_blink_flag = false;
 		}
 		else if ( (power_save_timer_on_flag) && ((millis-power_save_motor_on_timmer) > power_save_motor_off_time))
 		{
@@ -195,25 +199,27 @@ void power_save_protocol (void) //if smart switch mode and power save mode are b
 			foot_switch_press_flag = false;
 			foot_switch_release_flag = false;
 			foot_switch_press_count = 0;
+			power_save_icon_blink_flag = true;
 			
 			//resetting play pause button
 			button_motor_on_off_flag = false;
 		}
-		
+				
 		else if ((power_save_timer_on_flag) && ((millis-power_save_motor_on_timmer) < power_save_motor_off_time))
 		{
-			if ((abs(previous_pressure - currentPressure) > allowedPressureDifference) && (millis - power_save_motor_on_timmer > power_save_motor_off_time - check_before_time))
+			/***********************************************************************************************************************************************************************&********/
+			/* In this 'if' condition, power_save_motor_off_time macro is commented because we want to check the pressure variation immediately. To check it after some delay uncomment it.*/
+			/********************************************************************************************************************************************************************************/
+			if ((abs(previous_pressure - currentPressure) > allowedPressureDifference) && (millis - power_save_motor_on_timmer > /*power_save_motor_off_time - */check_before_time))
 			{
 				//power_save_motor_on_timmer = millis - (power_save_motor_off_time - check_before_time);
 				power_save_motor_on_timmer = millis - check_before_time; // check-before_time(reserved time) reseted to '0' after fluctuation in pressure within 5 sec.
 			}
-			if (millis - currentMillis > 1000)    //reading the current  
+			if (millis - currentMillis > 1000)    //reading the current
 			{
 				previous_pressure = currentPressure;
 			}
 		}
-		
-		
 	}
 }
 
@@ -223,6 +229,7 @@ void foot_switch_sensing (void)
 	{
 		MOTOR_ON_OFF(true);
 		foot_switch_press_flag = false;
+		power_save_icon_blink_flag = false;
 	}
 	else if ( (foot_switch_release_flag)/* && (!(foot_switch_sens_port.IN & foot_switch_sens_pin)) */)
 	{
