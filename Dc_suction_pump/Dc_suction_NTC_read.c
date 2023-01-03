@@ -5,7 +5,7 @@ void NTC_init (void)
 	ADC0_init();
 }
 
-void read_ntc (void)
+float read_ntc (void)
 {
 	uint8_t i = 0;
 	for (i = 0; i < 20; i++)

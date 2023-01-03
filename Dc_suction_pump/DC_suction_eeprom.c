@@ -114,8 +114,8 @@ void write_data_in_eeprom_SPM_32bits(uint16_t index, uint32_t data)
 	write_8t_data_in_eeprom_SPM(index++, (data & 0xff000000) >> 24);
 }
 
-uint32_t read_data_in_eeprom_SPM_32bits(uint16_t index)
-{
-	
-	return ((read_8t_data_in_eeprom_SPM(index+1) << 8)|(read_8t_data_in_eeprom_SPM(index+2) << 16)|(read_8t_data_in_eeprom_SPM(index+3) << 24)|(read_8t_data_in_eeprom_SPM(index)));
-}
+// uint32_t read_data_in_eeprom_SPM_32bits(uint16_t index)
+// {
+// 	
+// 	return ((read_8t_data_in_eeprom_SPM(index))|(read_8t_data_in_eeprom_SPM(index+1) << 8)|(read_8t_data_in_eeprom_SPM(index+2) << 16)|(read_8t_data_in_eeprom_SPM(index + 3) << 24));
+// }

@@ -298,7 +298,7 @@ void display_print_function_numerics(void);
 
 /*		NTC		*/
 void NTC_init(void);
-void read_ntc (void);
+float read_ntc (void);
 void temp_hazard_check (float);
 float adc_to_temp (long);
 
