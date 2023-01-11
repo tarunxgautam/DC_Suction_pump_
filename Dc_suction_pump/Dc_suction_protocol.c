@@ -49,7 +49,6 @@ void MOTOR_ON_OFF(bool status)
 		TCA0.SINGLE.CTRLA |= (1 << 0);
 		TCA0.SINGLE.CMP0 = Duty_cycle;
 		countRunTime = true;
-		//less_than_ten_minute_flag = true;
 		g_currentMillis_runTime = millis;
 		#ifdef _DEBUG
 		USART1_sendString("MOTOR_ON_OFF: motor turned on");
@@ -203,8 +202,7 @@ void dc_suction_protocol_main (void)
 // {
 // 	if (Speed_change_flag)
 // 	{
-// 		USART1_sendString("-----Reset-----");
-// 		PORTE.OUT |= (1<<0);
+// 		USART1_sendString("-----Reset// 		PORTE.OUT |= (1<<0);
 // 		_delay_ms(5000);
 // 		PORTE.OUT &= ~(1<<0);
 // 		_delay_ms(500);

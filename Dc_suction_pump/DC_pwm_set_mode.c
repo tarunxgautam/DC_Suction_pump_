@@ -5,7 +5,7 @@ void mode_1(void)
 	if ((mode_button_flag) && ((millis - long_press_pwms_set) > button_normal_press))
 	{
 		USART1_sendString("Entered PWM mode");
-		print_icon(60,130,&s_alphabet_17X17,17, 25);
+		print_icon(60,130,(uint8_t*) &s_alphabet_17X17,17, 25);
 		settings();
 		long_press_pwms_set = 0;
 		mode_button_flag = false;

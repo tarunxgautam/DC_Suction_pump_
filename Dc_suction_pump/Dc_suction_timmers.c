@@ -63,37 +63,37 @@ void reset_time(void)
 	curr_millisecond =  millis ;
 	while (abs(curr_millisecond - millis) < 4000)
 	{USART1_sendString("Reset mode");
-		if((PORTF.IN &= (1 << 2)) && (PORTE.IN &= (1 << 2)))
+		if((PORTC.IN &= (1 << 6)) && (PORTE.IN &= (1 << 2)))
 		{
 			delete_rectangle(0, 0, 80, 150);
 			
-			print_icon(5, 73, &Press_font_20x48, 20,48);
-			print_icon(22, 73, &Button_font_30x64, 30,64);
-			print_icon(42, 73, &In_font_30x24, 30,24);
-			print_icon(50, 73, 
-			
-			&Special_font_30x64, 30,64);
-			print_icon(6, 93, &Pattern_font_30x64, 30,64);
+			print_icon(5, 73,(uint8_t*) &Press_font_20x48, 20,48);
+			print_icon(22, 73,(uint8_t*) &Button_font_30x64, 30,64);
+			print_icon(42, 73,(uint8_t*) &In_font_30x24, 30,24);
+			print_icon(50, 73,(uint8_t*) &Special_font_30x64, 30,64);
+			print_icon(6, 93,(uint8_t*) &Pattern_font_30x64, 30,64);
 			clear_all_keypad_flags();
 			while((!unit_button_pressed_flag) && (!power_save_mode_on_flag) && (!play_pause_button_press_flag) && (!smart_switch_mode_flag) && (!speed_button_press_flag ));
-			if(unit_button_pressed_flag)
+			if(smart_switch_mode_flag)
 			{
-				unit_button_pressed_flag = false;
+				smart_switch_mode_flag = false;
 				while ((!unit_button_pressed_flag) && (!power_save_mode_on_flag) && (!play_pause_button_press_flag) && (!smart_switch_mode_flag) && (!speed_button_press_flag ));
 				if(play_pause_button_press_flag)
 				{
-					play_pause_button_press_flag = false ;
+					play_pause_button_press_flag = false ;							// reseting the service time in at service_time_addr in EEprom
+																					// Turning off the service alarm
 					
-					// reseting the service time in at service_time_addr in EEprom
 					write_data_in_eeprom_SPM_32bits(service_time_addr, 0x00);
 					USART1_sendString("debugging- eeprom reset");
+					Service_alarm_flag = false;
 					delete_rectangle(0,0,75,150);
-					print_icon( 1, 43, &Service_font_30x64, 30, 64);   //printing service and total time icons
-					print_icon( 23, 43, &Hours_font_30x48, 30, 48);
-					print_icon( 1, 103, &Total_font_30x48, 30, 48);
-					print_icon( 17, 103, &Run_font_30x32, 30, 32);
-					print_icon( 28, 103, &Hours_font_30x48, 30,  48);
+					print_icon( 1, 43,(uint8_t*) &Service_font_30x64, 30, 64);		//printing service and total time icons
+					print_icon( 23, 43,(uint8_t*) &Hours_font_30x48, 30, 48);
+					print_icon( 1, 103,(uint8_t*) &Total_font_30x48, 30, 48);
+					print_icon( 17, 103,(uint8_t*) &Run_font_30x32, 30, 32);
+					print_icon( 28, 103,(uint8_t*)  &Hours_font_30x48, 30,  48);
 					display_print_function_numerics();
+					
 				}
 				else
 				{
@@ -104,8 +104,9 @@ void reset_time(void)
 			{
 				display_runTime_serviceTime();
 			}
-		}
+		}		 
 	}
+
 	return; 
 }
 
@@ -133,6 +134,14 @@ void calcutale_run_service_time(void)
  			var += 600000 ;
 			 USART1_sendInt(var);
  			write_data_in_eeprom_SPM_32bits(service_time_addr, var);
+			  if ( var >= allowed_service_duration)
+			  {
+				  Service_alarm_flag_run = true;
+			  }
+			  else
+			  {
+				   Service_alarm_flag_run = false;
+			  }
 
  			//printNumScreen_RightJustified(uint8_t x_last, uint8_t y_start, long num, uint8_t digits);
  				
@@ -141,19 +150,7 @@ void calcutale_run_service_time(void)
 				//_delay_ms(10000);
 			
 		}
-// 		else if (less_than_ten_minute_flag && (millis - g_currentMillis_runTime) < 600000)
-// 			{
-// 				USART1_sendString("**************** bhiya chll giya**************************");
-// 				//  				var = read_data_in_eeprom_SPM_32bits(total_run_time_addr);									//For Total Run Time
-// 				//  				var += (millis - g_currentMillis_runTime) ;
-// 				//  				write_data_in_eeprom_SPM_32bits(total_run_time_addr, var);
-			
-			
-// 				//  				var = read_data_in_eeprom_SPM_32bits(service_time_addr);									//for service time
-// 				//  				var += (millis - g_currentMillis_runTime0) ;
-// 				//  				write_data_in_eeprom_SPM_32bits(service_time_addr, var);
-// 				less_than_ten_minute_flag = false;
-// 			}
+
 		
 }
 

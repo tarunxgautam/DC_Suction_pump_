@@ -135,6 +135,7 @@ void smart_sensing (void)
 		
 		MOTOR_ON_OFF(true);
 		smart_switch_normal_motor_on_flag = true;
+		power_save_icon_blink_flag = false;
 		
 	}
 	//to turn off the motor on the cont. tap release

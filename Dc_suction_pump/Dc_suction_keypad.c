@@ -158,9 +158,9 @@ void pwm_change (void)
 					TCA0.SINGLE.CMP0 = return_val;
 				}
 				lpm30_flag = true;
-				print_icon(53, 42, & arial_numerical_temp_3_49x40,49, 40);								// 3
-				print_icon(66, 40, & jersey_numerical_temp_0_49x40, 49, 40);							// 0
-				print_icon(66,95, & temp_lpm_15x36,15,40);                // lpm
+				print_icon(53, 42, (uint8_t*)&arial_numerical_temp_3_49x40,49, 40);								// 3
+				print_icon(66, 40,(uint8_t*) & jersey_numerical_temp_0_49x40, 49, 40);							// 0
+				print_icon(66,95,(uint8_t*) & temp_lpm_15x36,15,40);                // lpm
 				break;
 		
 		case 2:
@@ -185,9 +185,9 @@ void pwm_change (void)
 				TCA0.SINGLE.CMP0 = return_val;
 				}
 				lpm40_flag = true;
-				print_icon(53, 42, & arial_numerical_temp_4_49x40,49, 40);								// 4
-				print_icon(66, 40, & jersey_numerical_temp_0_49x40, 49, 40);							// 0
-				print_icon(66,95, & temp_lpm_15x36,15,40);                // lpm
+				print_icon(53, 42,(uint8_t*) & arial_numerical_temp_4_49x40,49, 40);								// 4
+				print_icon(66, 40,(uint8_t*) & jersey_numerical_temp_0_49x40, 49, 40);							// 0
+				print_icon(66,95,(uint8_t*) & temp_lpm_15x36,15,40);                // lpm
 				break;
 		
 		case 3:
@@ -212,9 +212,9 @@ void pwm_change (void)
 					TCA0.SINGLE.CMP0 = return_val;
 				}
 				lpm50_flag = true;
-				print_icon(53, 42, & arial_numerical_temp_5_49x40,49, 40);								// 5
-				print_icon(66, 40, & jersey_numerical_temp_0_49x40, 49, 40);							// 0
-				print_icon(66,95, & temp_lpm_15x36,15,40);                // lpm
+				print_icon(53, 42,(uint8_t*) & arial_numerical_temp_5_49x40,49, 40);								// 5
+				print_icon(66, 40,(uint8_t*) & jersey_numerical_temp_0_49x40, 49, 40);							// 0
+				print_icon(66,95,(uint8_t*) & temp_lpm_15x36,15,40);                // lpm
 				break;
 		
 		case 4:
@@ -237,17 +237,17 @@ void pwm_change (void)
 					TCA0.SINGLE.CMP0 = return_val;
 				}
 				lpm60_flag = true;
-				print_icon(53, 42, & arial_numerical_temp_6_49x40,49, 40);								// 6
-				print_icon(66, 40, & jersey_numerical_temp_0_49x40, 49, 40);							// 0
-				print_icon(66,95, & temp_lpm_15x36,15,40);                // lpm
+				print_icon(53, 42,(uint8_t*) & arial_numerical_temp_6_49x40,49, 40);								// 6
+				print_icon(66, 40,(uint8_t*) & jersey_numerical_temp_0_49x40, 49, 40);							// 0
+				print_icon(66,95,(uint8_t*) & temp_lpm_15x36,15,40);                // lpm
 				break;
 		
 		default:
 				Duty_cycle = LPM_30;
 				lpm30_flag = true;
-				print_icon(53, 42, & arial_numerical_temp_3_49x40,49, 40);								// 3
-				print_icon(66, 40, & jersey_numerical_temp_0_49x40, 49, 40);							// 0
-				print_icon(66,95, & temp_lpm_15x36,15,40);                // lpm
+				print_icon(53, 42,(uint8_t*) & arial_numerical_temp_3_49x40,49, 40);								// 3
+				print_icon(66, 40,(uint8_t*) & jersey_numerical_temp_0_49x40, 49, 40);							// 0
+				print_icon(66,95,(uint8_t*) & temp_lpm_15x36,15,40);                // lpm
 				break;
 	}
 	speed_button_press_flag = false;
@@ -266,9 +266,9 @@ else if ((speed_button_press_flag) && ((button_motor_on_off_flag) || (power_save
 				  TCA0.SINGLE.CTRLA |= (1 << 0);				//these two newly added for speed to change when speed button is pressed.
 				  TCA0.SINGLE.CMP0 = LPM_30;					//these two newly added for speed to change when speed button is pressed.
 				  //Duty_cycle = LPM_30;
-				  print_icon(53, 42, & arial_numerical_temp_3_49x40,49, 40);							// 3
-				  print_icon(66, 40, & jersey_numerical_temp_0_49x40, 49, 40);							// 0
-				  print_icon(66,95, & temp_lpm_15x36,15,40);                // lpm
+				  print_icon(53, 42,(uint8_t*) & arial_numerical_temp_3_49x40,49, 40);							// 3
+				  print_icon(66, 40,(uint8_t*) & jersey_numerical_temp_0_49x40, 49, 40);							// 0
+				  print_icon(66,95,(uint8_t*) & temp_lpm_15x36,15,40);                // lpm
 				  break;
 		  
 		  case 2:
@@ -276,9 +276,9 @@ else if ((speed_button_press_flag) && ((button_motor_on_off_flag) || (power_save
 				  TCA0.SINGLE.CTRLA |= (1 << 0);				//these two newly added for speed to change when speed button is pressed.
 				  TCA0.SINGLE.CMP0 = LPM_40;					//these two newly added for speed to change when speed button is pressed.
 				  //				Duty_cycle = LPM_40;
-				  print_icon(53, 42, & arial_numerical_temp_4_49x40,49, 40);								// 4
-				  print_icon(66, 40, & jersey_numerical_temp_0_49x40, 49, 40);							// 0
-				  print_icon(66,95, & temp_lpm_15x36,15,40);                // lpm
+				  print_icon(53, 42,(uint8_t*) & arial_numerical_temp_4_49x40,49, 40);								// 4
+				  print_icon(66, 40,(uint8_t*) & jersey_numerical_temp_0_49x40, 49, 40);							// 0
+				  print_icon(66,95,(uint8_t*) & temp_lpm_15x36,15,40);                // lpm
 				  break;
 		  
 		  case 3:
@@ -286,9 +286,9 @@ else if ((speed_button_press_flag) && ((button_motor_on_off_flag) || (power_save
 				  TCA0.SINGLE.CTRLA |= (1 << 0);				//these two newly added for speed to change when speed button is pressed.
 				  TCA0.SINGLE.CMP0 = LPM_50;			        //these two newly added for speed to change when speed button is pressed.
 				  //				Duty_cycle = LPM_50;
-				  print_icon(53, 42, & arial_numerical_temp_5_49x40,49, 40);								// 5
-				  print_icon(66, 40, & jersey_numerical_temp_0_49x40, 49, 40);							// 0
-				  print_icon(66,95, & temp_lpm_15x36,15,40);                // lpm
+				  print_icon(53, 42,(uint8_t*) & arial_numerical_temp_5_49x40,49, 40);								// 5
+				  print_icon(66, 40,(uint8_t*) & jersey_numerical_temp_0_49x40, 49, 40);							// 0
+				  print_icon(66,95,(uint8_t*) & temp_lpm_15x36,15,40);                // lpm
 				  break;
 		  
 		  case 4:
@@ -296,17 +296,17 @@ else if ((speed_button_press_flag) && ((button_motor_on_off_flag) || (power_save
 				  TCA0.SINGLE.CTRLA |= (1 << 0);					//these two newly added for speed to change when speed button is pressed.
 				  TCA0.SINGLE.CMP0 = LPM_60;						//these two newly added for speed to change when speed button is pressed.
 				  //				Duty_cycle = LPM_60;
-				  print_icon(53, 42, & arial_numerical_temp_6_49x40,49, 40);								// 6
-				  print_icon(66, 40, & jersey_numerical_temp_0_49x40, 49, 40);							// 0
-				  print_icon(66,95, & temp_lpm_15x36,15,40);                // lpm
+				  print_icon(53, 42,(uint8_t*) & arial_numerical_temp_6_49x40,49, 40);								// 6
+				  print_icon(66, 40,(uint8_t*) & jersey_numerical_temp_0_49x40, 49, 40);							// 0
+				  print_icon(66,95,(uint8_t*) & temp_lpm_15x36,15,40);                // lpm
 				  break;
 		  
 		  default:
 				  Duty_cycle = LPM_30;
 				  lpm30_flag = true;
-				  print_icon(53, 42, & arial_numerical_temp_3_49x40,49, 40);								// 3
-				  print_icon(66, 40, & jersey_numerical_temp_0_49x40, 49, 40);							// 0
-				  print_icon(66,95, & temp_lpm_15x36,15,40);                // lpm
+				  print_icon(53, 42,(uint8_t*) & arial_numerical_temp_3_49x40,49, 40);								// 3
+				  print_icon(66, 40,(uint8_t*) & jersey_numerical_temp_0_49x40, 49, 40);							// 0
+				  print_icon(66,95,(uint8_t*) & temp_lpm_15x36,15,40);                // lpm
 				  break;
 	  }
 	  speed_button_press_flag = false; 

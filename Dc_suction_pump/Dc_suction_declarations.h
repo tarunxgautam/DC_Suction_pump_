@@ -59,7 +59,7 @@
 #define foot_switch_detc_pin			(1<<3)
 #define smart_switch_press_time			1000
 #define check_before_time				0
-#define power_save_motor_off_time		1800000			// milliseconds in 30 minutes
+#define power_save_motor_off_time		10000//1800000			// milliseconds in 30 minutes
 #define allowed_pressure_diff_mmHg		40.0 
 #define allowed_pressure_diff_cmH2O		30.0
 #define allowed_pressure_diff_MPa		2.0				// difference value of current pressure and previous pressure
@@ -87,6 +87,9 @@
 #define max_bar_length		77.0			//237.0
 #define starting_bar_width	2			//pressure bar starting updation point |___-----------|
 
+/*				Alarms          */
+//#define allowed_service_duration		10
+#define allowed_service_duration	36000000
 
 /*		AC suction protocol				*/
 #define mode_mmhg	1
@@ -107,7 +110,7 @@
 #define flowrate_addr							0x04
 #define Smartswitch_status_addr					0x02
 #define Powersave_status_addr					0x06
-///////  added by tarun//////////////////////////////////////////////////////////////////////////
+///////  added by tarun/////////
 
 #define total_run_time_addr						0x11 // four bites for storing seconds
 #define service_time_addr						0x15 // four bites for storing seconds
@@ -171,7 +174,8 @@ bool backlit_on_flag = false;
 
 
 /*		alarms and hazard		*/
-
+bool Service_alarm_flag = false;
+bool Service_alarm_flag_run = false;
 
 /*		ac suction lcd uc1698u		*/
 bool  update_pressure_flag = false, unit_icon_update_flag = false, update_bar_flag = false;
@@ -308,10 +312,12 @@ void hazard_icon_conditions_check(void);	// all alarm icons will be turned on or
 void alarms_main(void);
 void NTC_check(float);
 
+
 /*		timers		*/
 void TCB1_init(void);
 void timmer_init (void);
-////////fuction added by tarun ////////////////
+////////fuctions added by tarun //////////////
+
 void reset_time(void);
 void calcutale_run_service_time(void);
 

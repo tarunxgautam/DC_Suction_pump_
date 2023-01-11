@@ -9,7 +9,7 @@ void NTC_check(float temp)
 {
 	if ((int)temp > TEMP_ALARM_RANGE1)
 	{
-	  print_icon(26,122, &high_temp_26x32,26,33);
+	  print_icon(26,122,(uint8_t*) &high_temp_26x32,26,33);
 		//	PORTF.OUT |= (1<<5);
 		//MOTOR_ON_OFF(false);
 	}
@@ -19,3 +19,4 @@ void NTC_check(float temp)
 		//	  PORTF.OUT &= ~(1<<5);
 	}
 }
+

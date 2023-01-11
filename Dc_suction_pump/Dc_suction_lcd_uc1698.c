@@ -63,8 +63,8 @@ void power_on_screen (void)
 {
 	//	bar_draw_delete_rectangle(0,0,3,30);
 	delete_rectangle(0,0,4,10);
-	print_icon(30, 50 , &AgVa_logo_56x30, 30,56);
-	print_icon(31, 100, &POWER_ON_48X8, 8, 48);
+	print_icon(30, 50 ,(uint8_t*) &AgVa_logo_56x30, 30,56);
+	print_icon(31, 100,(uint8_t*) &POWER_ON_48X8, 8, 48);
 }
 
 void lcd_loading_page (void)
@@ -77,9 +77,9 @@ void lcd_loading_page (void)
  	show_mmgh_4digit (6,42);
 	Duty_cycle = LPM_30;
     lpm30_flag = true;
-	print_icon(53, 42, & arial_numerical_temp_3_49x40,49, 40);								// 3
-	print_icon(66, 40, & jersey_numerical_temp_0_49x40, 49, 40);							// 0
-	print_icon(66,95, & temp_lpm_15x36,15,40);                // lpm
+	print_icon(53, 42,(uint8_t*) & arial_numerical_temp_3_49x40,49, 40);								// 3
+	print_icon(66, 40,(uint8_t*) & jersey_numerical_temp_0_49x40, 49, 40);							// 0
+	print_icon(66,95,(uint8_t*) & temp_lpm_15x36,15,40);                // lpm
 //	print_icon(66, 129, &battery_SOC4_15x32, 15, 33);		 // battery icon
  	//	print_icon(12,129, & temp_right_arrow_15x40, 15, 42);	 // right jar icon
  	_delay_ms(100);
@@ -136,7 +136,7 @@ void lcd_uc1698u_main_screen (void)
 			USART1_sendString("Power save button pressed");
 			#endif
 			POWER_SAVE_LED.OUT |= (POWER_SAVE_LED_PIN);
-			print_icon(45,120, & temp_powersave_27x40, 27, 42);      // power_save icon
+			print_icon(60,120,(uint8_t*) & temp_powersave_27x40, 27, 42);      // power_save icon
 		}
 		else
 		{
@@ -144,7 +144,7 @@ void lcd_uc1698u_main_screen (void)
 			USART1_sendString("Power save button released");
 			#endif
 			POWER_SAVE_LED.OUT &= ~(POWER_SAVE_LED_PIN);
-			delete_rectangle(45, 120, 77, 150);
+			delete_rectangle(60, 120, 77, 150);
 		}
 		update_power_save_icon_flag = false;
 	}
@@ -158,12 +158,12 @@ void lcd_uc1698u_main_screen (void)
 			if (BOOOOOOL_TEMP1)
 			{
 				POWER_SAVE_LED.OUT &= ~(POWER_SAVE_LED_PIN);
-				delete_rectangle(45, 120, 77, 150);
+				delete_rectangle(60, 120, 77, 150);
 			}
 			else
 			{
 				POWER_SAVE_LED.OUT |= (POWER_SAVE_LED_PIN);
-				print_icon(45,120, & temp_powersave_27x40, 27, 42);      // power_save icon
+				print_icon(60,120,(uint8_t*) & temp_powersave_27x40, 27, 42);      // power_save icon
 			}
 			g_foot_sw_blink_millis = millis;
 		}
@@ -180,13 +180,13 @@ void lcd_uc1698u_main_screen (void)
 			}
 			switch (smart_icon_serial)
 			{
-				case 0:	print_icon(7,122, & animation_1_foot_24x33,24, 40);
+				case 0:	print_icon(7,122,(uint8_t*) & animation_1_foot_24x33,24, 40);
 				break;
 				
-				case 1:	print_icon(7,122, & animation_2_foot_24x33,24, 40);
+				case 1:	print_icon(7,122,(uint8_t*) & animation_2_foot_24x33,24, 40);
 				break;
 				
-				case 2:	print_icon(7,122, & animation_3_foot_24x33,24, 40);
+				case 2:	print_icon(7,122,(uint8_t*) & animation_3_foot_24x33,24, 40);
 				break;
 				
 				default:
@@ -208,6 +208,11 @@ void lcd_uc1698u_main_screen (void)
 		}
 		smart_switch_icon_update_flag = false;
 	}
+	
+	if (Service_alarm_flag || Service_alarm_flag_run)
+	{
+			 print_icon(36 , 124 ,(uint8_t*) &service_required_26x32,26 ,32);
+	}
 }
 
 void partitions(void)
@@ -218,7 +223,7 @@ void partitions(void)
 //	print_double_line(51,31,51,114,false);	  //  // middle vertical line
 	print_line(51,31,51,114,false);				// middle verticle line
 	print_line (0,114,79,114,true);          // icons partition line
-	print_line(0,115,79,115,true);			// icons partition line for highlight
+	print_line(0,115,79,115,true );			// icons partition line for highlight
 }
 
 void EDGE(void)
@@ -255,13 +260,13 @@ void show_mmgh_4digit (uint8_t x1, uint8_t y1)
 	digit_a = __buff_/10;
 	__buff_ = 0;
 
-	print_number((x1), y1, &arial_numerical_font_49x40, 49, 40, digit_a);
-	print_number((x1+13), y1, &arial_numerical_font_49x40, 49, 40, digit_b);
-	print_number((x1+26), y1, &arial_numerical_font_49x40, 49, 40, digit_c);
+	print_number((x1), y1,(uint8_t*) &arial_numerical_font_49x40, 49, 40, digit_a);
+	print_number((x1+13), y1,(uint8_t*) &arial_numerical_font_49x40, 49, 40, digit_b);
+	print_number((x1+26), y1,(uint8_t*) &arial_numerical_font_49x40, 49, 40, digit_c);
 	//	print_number((x1+18), y1, &arial_numerical_font_49x40, 49, 40, digit_d);
 	if (unit_icon_update_flag)
 	{
-		print_icon(31,95 , &temp_2_mmhg_13x48, 13, 50);
+		print_icon(31,95 ,(uint8_t*) &temp_2_mmhg_13x48, 13, 50);
 		unit_icon_update_flag = false;
 	}
 	
@@ -288,13 +293,13 @@ void cmH20_4digit (uint8_t x1, uint8_t y1)
 	digit_a = buff/10;
 	buff = 0;
 
-	print_number((x1), y1, &arial_numerical_font_49x40, 49, 40, digit_a);
-	print_number((x1+13), y1, &arial_numerical_font_49x40, 49, 40, digit_b);
-	print_number((x1+26), y1, &arial_numerical_font_49x40, 49, 40, digit_c);
+	print_number((x1), y1,(uint8_t*) &arial_numerical_font_49x40, 49, 40, digit_a);
+	print_number((x1+13), y1,(uint8_t*) &arial_numerical_font_49x40, 49, 40, digit_b);
+	print_number((x1+26), y1,(uint8_t*) &arial_numerical_font_49x40, 49, 40, digit_c);
 	//print_number((x1+18), y1, &jersey_numerical_font_24x24, 24, 24, digit_d);
 	if (unit_icon_update_flag)
 	{
-		print_icon(31, 95, &temp_cmh2o_13x54, 13,57);
+		print_icon(31, 95,(uint8_t*) &temp_cmh2o_13x54, 13,57);
 		unit_icon_update_flag = false;
 	}
 }
@@ -319,14 +324,14 @@ void MPa_4digit (uint8_t x1, uint8_t y1)
 	digit_a = 0;
 	buff = 0;
 	
-	print_number((x1), y1, &arial_numerical_font_49x40, 49, 40, digit_a);
-	print_icon(16,85, &temp_decimal_1_6x8,6,9);
-	print_number((x1+13), y1, &arial_numerical_font_49x40, 49, 40, digit_b);
-	print_number((x1+26), y1, &arial_numerical_font_49x40, 49, 40, digit_c);
+	print_number((x1), y1,(uint8_t*) &arial_numerical_font_49x40, 49, 40, digit_a);
+	print_icon(16,85,(uint8_t*) &temp_decimal_1_6x8,6,9);
+	print_number((x1+13), y1,(uint8_t*) &arial_numerical_font_49x40, 49, 40, digit_b);
+	print_number((x1+26), y1,(uint8_t*) &arial_numerical_font_49x40, 49, 40, digit_c);
 	//	print_number((x1+23), y1, &jersey_numerical_font_24x24, 24, 24, digit_d);
 	if (unit_icon_update_flag)
 	{
-		print_icon(31, 95, &temp_mpa_14x54, 14,57);
+		print_icon(31, 95,(uint8_t*) &temp_mpa_14x54, 14,57);
 		unit_icon_update_flag = false;
 	}
 }
@@ -335,11 +340,11 @@ void MPa_4digit (uint8_t x1, uint8_t y1)
 void display_runTime_serviceTime(void)
 {
 	delete_rectangle(0,0,70,150);
-	print_icon( 1, 43, &Service_font_30x64, 30, 64);   //printing service and total time icons
-	print_icon( 23, 43, &Hours_font_30x48, 30, 48);
-	print_icon( 1, 103, &Total_font_30x48, 30, 48);
-	print_icon( 17, 103, &Run_font_30x32, 30, 32);
-	print_icon( 28, 103, &Hours_font_30x48, 30,  48);
+	print_icon( 1, 43,(uint8_t*) &Service_font_30x64, 30, 64);   //printing service and total time icons
+	print_icon( 23, 43,(uint8_t*) &Hours_font_30x48, 30, 48);
+	print_icon( 1, 103,(uint8_t*) &Total_font_30x48, 30, 48);
+	print_icon( 17, 103,(uint8_t*) &Run_font_30x32, 30, 32);
+	print_icon( 28, 103,(uint8_t*) &Hours_font_30x48, 30,  48);
 	display_print_function_numerics();
 	reset_time();
 	delete_rectangle(0,0,80,150);
@@ -381,7 +386,7 @@ void printNumScreen_LeftJustified(uint8_t x_last, uint8_t y_start, long num, uin
 		}
 		for (loopVal = digits - 1; loopVal >= 0; loopVal--)
 		{
-			print_number(temp_x, y_start, &jersey_numerical_font_24x24_po, 24, 24, tempPtr[loopVal]);
+			print_number(temp_x, y_start, (uint8_t*) &jersey_numerical_font_24x24_po, 24, 24, tempPtr[loopVal]);
 			temp_x += 6;
 		}
 	}
@@ -390,7 +395,7 @@ void printNumScreen_LeftJustified(uint8_t x_last, uint8_t y_start, long num, uin
 	{
 		for (loopVal = tempVar - 1; loopVal >= 0 ; loopVal--)
 		{
-			print_number(temp_x, y_start, &jersey_numerical_font_24x24_po, 24, 24, tempPtr[loopVal]);
+			print_number(temp_x, y_start,(uint8_t*) &jersey_numerical_font_24x24_po, 24, 24, tempPtr[loopVal]);
 			temp_x += 6;
 		}
 	}
@@ -421,7 +426,7 @@ void printNumScreen_RightJustified(uint8_t x_last, uint8_t y_start, long num, ui
 		temp_x = temp_x - (6*(digits - 1));
 		for (loopVal = digits - 1; loopVal >= 0; loopVal--)
 		{
-			print_number(temp_x, y_start, &jersey_numerical_font_24x24_po, 24, 24, tempPtr[loopVal]);
+			print_number(temp_x, y_start,(uint8_t*) &jersey_numerical_font_24x24_po, 24, 24, tempPtr[loopVal]);
 			temp_x += 6;
 		}
 	}
@@ -431,7 +436,7 @@ void printNumScreen_RightJustified(uint8_t x_last, uint8_t y_start, long num, ui
 		temp_x = temp_x - (6*(tempVar - 1));
 		for (loopVal = tempVar - 1; loopVal >= 0 ; loopVal--)
 		{
-			print_number(temp_x, y_start, &jersey_numerical_font_24x24_po, 24, 24, tempPtr[loopVal]);
+			print_number(temp_x, y_start,(uint8_t*) &jersey_numerical_font_24x24_po, 24, 24, tempPtr[loopVal]);
 			temp_x += 6;
 		}
 	}
@@ -441,15 +446,23 @@ void printNumScreen_RightJustified(uint8_t x_last, uint8_t y_start, long num, ui
  void display_print_function_numerics(void)                                 // printing service hours
  {
 	static uint32_t value_1 = 0;
-	value_1 =  read_long_data_in_eeprom_SPM(service_time_addr);	
-	value_1 = value_1 / 3600000;
+	static uint32_t value_2 = 0;
 	
+	value_1 =  read_long_data_in_eeprom_SPM(service_time_addr);	
+	if (value_1 >= allowed_service_duration )
+	{
+		Service_alarm_flag = true;
+	}
+	else
+	{
+		Service_alarm_flag = false;
+	}
+	
+	value_1 = value_1 / 3600000;
 	printNumScreen_RightJustified(70, 43, value_1, 4);
 	
-	static uint32_t value_2 = 0;
 	value_2 =  read_long_data_in_eeprom_SPM(total_run_time_addr);
 	value_2 = value_2 / 3600000;
-	
 	printNumScreen_RightJustified(70, 103, value_2, 4);
 	
  }

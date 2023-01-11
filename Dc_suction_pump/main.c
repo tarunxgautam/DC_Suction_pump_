@@ -41,7 +41,7 @@ int main(void)
 	foot_switch_init();
 	STP();
 	_delay_ms(100);
-	sei();
+	sei();	
 	display_runTime_serviceTime();                   //service time and total run time display
 	lcd_loading_page();
 	USART1_sendString("//////////////////////////// start /////////////////////////////////");
@@ -57,7 +57,6 @@ int main(void)
 			power_save_protocol();
 			mode_1();											// just added for pwm mode
 			calcutale_run_service_time();
-			//USART1_sendInt(millis1);							// test if this works
-		}
+	}
 	return 0;
 }
