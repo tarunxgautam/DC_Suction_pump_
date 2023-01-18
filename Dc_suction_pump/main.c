@@ -25,8 +25,8 @@ int main(void)
 	timmer_init();
 	USART1_init(9600);
 	AMS_PORT.DIR |= AMS_PIN;
-	AMS_PORT.OUT &= ~(AMS_PIN);				//ams
-	PORTB.DIR |= (1<<0);                     // foot switch detection led pin
+	AMS_PORT.OUT &= ~(AMS_PIN);									//ams
+	PORTB.DIR |= (1<<0);									    // foot switch detection led pin
 	TCA0_PWM_init();
 	SPI_0_init();
 	FOOT_SW_LED_PORT.DIR |= FOOt_SW_LED_PIN;
@@ -42,7 +42,7 @@ int main(void)
 	STP();
 	_delay_ms(100);
 	sei();	
-	display_runTime_serviceTime();                   //service time and total run time display
+	display_runTime_serviceTime();								 //service time and total run time display
 	lcd_loading_page();
 	USART1_sendString("//////////////////////////// start /////////////////////////////////");
 

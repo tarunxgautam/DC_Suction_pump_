@@ -67,7 +67,7 @@ void foot_switch_detect_check(void)
 }
 
 /************************************************************************/
-/*    POwer save mode will not work until smart switch is pressed       */
+/*    Power save mode will not work until smart switch is pressed       */
 /************************************************************************/
 
 void foot_switch_main (void)

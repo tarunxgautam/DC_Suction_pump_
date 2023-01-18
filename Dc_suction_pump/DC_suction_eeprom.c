@@ -2,7 +2,7 @@
 
 #define eeprom_erase_write		0x13
 
-void eeprom_init_read (void)
+void eeprom_init_read(void)
 {
 	previous_soft_hard_reset_flag = read_8t_data_in_eeprom_SPM (previous_soft_hard_reset_flag_addr);			//true is software reset
 	#ifdef eprom_debug
@@ -36,7 +36,7 @@ void eeprom_init_read (void)
 
 
 
-void eeprom_init (void)
+void eeprom_init(void)
 {
 	set_NVM_command_SPM(eeprom_erase_write);
 }

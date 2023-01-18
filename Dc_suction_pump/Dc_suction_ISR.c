@@ -153,7 +153,7 @@ ISR(PORTE_PORT_vect)
 		#ifdef _DEBUG_KEYPAD
 		if (power_save_mode_on_flag)
 		{
-			USART1_sendString("");
+			USART1_sendString("");  
 			USART1_sendString("ISR: power save mode on");
 		}
 		else

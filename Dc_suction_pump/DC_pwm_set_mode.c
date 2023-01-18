@@ -290,20 +290,20 @@ int settings(void)
 			{
 				case 1:
 						TCA0.SINGLE.CTRLA |= (1 << 0);
-						TCA0.SINGLE.CMP0 = 2700;
-						LPM_60 = 2700;
+						TCA0.SINGLE.CMP0 = 2850;
+						LPM_60 = 2850;
 						break;
 				
 				case 2:
 						TCA0.SINGLE.CTRLA |= (1 << 0);
-						TCA0.SINGLE.CMP0 = 2750;
-						LPM_60 = 2750;
+						TCA0.SINGLE.CMP0 = 2900;
+						LPM_60 = 2900;
 						break;
 				
 				case 3:
 						TCA0.SINGLE.CTRLA |= (1 << 0);
-						TCA0.SINGLE.CMP0 = 2800;
-						LPM_60 = 2800;
+						TCA0.SINGLE.CMP0 = 2950;
+						LPM_60 = 2950;
 						break;
 				
 				case 4:

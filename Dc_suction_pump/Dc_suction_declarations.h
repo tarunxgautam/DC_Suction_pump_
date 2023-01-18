@@ -89,7 +89,7 @@
 
 /*				Alarms          */
 //#define allowed_service_duration		10
-#define allowed_service_duration	36000000
+#define allowed_service_duration		21600000  // for 6 hrs
 
 /*		AC suction protocol				*/
 #define mode_mmhg	1
@@ -135,10 +135,10 @@ uint16_t d_pressure = 0;
 
 /***********TIMMER VARIABLES**************/
 unsigned long currentMillis = 0, millis=0, millis1 = 0, millis2 = 0, millis3 = 0,  g_foot_sw_blink_millis = 0;
-bool _1sec = false, _300sec = false, BOOOOOOL_TEMP1 = false;
+bool _1sec = false, _300sec = false, blink_flag = false;
 bool set_ten_minutes_flag = false;
 unsigned long g_currentMillis_runTime = 0;
-bool less_than_ten_minute_flag = false;
+
 
 
 /*		keypad variables				*/

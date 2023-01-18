@@ -46,8 +46,7 @@ void STP (void)
 {
 	MOTOR_ON_OFF(false);
 	stp_foot_switch_check();
-	power_on_screen();
-	
+	power_on_screen(); 
 	ams_reset();
  	ams_check();
 	 
@@ -78,7 +77,7 @@ void ams_check (void)
 		{
 			current_pressure_mmhg = AMS_mmhg_average(1);
 			//	USART1_sendFloat(current_pressure,3);
-			USART1_sendString("*************************yha tk chala%%%%%%%%%%%%%%");
+			//	USART1_sendString("*************************yha tk chala%%%%%%%%%%%%%%");
 			if (i2c_timeout_flag)/* || (current_pressure_mmhg > max_sens_error_val) || (current_pressure_mmhg <= min_sens_error_val))*/
 			{
 				timeout_count++;

@@ -154,8 +154,8 @@ void lcd_uc1698u_main_screen (void)
 	{
 		if (abs(g_foot_sw_blink_millis - millis) > 1000)
 		{
-			BOOOOOOL_TEMP1 ^= 1;
-			if (BOOOOOOL_TEMP1)
+			blink_flag ^= 1;
+			if (blink_flag)
 			{
 				POWER_SAVE_LED.OUT &= ~(POWER_SAVE_LED_PIN);
 				delete_rectangle(60, 120, 77, 150);
@@ -211,7 +211,7 @@ void lcd_uc1698u_main_screen (void)
 	
 	if (Service_alarm_flag || Service_alarm_flag_run)
 	{
-			 print_icon(36 , 124 ,(uint8_t*) &service_required_26x32,26 ,32);
+			 print_icon(36, 124,(uint8_t*) &service_required_26x32,26,32);
 	}
 }
 

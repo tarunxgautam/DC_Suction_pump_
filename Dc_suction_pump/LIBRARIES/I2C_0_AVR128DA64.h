@@ -64,7 +64,7 @@ void I2C_0_initialization(void)
 }
 
 void I2C_0_master_initialization(void)
-{
+{  
 	//sei();
 	
 	//TWI0.MBAUD = 13;         // fscl = 100khz, rise time = 1us  when cpu clock 4MHZ
