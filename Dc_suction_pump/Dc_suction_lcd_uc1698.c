@@ -75,9 +75,9 @@ void lcd_loading_page (void)
 	partitions();
  	current_pressure_mmhg = 0.0; //  if not 0 then disply prints fault screen at pressure values
  	show_mmgh_4digit (6,42);
-	Duty_cycle = LPM_30;
-    lpm30_flag = true;
-	print_icon(53, 42,(uint8_t*) & arial_numerical_temp_3_49x40,49, 40);								// 3
+	Duty_cycle = LPM_20;
+    lpm20_flag = true;
+	print_icon(53, 40,(uint8_t*) & arial_numerical_temp_2_49x40,49, 40);								// 3
 	print_icon(66, 40,(uint8_t*) & jersey_numerical_temp_0_49x40, 49, 40);							// 0
 	print_icon(66,95,(uint8_t*) & temp_lpm_15x36,15,40);                // lpm
 //	print_icon(66, 129, &battery_SOC4_15x32, 15, 33);		 // battery icon

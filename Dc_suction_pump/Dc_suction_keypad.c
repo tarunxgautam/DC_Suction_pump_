@@ -133,13 +133,37 @@ void pwm_change (void)
 //	if((speed_button_press_flag) && (!button_motor_on_off_flag) && (!power_save_mode_on_flag) && (!smart_switch_mode_flag))   // removing this part as for now we want speed to be changed while motor is on and this part will work only when motor is off.
 	if(speed_button_press_flag)
 	{
-		if (++unit_mode_pwm > 4)
+		if (++unit_mode_pwm > 5)
 		{
 			unit_mode_pwm = 1;
 		}
 	switch (unit_mode_pwm) 
 	{
 		case 1:
+				#ifdef _DEBUG_Keypad
+				//USART1_sendString("unit_mode_pwm :   1800 ");
+				#endif
+				if (button_motor_on_off_flag)
+				{
+					TCA0.SINGLE.CTRLA |= (1 << 0);				//these two newly added for speed to change when speed button is pressed.
+					TCA0.SINGLE.CMP0 = LPM_20;					//these two newly added for speed to change when speed button is pressed.
+				}
+				//				TCA0.SINGLE.CTRLA |= (1 << 0);				//these two newly added for speed to change when speed button is pressed.
+				//				TCA0.SINGLE.CMP0 = LPM_30;					//these two newly added for speed to change when speed button is pressed.
+				Duty_cycle = LPM_20;				// just commented because the updated value was not coming to speed
+				if (!value_ok_flag)
+				{
+					Duty_cycle = return_val;
+					TCA0.SINGLE.CTRLA |= (1 << 0);
+					TCA0.SINGLE.CMP0 = return_val;
+				}
+				lpm20_flag = true;
+				print_icon(53, 40, (uint8_t*)&arial_numerical_temp_2_49x40,49, 40);								// 3
+				print_icon(66, 40,(uint8_t*) & jersey_numerical_temp_0_49x40, 49, 40);							// 0
+				print_icon(66,95,(uint8_t*) & temp_lpm_15x36,15,40);                // lpm
+				break;
+		
+		case 2:
 				#ifdef _DEBUG_Keypad
 				//USART1_sendString("unit_mode_pwm :   1800 ");
 				#endif
@@ -150,7 +174,7 @@ void pwm_change (void)
                 }
 //				TCA0.SINGLE.CTRLA |= (1 << 0);				//these two newly added for speed to change when speed button is pressed.
 //				TCA0.SINGLE.CMP0 = LPM_30;					//these two newly added for speed to change when speed button is pressed.
-				Duty_cycle = LPM_30;				// just commented because the updated value was not coming to speed
+				Duty_cycle = LPM_30;						// just commented because the updated value was not coming to speed
 				if (!value_ok_flag)
 				{
 					Duty_cycle = return_val;
@@ -158,12 +182,12 @@ void pwm_change (void)
 					TCA0.SINGLE.CMP0 = return_val;
 				}
 				lpm30_flag = true;
-				print_icon(53, 42, (uint8_t*)&arial_numerical_temp_3_49x40,49, 40);								// 3
+				print_icon(53, 40, (uint8_t*)&arial_numerical_temp_3_49x40,49, 40);								// 3
 				print_icon(66, 40,(uint8_t*) & jersey_numerical_temp_0_49x40, 49, 40);							// 0
-				print_icon(66,95,(uint8_t*) & temp_lpm_15x36,15,40);                // lpm
+				print_icon(66,95,(uint8_t*) & temp_lpm_15x36,15,40);											// lpm
 				break;
 		
-		case 2:
+		case 3:
 				#ifdef _DEBUG_Keypad
 				//USART1_sendString("unit_mode_pwm :   2000 ");
 				#endif
@@ -185,12 +209,12 @@ void pwm_change (void)
 				TCA0.SINGLE.CMP0 = return_val;
 				}
 				lpm40_flag = true;
-				print_icon(53, 42,(uint8_t*) & arial_numerical_temp_4_49x40,49, 40);								// 4
-				print_icon(66, 40,(uint8_t*) & jersey_numerical_temp_0_49x40, 49, 40);							// 0
-				print_icon(66,95,(uint8_t*) & temp_lpm_15x36,15,40);                // lpm
+				print_icon(53, 40,(uint8_t*) & arial_numerical_temp_4_49x40,49, 40);								// 4
+				print_icon(66, 40,(uint8_t*) & jersey_numerical_temp_0_49x40, 49, 40);								// 0
+				print_icon(66,95,(uint8_t*) & temp_lpm_15x36,15,40);												// lpm
 				break;
 		
-		case 3:
+		case 4:
 				#ifdef _DEBUG_Keypad
 		//		USART1_sendString("unit_mode_pwm :   2400 ");
 				#endif
@@ -212,12 +236,12 @@ void pwm_change (void)
 					TCA0.SINGLE.CMP0 = return_val;
 				}
 				lpm50_flag = true;
-				print_icon(53, 42,(uint8_t*) & arial_numerical_temp_5_49x40,49, 40);								// 5
+				print_icon(53, 40,(uint8_t*) & arial_numerical_temp_5_49x40,49, 40);								// 5
 				print_icon(66, 40,(uint8_t*) & jersey_numerical_temp_0_49x40, 49, 40);							// 0
 				print_icon(66,95,(uint8_t*) & temp_lpm_15x36,15,40);                // lpm
 				break;
 		
-		case 4:
+		case 5:
 				#ifdef _DEBUG_Keypad
 		//		USART1_sendString("unit_mode_pwm :   3000");
 				#endif
@@ -237,7 +261,7 @@ void pwm_change (void)
 					TCA0.SINGLE.CMP0 = return_val;
 				}
 				lpm60_flag = true;
-				print_icon(53, 42,(uint8_t*) & arial_numerical_temp_6_49x40,49, 40);								// 6
+				print_icon(53, 40,(uint8_t*) & arial_numerical_temp_6_49x40,49, 40);								// 6
 				print_icon(66, 40,(uint8_t*) & jersey_numerical_temp_0_49x40, 49, 40);							// 0
 				print_icon(66,95,(uint8_t*) & temp_lpm_15x36,15,40);                // lpm
 				break;
@@ -245,7 +269,7 @@ void pwm_change (void)
 		default:
 				Duty_cycle = LPM_30;
 				lpm30_flag = true;
-				print_icon(53, 42,(uint8_t*) & arial_numerical_temp_3_49x40,49, 40);								// 3
+				print_icon(53, 40,(uint8_t*) & arial_numerical_temp_2_49x40,49, 40);								// 3
 				print_icon(66, 40,(uint8_t*) & jersey_numerical_temp_0_49x40, 49, 40);							// 0
 				print_icon(66,95,(uint8_t*) & temp_lpm_15x36,15,40);                // lpm
 				break;
@@ -255,7 +279,7 @@ void pwm_change (void)
  // just adding for speed change when motor is on
 else if ((speed_button_press_flag) && ((button_motor_on_off_flag) || (power_save_mode_on_flag) || (smart_switch_mode_flag)))
   {
-	if (++unit_mode_pwm > 4)
+	if (++unit_mode_pwm > 5)
 	  {
 		  unit_mode_pwm = 1;
 	  }
@@ -264,46 +288,56 @@ else if ((speed_button_press_flag) && ((button_motor_on_off_flag) || (power_save
 		  case 1:
 				  //TCA0.SINGLE.CTRLA |= (1 << 0);
 				  TCA0.SINGLE.CTRLA |= (1 << 0);				//these two newly added for speed to change when speed button is pressed.
-				  TCA0.SINGLE.CMP0 = LPM_30;					//these two newly added for speed to change when speed button is pressed.
+				  TCA0.SINGLE.CMP0 = LPM_20;					//these two newly added for speed to change when speed button is pressed.
 				  //Duty_cycle = LPM_30;
-				  print_icon(53, 42,(uint8_t*) & arial_numerical_temp_3_49x40,49, 40);							// 3
+				  print_icon(53, 40,(uint8_t*) & arial_numerical_temp_2_49x40,49, 40);							// 3
 				  print_icon(66, 40,(uint8_t*) & jersey_numerical_temp_0_49x40, 49, 40);							// 0
 				  print_icon(66,95,(uint8_t*) & temp_lpm_15x36,15,40);                // lpm
 				  break;
-		  
+				  
 		  case 2:
 				  //TCA0.SINGLE.CTRLA |= (1 << 0);
 				  TCA0.SINGLE.CTRLA |= (1 << 0);				//these two newly added for speed to change when speed button is pressed.
-				  TCA0.SINGLE.CMP0 = LPM_40;					//these two newly added for speed to change when speed button is pressed.
-				  //				Duty_cycle = LPM_40;
-				  print_icon(53, 42,(uint8_t*) & arial_numerical_temp_4_49x40,49, 40);								// 4
+				  TCA0.SINGLE.CMP0 = LPM_30;					//these two newly added for speed to change when speed button is pressed.
+				  //Duty_cycle = LPM_30;
+				  print_icon(53, 40,(uint8_t*) & arial_numerical_temp_3_49x40,49, 40);							// 3
 				  print_icon(66, 40,(uint8_t*) & jersey_numerical_temp_0_49x40, 49, 40);							// 0
 				  print_icon(66,95,(uint8_t*) & temp_lpm_15x36,15,40);                // lpm
 				  break;
 		  
 		  case 3:
-				  //		TCA0.SINGLE.CTRLA |= (1 << 0);
+				  //TCA0.SINGLE.CTRLA |= (1 << 0);
 				  TCA0.SINGLE.CTRLA |= (1 << 0);				//these two newly added for speed to change when speed button is pressed.
-				  TCA0.SINGLE.CMP0 = LPM_50;			        //these two newly added for speed to change when speed button is pressed.
-				  //				Duty_cycle = LPM_50;
-				  print_icon(53, 42,(uint8_t*) & arial_numerical_temp_5_49x40,49, 40);								// 5
+				  TCA0.SINGLE.CMP0 = LPM_40;					//these two newly added for speed to change when speed button is pressed.
+				  //				Duty_cycle = LPM_40;
+				  print_icon(53, 40,(uint8_t*) & arial_numerical_temp_4_49x40,49, 40);								// 4
 				  print_icon(66, 40,(uint8_t*) & jersey_numerical_temp_0_49x40, 49, 40);							// 0
 				  print_icon(66,95,(uint8_t*) & temp_lpm_15x36,15,40);                // lpm
 				  break;
 		  
 		  case 4:
+				  //		TCA0.SINGLE.CTRLA |= (1 << 0);
+				  TCA0.SINGLE.CTRLA |= (1 << 0);				//these two newly added for speed to change when speed button is pressed.
+				  TCA0.SINGLE.CMP0 = LPM_50;			        //these two newly added for speed to change when speed button is pressed.
+				  //				Duty_cycle = LPM_50;
+				  print_icon(53, 40,(uint8_t*) & arial_numerical_temp_5_49x40,49, 40);								// 5
+				  print_icon(66, 40,(uint8_t*) & jersey_numerical_temp_0_49x40, 49, 40);							// 0
+				  print_icon(66,95,(uint8_t*) & temp_lpm_15x36,15,40);                // lpm
+				  break;
+		  
+		  case 5:
 				  //	TCA0.SINGLE.CTRLA |= (1 << 0);
 				  TCA0.SINGLE.CTRLA |= (1 << 0);					//these two newly added for speed to change when speed button is pressed.
 				  TCA0.SINGLE.CMP0 = LPM_60;						//these two newly added for speed to change when speed button is pressed.
 				  //				Duty_cycle = LPM_60;
-				  print_icon(53, 42,(uint8_t*) & arial_numerical_temp_6_49x40,49, 40);								// 6
+				  print_icon(53, 40,(uint8_t*) & arial_numerical_temp_6_49x40,49, 40);								// 6
 				  print_icon(66, 40,(uint8_t*) & jersey_numerical_temp_0_49x40, 49, 40);							// 0
 				  print_icon(66,95,(uint8_t*) & temp_lpm_15x36,15,40);                // lpm
 				  break;
 		  
 		  default:
-				  Duty_cycle = LPM_30;
-				  lpm30_flag = true;
+				  Duty_cycle = LPM_20;
+				  lpm20_flag = true;
 				  print_icon(53, 42,(uint8_t*) & arial_numerical_temp_3_49x40,49, 40);								// 3
 				  print_icon(66, 40,(uint8_t*) & jersey_numerical_temp_0_49x40, 49, 40);							// 0
 				  print_icon(66,95,(uint8_t*) & temp_lpm_15x36,15,40);                // lpm

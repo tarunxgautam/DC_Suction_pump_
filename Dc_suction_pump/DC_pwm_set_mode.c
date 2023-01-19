@@ -28,10 +28,92 @@ int settings(void)
 	
 	while(!value_ok_flag)
 	{
+		if ((value_increment_flag) && (lpm20_flag))
+		{
+			USART1_sendString("mode for 30lpm increment :");
+			if (++pwm_value > 5)
+			{
+				pwm_value = 1;
+			}
+			switch (pwm_value)
+			{
+				case 1:
+				TCA0.SINGLE.CTRLA |= (1 << 0);
+				TCA0.SINGLE.CMP0 = 1550;
+				LPM_20 = 1550;
+				break;
+				
+				case 2:
+				TCA0.SINGLE.CTRLA |= (1 << 0);
+				TCA0.SINGLE.CMP0 = 1600;
+				LPM_20 = 1600;
+				break;
+				
+				case 3:
+				TCA0.SINGLE.CTRLA |= (1 << 0);
+				TCA0.SINGLE.CMP0 = 1650;
+				LPM_20 = 1650;
+				break;
+				
+				case 4:
+				TCA0.SINGLE.CTRLA |= (1 << 0);
+				TCA0.SINGLE.CMP0 = 1700;
+				LPM_20 = 1700;
+				break;
+				
+				default:
+				LPM_20 = 1550;
+				break;
+			}
+			value_increment_flag = false;
+			return_val = LPM_20;
+		}
+		
+		else if ((value_decrement_flag) && (lpm20_flag))
+		{
+			USART1_sendString("mode for 30lpm decrement :");
+			if (++pwm_value > 5)
+			{
+				pwm_value = 1;
+			}
+			switch (pwm_value)
+			{
+				case 1:
+				TCA0.SINGLE.CTRLA |= (1 << 0);
+				TCA0.SINGLE.CMP0 = 1550;
+				LPM_20 = 1550;
+				break;
+				
+				case 2:
+				TCA0.SINGLE.CTRLA |= (1 << 0);
+				TCA0.SINGLE.CMP0 = 1450;
+				LPM_20 = 1450;
+				break;
+				
+				case 3:
+				TCA0.SINGLE.CTRLA |= (1 << 0);
+				TCA0.SINGLE.CMP0 = 1400;
+				LPM_20 = 1400;
+				break;
+				
+				case 4:
+				TCA0.SINGLE.CTRLA |= (1 << 0);
+				TCA0.SINGLE.CMP0 = 1350;
+				LPM_20 = 1350;
+				break;
+				
+				default:
+				LPM_20 = 1550;
+				break;
+				
+			}
+			value_decrement_flag = false;
+			return_val = LPM_20;
+		}
 		if ((value_increment_flag) && (lpm30_flag))
 		{
 			USART1_sendString("mode for 30lpm increment :");
-			if (++pwm_value > 4)
+			if (++pwm_value > 5)
 			{
 				pwm_value = 1;
 			}
@@ -72,7 +154,7 @@ int settings(void)
 		else if ((value_decrement_flag) && (lpm30_flag))
 		{
 			USART1_sendString("mode for 30lpm decrement :");
-			if (++pwm_value > 4)
+			if (++pwm_value > 5)
 			{
 				pwm_value = 1;
 			}
@@ -114,7 +196,7 @@ int settings(void)
 		else if ((value_increment_flag) && (lpm40_flag))
 		{
 			USART1_sendString("mode for 40 lpm increment :");		
-			if (++pwm_value > 4)
+			if (++pwm_value > 5)
 			{
 				pwm_value = 1;
 			}
@@ -156,7 +238,7 @@ int settings(void)
 		else if ((value_decrement_flag) && (lpm40_flag))
 		{
 			USART1_sendString("mode for 40 lpm decrement :");
-			if (++pwm_value > 4)
+			if (++pwm_value > 5)
 			{
 				pwm_value = 1;
 			}
@@ -198,7 +280,7 @@ int settings(void)
 		else if ((value_increment_flag) && (lpm50_flag))
 		{
 			USART1_sendString("mode for 50 lpm increment :");
-			if (++pwm_value > 4)
+			if (++pwm_value > 5)
 			{
 				pwm_value = 1;
 			}
@@ -240,7 +322,7 @@ int settings(void)
 		else if ((value_decrement_flag) && (lpm50_flag))
 		{
 			USART1_sendString("mode for 50 lpm decrement :");
-			if (++pwm_value > 4)
+			if (++pwm_value > 5)
 			{
 				pwm_value = 1;
 			}
@@ -282,7 +364,7 @@ int settings(void)
 		else if ((value_increment_flag) && (lpm60_flag))
 		{
 			USART1_sendString("mode for 60 lpm increment :");
-			if (++pwm_value > 4)
+			if (++pwm_value > 5)
 			{
 				pwm_value = 1;
 			}
@@ -324,7 +406,7 @@ int settings(void)
 		else if ((value_decrement_flag) && (lpm60_flag))
 		{
 			USART1_sendString("mode for 60 lpm decrement :");
-			if (++pwm_value > 4)
+			if (++pwm_value > 5)
 			{
 				pwm_value = 1;
 			}
@@ -367,7 +449,8 @@ int settings(void)
 	value_ok_flag = false;
 	delete_rectangle(55,122,75,155);
 	USART1_sendInt(return_val);
-	mode_button_flag = false;	
+	mode_button_flag = false;
+	lpm20_flag = false;		
 	lpm30_flag = false;
 	lpm40_flag = false;
 	lpm50_flag = false;
