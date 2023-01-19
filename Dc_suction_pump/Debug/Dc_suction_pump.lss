@@ -8164,8 +8164,8 @@ int main(void)
     5df0:	30 91 03 40 	lds	r19, 0x4003	; 0x804003 <__malloc_heap_start+0x1>
     5df4:	20 93 7c 45 	sts	0x457C, r18	; 0x80457c <__brkval>
     5df8:	30 93 7d 45 	sts	0x457D, r19	; 0x80457d <__brkval+0x1>
-    5dfc:	20 91 00 40 	lds	r18, 0x4000	; 0x804000 <__DATA_REGION_ORIGIN__>
-    5e00:	30 91 01 40 	lds	r19, 0x4001	; 0x804001 <__DATA_REGION_ORIGIN__+0x1>
+    5dfc:	20 91 00 40 	lds	r18, 0x4000	; 0x804000 <__data_start>
+    5e00:	30 91 01 40 	lds	r19, 0x4001	; 0x804001 <__data_start+0x1>
     5e04:	21 15       	cp	r18, r1
     5e06:	31 05       	cpc	r19, r1
     5e08:	41 f4       	brne	.+16     	; 0x5e1a <malloc+0xea>
@@ -8495,8 +8495,8 @@ int main(void)
     60c0:	66 16       	cp	r6, r22
     60c2:	77 06       	cpc	r7, r23
     60c4:	c8 f4       	brcc	.+50     	; 0x60f8 <realloc+0x186>
-    60c6:	80 91 00 40 	lds	r24, 0x4000	; 0x804000 <__DATA_REGION_ORIGIN__>
-    60ca:	90 91 01 40 	lds	r25, 0x4001	; 0x804001 <__DATA_REGION_ORIGIN__+0x1>
+    60c6:	80 91 00 40 	lds	r24, 0x4000	; 0x804000 <__data_start>
+    60ca:	90 91 01 40 	lds	r25, 0x4001	; 0x804001 <__data_start+0x1>
     60ce:	00 97       	sbiw	r24, 0x00	; 0
     60d0:	41 f4       	brne	.+16     	; 0x60e2 <realloc+0x170>
     60d2:	8d b7       	in	r24, 0x3d	; 61
