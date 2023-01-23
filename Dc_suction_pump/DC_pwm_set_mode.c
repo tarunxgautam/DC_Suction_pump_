@@ -39,30 +39,30 @@ int settings(void)
 			{
 				case 1:
 				TCA0.SINGLE.CTRLA |= (1 << 0);
-				TCA0.SINGLE.CMP0 = 1550;
-				LPM_20 = 1550;
+				TCA0.SINGLE.CMP0 = 1640;
+				LPM_20 = 1640;
 				break;
 				
 				case 2:
 				TCA0.SINGLE.CTRLA |= (1 << 0);
-				TCA0.SINGLE.CMP0 = 1600;
-				LPM_20 = 1600;
+				TCA0.SINGLE.CMP0 = 1690;
+				LPM_20 = 1690;
 				break;
 				
 				case 3:
 				TCA0.SINGLE.CTRLA |= (1 << 0);
-				TCA0.SINGLE.CMP0 = 1650;
-				LPM_20 = 1650;
+				TCA0.SINGLE.CMP0 = 1740;
+				LPM_20 = 1740;
 				break;
 				
 				case 4:
 				TCA0.SINGLE.CTRLA |= (1 << 0);
-				TCA0.SINGLE.CMP0 = 1700;
-				LPM_20 = 1700;
+				TCA0.SINGLE.CMP0 = 1790;
+				LPM_20 = 1790;
 				break;
 				
 				default:
-				LPM_20 = 1550;
+				LPM_20 = 1640;
 				break;
 			}
 			value_increment_flag = false;
@@ -80,30 +80,30 @@ int settings(void)
 			{
 				case 1:
 				TCA0.SINGLE.CTRLA |= (1 << 0);
-				TCA0.SINGLE.CMP0 = 1550;
-				LPM_20 = 1550;
+				TCA0.SINGLE.CMP0 = 1640;
+				LPM_20 = 1640;
 				break;
 				
 				case 2:
 				TCA0.SINGLE.CTRLA |= (1 << 0);
-				TCA0.SINGLE.CMP0 = 1450;
-				LPM_20 = 1450;
+				TCA0.SINGLE.CMP0 = 1590;
+				LPM_20 = 1590;
 				break;
 				
 				case 3:
 				TCA0.SINGLE.CTRLA |= (1 << 0);
-				TCA0.SINGLE.CMP0 = 1400;
-				LPM_20 = 1400;
+				TCA0.SINGLE.CMP0 = 1540;
+				LPM_20 = 1540;
 				break;
 				
 				case 4:
 				TCA0.SINGLE.CTRLA |= (1 << 0);
-				TCA0.SINGLE.CMP0 = 1350;
-				LPM_20 = 1350;
+				TCA0.SINGLE.CMP0 = 1490 ;
+				LPM_20 = 1490;
 				break;
 				
 				default:
-				LPM_20 = 1550;
+				LPM_20 = 1640;
 				break;
 				
 			}
@@ -121,30 +121,30 @@ int settings(void)
 			{
 				case 1:
 						TCA0.SINGLE.CTRLA |= (1 << 0);
-						TCA0.SINGLE.CMP0 = 1800;
-						LPM_30 = 1800;
+						TCA0.SINGLE.CMP0 = 2000;
+						LPM_30 = 2000;
 						break;
 			
 				case 2:
 						TCA0.SINGLE.CTRLA |= (1 << 0);
-						TCA0.SINGLE.CMP0 = 1850;
-						LPM_30 = 1850;
+						TCA0.SINGLE.CMP0 = 2050;
+						LPM_30 = 2050;
 						break;
 				
 				case 3: 	
 						TCA0.SINGLE.CTRLA |= (1 << 0);
-						TCA0.SINGLE.CMP0 = 1900;				
-						LPM_30 = 1900;
+						TCA0.SINGLE.CMP0 = 2100;				
+						LPM_30 = 2100;
 						break;
 				
 				case 4:
 						TCA0.SINGLE.CTRLA |= (1 << 0);
-						TCA0.SINGLE.CMP0 = 1950;
-				        LPM_30 = 1950;
+						TCA0.SINGLE.CMP0 = 2150;
+				        LPM_30 = 2150;
 						break;
 						
 				default:
-				        LPM_30 = 1800;
+				        LPM_30 = 2000;
 				        break;	
 			}
 			value_increment_flag = false;
@@ -162,30 +162,30 @@ int settings(void)
 			{
 				case 1:
 						TCA0.SINGLE.CTRLA |= (1 << 0);
-						TCA0.SINGLE.CMP0 = 1800;
-						LPM_30 = 1800;
+						TCA0.SINGLE.CMP0 = 2000;
+						LPM_30 = 2000;
 						break;
 				
 				case 2:
 						TCA0.SINGLE.CTRLA |= (1 << 0);
-						TCA0.SINGLE.CMP0 = 1750;
-						LPM_30 = 1750;
+						TCA0.SINGLE.CMP0 = 1950;
+						LPM_30 = 1950;
 						break;
 				
 				case 3:
 						TCA0.SINGLE.CTRLA |= (1 << 0);
-						TCA0.SINGLE.CMP0 = 1700;
-						LPM_30 = 1700;
+						TCA0.SINGLE.CMP0 = 1900;
+						LPM_30 = 1900;
 						break;
 				
 				case 4:
 						TCA0.SINGLE.CTRLA |= (1 << 0);
-						TCA0.SINGLE.CMP0 = 1650;
-						LPM_30 = 1650;
+						TCA0.SINGLE.CMP0 = 1850;
+						LPM_30 = 1850;
 						break;
 							
 				default:
-						LPM_30 = 1800;
+						LPM_30 = 2000;
 						break;
 				
 			}
@@ -204,30 +204,30 @@ int settings(void)
 			{
 				case 1:
 						TCA0.SINGLE.CTRLA |= (1 << 0);
-						TCA0.SINGLE.CMP0 = 2000;
-						LPM_40 = 2000;
+						TCA0.SINGLE.CMP0 = 2450;
+						LPM_40 = 2450;
 						break;
 				
 				case 2:
 						TCA0.SINGLE.CTRLA |= (1 << 0);
-						TCA0.SINGLE.CMP0 = 2050;
-						LPM_40 = 2050;
+						TCA0.SINGLE.CMP0 = 2500;
+						LPM_40 = 2500;
 						break;
 				
 				case 3:
 						TCA0.SINGLE.CTRLA |= (1 << 0);
-						TCA0.SINGLE.CMP0 = 2100;
-						LPM_40 = 2100;
+						TCA0.SINGLE.CMP0 = 2550;
+						LPM_40 = 2550;
 						break;
 				
 				case 4:
 						TCA0.SINGLE.CTRLA |= (1 << 0);
-						TCA0.SINGLE.CMP0 = 2250;
-						LPM_40 = 2250;
+						TCA0.SINGLE.CMP0 = 2600;
+						LPM_40 = 2600;
 						break;
 				
 				default:
-						LPM_40 = 2000;
+						LPM_40 = 2450;
 						break;
 				
 			}
@@ -246,30 +246,30 @@ int settings(void)
 			{
 				case 1:
 						TCA0.SINGLE.CTRLA |= (1 << 0);
-						TCA0.SINGLE.CMP0 = 2000;
-						LPM_40 = 2000;
+						TCA0.SINGLE.CMP0 = 2450;
+						LPM_40 = 2450;
 						break;
 				
 				case 2:
 						TCA0.SINGLE.CTRLA |= (1 << 0);
-						TCA0.SINGLE.CMP0 = 1950;
-						LPM_40 = 1950;
+						TCA0.SINGLE.CMP0 = 2400;
+						LPM_40 = 2400;
 						break;
 				
 				case 3:
 						TCA0.SINGLE.CTRLA |= (1 << 0);
-						TCA0.SINGLE.CMP0 = 1900;
-						LPM_40 = 1900;
+						TCA0.SINGLE.CMP0 = 2350;
+						LPM_40 = 2350;
 						break;
 						
 				case 4:
 						TCA0.SINGLE.CTRLA |= (1 << 0);
-						TCA0.SINGLE.CMP0 = 1850;
-						LPM_40 = 1850;
+						TCA0.SINGLE.CMP0 = 2300;
+						LPM_40 = 2300;
 						break;
 				
 				default:
-						LPM_40 = 2000;
+						LPM_40 = 2450;
 						break;
 				
 			}
@@ -288,30 +288,30 @@ int settings(void)
 			{
 				case 1:
 						TCA0.SINGLE.CTRLA |= (1 << 0);
-						TCA0.SINGLE.CMP0 = 2400;
-						LPM_50 = 2400;
+						TCA0.SINGLE.CMP0 =  3400;
+						LPM_50 = 3400;
 						break;
 				
 				case 2:
 						TCA0.SINGLE.CTRLA |= (1 << 0);
-						TCA0.SINGLE.CMP0 = 2450;
-						LPM_50 = 2450;
+						TCA0.SINGLE.CMP0 = 3450;
+						LPM_50 = 3450;
 						break;
 				
 				case 3:
 						TCA0.SINGLE.CTRLA |= (1 << 0);
-						TCA0.SINGLE.CMP0 = 2500;
-						LPM_50 = 2500;
+						TCA0.SINGLE.CMP0 = 3500;
+						LPM_50 = 3500;
 						break;
 				
 				case 4:
 						TCA0.SINGLE.CTRLA |= (1 << 0);
-						TCA0.SINGLE.CMP0 = 2550;
-						LPM_50 = 2550;
+						TCA0.SINGLE.CMP0 = 3600;
+						LPM_50 = 3600;
 						break;
 				
 				default:
-						LPM_50 = 2400;
+						LPM_50 = 3400;
 						break;
 				
 			}
@@ -330,30 +330,30 @@ int settings(void)
 			{
 				case 1:
 						TCA0.SINGLE.CTRLA |= (1 << 0);
-						TCA0.SINGLE.CMP0 = 2400;
-						LPM_50 = 2400;
+						TCA0.SINGLE.CMP0 = 3400;
+						LPM_50 = 3400;
 						break;
 				
 				case 2:
 						TCA0.SINGLE.CTRLA |= (1 << 0);
-						TCA0.SINGLE.CMP0 = 2350;
-						LPM_50 = 2350;
+						TCA0.SINGLE.CMP0 = 3350;
+						LPM_50 = 3350;
 						break;
 						
 				case 3:
 						TCA0.SINGLE.CTRLA |= (1 << 0);
-						TCA0.SINGLE.CMP0 = 2300;
-						LPM_50 = 2300;
+						TCA0.SINGLE.CMP0 = 3300;
+						LPM_50 = 3300;
 						break;
 				
 				case 4:
 						TCA0.SINGLE.CTRLA |= (1 << 0);
-						TCA0.SINGLE.CMP0 = 2250;
-						LPM_50 = 2250;
+						TCA0.SINGLE.CMP0 = 3250;
+						LPM_50 = 3250;
 						break;
 				
 				default:
-						LPM_50 = 2400;
+						LPM_50 = 3400;
 						break;
 				
 			}

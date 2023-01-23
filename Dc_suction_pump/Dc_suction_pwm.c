@@ -5,7 +5,7 @@ void TCA0_PWM_init(void)
 	PORTA.DIR |= (1 << 0);			// pump pin
 	PORTA.DIR |= (1 << 1);			// for proportional valve
 	PORTA.PIN0CTRL |= (1 << 3);
-	//	PORTA.PIN1CTRL |= (1 << 3);
+	//PORTA.PIN1CTRL |= (1 << 3);
 	//PORTA.OUTSET |= (1 << 0);
 	//TCA0.SINGLE.PER = 120;		// calcu lation for 40us
 	TCA0.SINGLE.PER = 3000;			// calculation for 1ms

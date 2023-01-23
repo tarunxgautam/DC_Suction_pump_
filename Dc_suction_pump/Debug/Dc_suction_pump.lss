@@ -3444,9 +3444,9 @@ void alarms_main (void)
     37e0:	5d 09       	sbc	r21, r13
     37e2:	6e 09       	sbc	r22, r14
     37e4:	7f 09       	sbc	r23, r15
-    37e6:	41 31       	cpi	r20, 0x11	; 17
-    37e8:	57 42       	sbci	r21, 0x27	; 39
-    37ea:	61 05       	cpc	r22, r1
+    37e6:	41 34       	cpi	r20, 0x41	; 65
+    37e8:	57 47       	sbci	r21, 0x77	; 119
+    37ea:	6b 41       	sbci	r22, 0x1B	; 27
     37ec:	71 05       	cpc	r23, r1
     37ee:	18 f1       	brcs	.+70     	; 0x3836 <power_save_protocol+0xe6>
     37f0:	80 e0       	ldi	r24, 0x00	; 0
@@ -3485,9 +3485,9 @@ void alarms_main (void)
     3862:	95 09       	sbc	r25, r5
     3864:	a6 09       	sbc	r26, r6
     3866:	b7 09       	sbc	r27, r7
-    3868:	80 31       	cpi	r24, 0x10	; 16
-    386a:	97 42       	sbci	r25, 0x27	; 39
-    386c:	a1 05       	cpc	r26, r1
+    3868:	80 34       	cpi	r24, 0x40	; 64
+    386a:	97 47       	sbci	r25, 0x77	; 119
+    386c:	ab 41       	sbci	r26, 0x1B	; 27
     386e:	b1 05       	cpc	r27, r1
     3870:	08 f0       	brcs	.+2      	; 0x3874 <power_save_protocol+0x124>
     3872:	57 c0       	rjmp	.+174    	; 0x3922 <power_save_protocol+0x1d2>
@@ -6065,12 +6065,12 @@ int settings(void)
     5038:	80 81       	ld	r24, Z
     503a:	81 60       	ori	r24, 0x01	; 1
     503c:	80 83       	st	Z, r24
-				TCA0.SINGLE.CMP0 = 1550;
-    503e:	8e e0       	ldi	r24, 0x0E	; 14
+				TCA0.SINGLE.CMP0 = 1640;
+    503e:	88 e6       	ldi	r24, 0x68	; 104
     5040:	96 e0       	ldi	r25, 0x06	; 6
     5042:	80 a7       	std	Z+40, r24	; 0x28
     5044:	91 a7       	std	Z+41, r25	; 0x29
-				LPM_20 = 1550;
+				LPM_20 = 1640;
     5046:	80 93 11 40 	sts	0x4011, r24	; 0x804011 <LPM_20>
     504a:	90 93 12 40 	sts	0x4012, r25	; 0x804012 <LPM_20+0x1>
 				break;
@@ -6083,12 +6083,12 @@ int settings(void)
     5054:	80 81       	ld	r24, Z
     5056:	81 60       	ori	r24, 0x01	; 1
     5058:	80 83       	st	Z, r24
-				TCA0.SINGLE.CMP0 = 1600;
-    505a:	80 e4       	ldi	r24, 0x40	; 64
+				TCA0.SINGLE.CMP0 = 1690;
+    505a:	8a e9       	ldi	r24, 0x9A	; 154
     505c:	96 e0       	ldi	r25, 0x06	; 6
     505e:	80 a7       	std	Z+40, r24	; 0x28
     5060:	91 a7       	std	Z+41, r25	; 0x29
-				LPM_20 = 1600;
+				LPM_20 = 1690;
     5062:	80 93 11 40 	sts	0x4011, r24	; 0x804011 <LPM_20>
     5066:	90 93 12 40 	sts	0x4012, r25	; 0x804012 <LPM_20+0x1>
 				break;
@@ -6101,12 +6101,12 @@ int settings(void)
     5070:	80 81       	ld	r24, Z
     5072:	81 60       	ori	r24, 0x01	; 1
     5074:	80 83       	st	Z, r24
-				TCA0.SINGLE.CMP0 = 1650;
-    5076:	82 e7       	ldi	r24, 0x72	; 114
+				TCA0.SINGLE.CMP0 = 1740;
+    5076:	8c ec       	ldi	r24, 0xCC	; 204
     5078:	96 e0       	ldi	r25, 0x06	; 6
     507a:	80 a7       	std	Z+40, r24	; 0x28
     507c:	91 a7       	std	Z+41, r25	; 0x29
-				LPM_20 = 1650;
+				LPM_20 = 1740;
     507e:	80 93 11 40 	sts	0x4011, r24	; 0x804011 <LPM_20>
     5082:	90 93 12 40 	sts	0x4012, r25	; 0x804012 <LPM_20+0x1>
 				break;
@@ -6119,20 +6119,20 @@ int settings(void)
     508c:	80 81       	ld	r24, Z
     508e:	81 60       	ori	r24, 0x01	; 1
     5090:	80 83       	st	Z, r24
-				TCA0.SINGLE.CMP0 = 1700;
-    5092:	84 ea       	ldi	r24, 0xA4	; 164
+				TCA0.SINGLE.CMP0 = 1790;
+    5092:	8e ef       	ldi	r24, 0xFE	; 254
     5094:	96 e0       	ldi	r25, 0x06	; 6
     5096:	80 a7       	std	Z+40, r24	; 0x28
     5098:	91 a7       	std	Z+41, r25	; 0x29
-				LPM_20 = 1700;
+				LPM_20 = 1790;
     509a:	80 93 11 40 	sts	0x4011, r24	; 0x804011 <LPM_20>
     509e:	90 93 12 40 	sts	0x4012, r25	; 0x804012 <LPM_20+0x1>
 				break;
     50a2:	06 c0       	rjmp	.+12     	; 0x50b0 <settings+0x12c>
 				
 				default:
-				LPM_20 = 1550;
-    50a4:	8e e0       	ldi	r24, 0x0E	; 14
+				LPM_20 = 1640;
+    50a4:	88 e6       	ldi	r24, 0x68	; 104
     50a6:	96 e0       	ldi	r25, 0x06	; 6
     50a8:	80 93 11 40 	sts	0x4011, r24	; 0x804011 <LPM_20>
     50ac:	90 93 12 40 	sts	0x4012, r25	; 0x804012 <LPM_20+0x1>
@@ -6194,12 +6194,12 @@ int settings(void)
     5114:	80 81       	ld	r24, Z
     5116:	81 60       	ori	r24, 0x01	; 1
     5118:	80 83       	st	Z, r24
-				TCA0.SINGLE.CMP0 = 1550;
-    511a:	8e e0       	ldi	r24, 0x0E	; 14
+				TCA0.SINGLE.CMP0 = 1640;
+    511a:	88 e6       	ldi	r24, 0x68	; 104
     511c:	96 e0       	ldi	r25, 0x06	; 6
     511e:	80 a7       	std	Z+40, r24	; 0x28
     5120:	91 a7       	std	Z+41, r25	; 0x29
-				LPM_20 = 1550;
+				LPM_20 = 1640;
     5122:	80 93 11 40 	sts	0x4011, r24	; 0x804011 <LPM_20>
     5126:	90 93 12 40 	sts	0x4012, r25	; 0x804012 <LPM_20+0x1>
 				break;
@@ -6212,12 +6212,12 @@ int settings(void)
     5130:	80 81       	ld	r24, Z
     5132:	81 60       	ori	r24, 0x01	; 1
     5134:	80 83       	st	Z, r24
-				TCA0.SINGLE.CMP0 = 1450;
-    5136:	8a ea       	ldi	r24, 0xAA	; 170
-    5138:	95 e0       	ldi	r25, 0x05	; 5
+				TCA0.SINGLE.CMP0 = 1590;
+    5136:	86 e3       	ldi	r24, 0x36	; 54
+    5138:	96 e0       	ldi	r25, 0x06	; 6
     513a:	80 a7       	std	Z+40, r24	; 0x28
     513c:	91 a7       	std	Z+41, r25	; 0x29
-				LPM_20 = 1450;
+				LPM_20 = 1590;
     513e:	80 93 11 40 	sts	0x4011, r24	; 0x804011 <LPM_20>
     5142:	90 93 12 40 	sts	0x4012, r25	; 0x804012 <LPM_20+0x1>
 				break;
@@ -6230,12 +6230,12 @@ int settings(void)
     514c:	80 81       	ld	r24, Z
     514e:	81 60       	ori	r24, 0x01	; 1
     5150:	80 83       	st	Z, r24
-				TCA0.SINGLE.CMP0 = 1400;
-    5152:	88 e7       	ldi	r24, 0x78	; 120
-    5154:	95 e0       	ldi	r25, 0x05	; 5
+				TCA0.SINGLE.CMP0 = 1540;
+    5152:	84 e0       	ldi	r24, 0x04	; 4
+    5154:	96 e0       	ldi	r25, 0x06	; 6
     5156:	80 a7       	std	Z+40, r24	; 0x28
     5158:	91 a7       	std	Z+41, r25	; 0x29
-				LPM_20 = 1400;
+				LPM_20 = 1540;
     515a:	80 93 11 40 	sts	0x4011, r24	; 0x804011 <LPM_20>
     515e:	90 93 12 40 	sts	0x4012, r25	; 0x804012 <LPM_20+0x1>
 				break;
@@ -6248,20 +6248,20 @@ int settings(void)
     5168:	80 81       	ld	r24, Z
     516a:	81 60       	ori	r24, 0x01	; 1
     516c:	80 83       	st	Z, r24
-				TCA0.SINGLE.CMP0 = 1350;
-    516e:	86 e4       	ldi	r24, 0x46	; 70
+				TCA0.SINGLE.CMP0 = 1490 ;
+    516e:	82 ed       	ldi	r24, 0xD2	; 210
     5170:	95 e0       	ldi	r25, 0x05	; 5
     5172:	80 a7       	std	Z+40, r24	; 0x28
     5174:	91 a7       	std	Z+41, r25	; 0x29
-				LPM_20 = 1350;
+				LPM_20 = 1490;
     5176:	80 93 11 40 	sts	0x4011, r24	; 0x804011 <LPM_20>
     517a:	90 93 12 40 	sts	0x4012, r25	; 0x804012 <LPM_20+0x1>
 				break;
     517e:	06 c0       	rjmp	.+12     	; 0x518c <settings+0x208>
 				
 				default:
-				LPM_20 = 1550;
-    5180:	8e e0       	ldi	r24, 0x0E	; 14
+				LPM_20 = 1640;
+    5180:	88 e6       	ldi	r24, 0x68	; 104
     5182:	96 e0       	ldi	r25, 0x06	; 6
     5184:	80 93 11 40 	sts	0x4011, r24	; 0x804011 <LPM_20>
     5188:	90 93 12 40 	sts	0x4012, r25	; 0x804012 <LPM_20+0x1>
@@ -6322,12 +6322,12 @@ int settings(void)
     51ee:	80 81       	ld	r24, Z
     51f0:	81 60       	ori	r24, 0x01	; 1
     51f2:	80 83       	st	Z, r24
-						TCA0.SINGLE.CMP0 = 1800;
-    51f4:	88 e0       	ldi	r24, 0x08	; 8
+						TCA0.SINGLE.CMP0 = 2000;
+    51f4:	80 ed       	ldi	r24, 0xD0	; 208
     51f6:	97 e0       	ldi	r25, 0x07	; 7
     51f8:	80 a7       	std	Z+40, r24	; 0x28
     51fa:	91 a7       	std	Z+41, r25	; 0x29
-						LPM_30 = 1800;
+						LPM_30 = 2000;
     51fc:	80 93 0f 40 	sts	0x400F, r24	; 0x80400f <LPM_30>
     5200:	90 93 10 40 	sts	0x4010, r25	; 0x804010 <LPM_30+0x1>
 						break;
@@ -6340,12 +6340,12 @@ int settings(void)
     520a:	80 81       	ld	r24, Z
     520c:	81 60       	ori	r24, 0x01	; 1
     520e:	80 83       	st	Z, r24
-						TCA0.SINGLE.CMP0 = 1850;
-    5210:	8a e3       	ldi	r24, 0x3A	; 58
-    5212:	97 e0       	ldi	r25, 0x07	; 7
+						TCA0.SINGLE.CMP0 = 2050;
+    5210:	82 e0       	ldi	r24, 0x02	; 2
+    5212:	98 e0       	ldi	r25, 0x08	; 8
     5214:	80 a7       	std	Z+40, r24	; 0x28
     5216:	91 a7       	std	Z+41, r25	; 0x29
-						LPM_30 = 1850;
+						LPM_30 = 2050;
     5218:	80 93 0f 40 	sts	0x400F, r24	; 0x80400f <LPM_30>
     521c:	90 93 10 40 	sts	0x4010, r25	; 0x804010 <LPM_30+0x1>
 						break;
@@ -6358,12 +6358,12 @@ int settings(void)
     5226:	80 81       	ld	r24, Z
     5228:	81 60       	ori	r24, 0x01	; 1
     522a:	80 83       	st	Z, r24
-						TCA0.SINGLE.CMP0 = 1900;				
-    522c:	8c e6       	ldi	r24, 0x6C	; 108
-    522e:	97 e0       	ldi	r25, 0x07	; 7
+						TCA0.SINGLE.CMP0 = 2100;				
+    522c:	84 e3       	ldi	r24, 0x34	; 52
+    522e:	98 e0       	ldi	r25, 0x08	; 8
     5230:	80 a7       	std	Z+40, r24	; 0x28
     5232:	91 a7       	std	Z+41, r25	; 0x29
-						LPM_30 = 1900;
+						LPM_30 = 2100;
     5234:	80 93 0f 40 	sts	0x400F, r24	; 0x80400f <LPM_30>
     5238:	90 93 10 40 	sts	0x4010, r25	; 0x804010 <LPM_30+0x1>
 						break;
@@ -6376,20 +6376,20 @@ int settings(void)
     5242:	80 81       	ld	r24, Z
     5244:	81 60       	ori	r24, 0x01	; 1
     5246:	80 83       	st	Z, r24
-						TCA0.SINGLE.CMP0 = 1950;
-    5248:	8e e9       	ldi	r24, 0x9E	; 158
-    524a:	97 e0       	ldi	r25, 0x07	; 7
+						TCA0.SINGLE.CMP0 = 2150;
+    5248:	86 e6       	ldi	r24, 0x66	; 102
+    524a:	98 e0       	ldi	r25, 0x08	; 8
     524c:	80 a7       	std	Z+40, r24	; 0x28
     524e:	91 a7       	std	Z+41, r25	; 0x29
-				        LPM_30 = 1950;
+				        LPM_30 = 2150;
     5250:	80 93 0f 40 	sts	0x400F, r24	; 0x80400f <LPM_30>
     5254:	90 93 10 40 	sts	0x4010, r25	; 0x804010 <LPM_30+0x1>
 						break;
     5258:	06 c0       	rjmp	.+12     	; 0x5266 <settings+0x2e2>
 						
 				default:
-				        LPM_30 = 1800;
-    525a:	88 e0       	ldi	r24, 0x08	; 8
+				        LPM_30 = 2000;
+    525a:	80 ed       	ldi	r24, 0xD0	; 208
     525c:	97 e0       	ldi	r25, 0x07	; 7
     525e:	80 93 0f 40 	sts	0x400F, r24	; 0x80400f <LPM_30>
     5262:	90 93 10 40 	sts	0x4010, r25	; 0x804010 <LPM_30+0x1>
@@ -6451,12 +6451,12 @@ int settings(void)
     52ca:	80 81       	ld	r24, Z
     52cc:	81 60       	ori	r24, 0x01	; 1
     52ce:	80 83       	st	Z, r24
-						TCA0.SINGLE.CMP0 = 1800;
-    52d0:	88 e0       	ldi	r24, 0x08	; 8
+						TCA0.SINGLE.CMP0 = 2000;
+    52d0:	80 ed       	ldi	r24, 0xD0	; 208
     52d2:	97 e0       	ldi	r25, 0x07	; 7
     52d4:	80 a7       	std	Z+40, r24	; 0x28
     52d6:	91 a7       	std	Z+41, r25	; 0x29
-						LPM_30 = 1800;
+						LPM_30 = 2000;
     52d8:	80 93 0f 40 	sts	0x400F, r24	; 0x80400f <LPM_30>
     52dc:	90 93 10 40 	sts	0x4010, r25	; 0x804010 <LPM_30+0x1>
 						break;
@@ -6469,12 +6469,12 @@ int settings(void)
     52e6:	80 81       	ld	r24, Z
     52e8:	81 60       	ori	r24, 0x01	; 1
     52ea:	80 83       	st	Z, r24
-						TCA0.SINGLE.CMP0 = 1750;
-    52ec:	86 ed       	ldi	r24, 0xD6	; 214
-    52ee:	96 e0       	ldi	r25, 0x06	; 6
+						TCA0.SINGLE.CMP0 = 1950;
+    52ec:	8e e9       	ldi	r24, 0x9E	; 158
+    52ee:	97 e0       	ldi	r25, 0x07	; 7
     52f0:	80 a7       	std	Z+40, r24	; 0x28
     52f2:	91 a7       	std	Z+41, r25	; 0x29
-						LPM_30 = 1750;
+						LPM_30 = 1950;
     52f4:	80 93 0f 40 	sts	0x400F, r24	; 0x80400f <LPM_30>
     52f8:	90 93 10 40 	sts	0x4010, r25	; 0x804010 <LPM_30+0x1>
 						break;
@@ -6487,12 +6487,12 @@ int settings(void)
     5302:	80 81       	ld	r24, Z
     5304:	81 60       	ori	r24, 0x01	; 1
     5306:	80 83       	st	Z, r24
-						TCA0.SINGLE.CMP0 = 1700;
-    5308:	84 ea       	ldi	r24, 0xA4	; 164
-    530a:	96 e0       	ldi	r25, 0x06	; 6
+						TCA0.SINGLE.CMP0 = 1900;
+    5308:	8c e6       	ldi	r24, 0x6C	; 108
+    530a:	97 e0       	ldi	r25, 0x07	; 7
     530c:	80 a7       	std	Z+40, r24	; 0x28
     530e:	91 a7       	std	Z+41, r25	; 0x29
-						LPM_30 = 1700;
+						LPM_30 = 1900;
     5310:	80 93 0f 40 	sts	0x400F, r24	; 0x80400f <LPM_30>
     5314:	90 93 10 40 	sts	0x4010, r25	; 0x804010 <LPM_30+0x1>
 						break;
@@ -6505,20 +6505,20 @@ int settings(void)
     531e:	80 81       	ld	r24, Z
     5320:	81 60       	ori	r24, 0x01	; 1
     5322:	80 83       	st	Z, r24
-						TCA0.SINGLE.CMP0 = 1650;
-    5324:	82 e7       	ldi	r24, 0x72	; 114
-    5326:	96 e0       	ldi	r25, 0x06	; 6
+						TCA0.SINGLE.CMP0 = 1850;
+    5324:	8a e3       	ldi	r24, 0x3A	; 58
+    5326:	97 e0       	ldi	r25, 0x07	; 7
     5328:	80 a7       	std	Z+40, r24	; 0x28
     532a:	91 a7       	std	Z+41, r25	; 0x29
-						LPM_30 = 1650;
+						LPM_30 = 1850;
     532c:	80 93 0f 40 	sts	0x400F, r24	; 0x80400f <LPM_30>
     5330:	90 93 10 40 	sts	0x4010, r25	; 0x804010 <LPM_30+0x1>
 						break;
     5334:	06 c0       	rjmp	.+12     	; 0x5342 <settings+0x3be>
 							
 				default:
-						LPM_30 = 1800;
-    5336:	88 e0       	ldi	r24, 0x08	; 8
+						LPM_30 = 2000;
+    5336:	80 ed       	ldi	r24, 0xD0	; 208
     5338:	97 e0       	ldi	r25, 0x07	; 7
     533a:	80 93 0f 40 	sts	0x400F, r24	; 0x80400f <LPM_30>
     533e:	90 93 10 40 	sts	0x4010, r25	; 0x804010 <LPM_30+0x1>
@@ -6581,12 +6581,12 @@ int settings(void)
     53a6:	80 81       	ld	r24, Z
     53a8:	81 60       	ori	r24, 0x01	; 1
     53aa:	80 83       	st	Z, r24
-						TCA0.SINGLE.CMP0 = 2000;
-    53ac:	80 ed       	ldi	r24, 0xD0	; 208
-    53ae:	97 e0       	ldi	r25, 0x07	; 7
+						TCA0.SINGLE.CMP0 = 2450;
+    53ac:	82 e9       	ldi	r24, 0x92	; 146
+    53ae:	99 e0       	ldi	r25, 0x09	; 9
     53b0:	80 a7       	std	Z+40, r24	; 0x28
     53b2:	91 a7       	std	Z+41, r25	; 0x29
-						LPM_40 = 2000;
+						LPM_40 = 2450;
     53b4:	80 93 0d 40 	sts	0x400D, r24	; 0x80400d <LPM_40>
     53b8:	90 93 0e 40 	sts	0x400E, r25	; 0x80400e <LPM_40+0x1>
 						break;
@@ -6599,12 +6599,12 @@ int settings(void)
     53c2:	80 81       	ld	r24, Z
     53c4:	81 60       	ori	r24, 0x01	; 1
     53c6:	80 83       	st	Z, r24
-						TCA0.SINGLE.CMP0 = 2050;
-    53c8:	82 e0       	ldi	r24, 0x02	; 2
-    53ca:	98 e0       	ldi	r25, 0x08	; 8
+						TCA0.SINGLE.CMP0 = 2500;
+    53c8:	84 ec       	ldi	r24, 0xC4	; 196
+    53ca:	99 e0       	ldi	r25, 0x09	; 9
     53cc:	80 a7       	std	Z+40, r24	; 0x28
     53ce:	91 a7       	std	Z+41, r25	; 0x29
-						LPM_40 = 2050;
+						LPM_40 = 2500;
     53d0:	80 93 0d 40 	sts	0x400D, r24	; 0x80400d <LPM_40>
     53d4:	90 93 0e 40 	sts	0x400E, r25	; 0x80400e <LPM_40+0x1>
 						break;
@@ -6617,12 +6617,12 @@ int settings(void)
     53de:	80 81       	ld	r24, Z
     53e0:	81 60       	ori	r24, 0x01	; 1
     53e2:	80 83       	st	Z, r24
-						TCA0.SINGLE.CMP0 = 2100;
-    53e4:	84 e3       	ldi	r24, 0x34	; 52
-    53e6:	98 e0       	ldi	r25, 0x08	; 8
+						TCA0.SINGLE.CMP0 = 2550;
+    53e4:	86 ef       	ldi	r24, 0xF6	; 246
+    53e6:	99 e0       	ldi	r25, 0x09	; 9
     53e8:	80 a7       	std	Z+40, r24	; 0x28
     53ea:	91 a7       	std	Z+41, r25	; 0x29
-						LPM_40 = 2100;
+						LPM_40 = 2550;
     53ec:	80 93 0d 40 	sts	0x400D, r24	; 0x80400d <LPM_40>
     53f0:	90 93 0e 40 	sts	0x400E, r25	; 0x80400e <LPM_40+0x1>
 						break;
@@ -6635,21 +6635,21 @@ int settings(void)
     53fa:	80 81       	ld	r24, Z
     53fc:	81 60       	ori	r24, 0x01	; 1
     53fe:	80 83       	st	Z, r24
-						TCA0.SINGLE.CMP0 = 2250;
-    5400:	8a ec       	ldi	r24, 0xCA	; 202
-    5402:	98 e0       	ldi	r25, 0x08	; 8
+						TCA0.SINGLE.CMP0 = 2600;
+    5400:	88 e2       	ldi	r24, 0x28	; 40
+    5402:	9a e0       	ldi	r25, 0x0A	; 10
     5404:	80 a7       	std	Z+40, r24	; 0x28
     5406:	91 a7       	std	Z+41, r25	; 0x29
-						LPM_40 = 2250;
+						LPM_40 = 2600;
     5408:	80 93 0d 40 	sts	0x400D, r24	; 0x80400d <LPM_40>
     540c:	90 93 0e 40 	sts	0x400E, r25	; 0x80400e <LPM_40+0x1>
 						break;
     5410:	06 c0       	rjmp	.+12     	; 0x541e <settings+0x49a>
 				
 				default:
-						LPM_40 = 2000;
-    5412:	80 ed       	ldi	r24, 0xD0	; 208
-    5414:	97 e0       	ldi	r25, 0x07	; 7
+						LPM_40 = 2450;
+    5412:	82 e9       	ldi	r24, 0x92	; 146
+    5414:	99 e0       	ldi	r25, 0x09	; 9
     5416:	80 93 0d 40 	sts	0x400D, r24	; 0x80400d <LPM_40>
     541a:	90 93 0e 40 	sts	0x400E, r25	; 0x80400e <LPM_40+0x1>
 						break;
@@ -6711,12 +6711,12 @@ int settings(void)
     5482:	80 81       	ld	r24, Z
     5484:	81 60       	ori	r24, 0x01	; 1
     5486:	80 83       	st	Z, r24
-						TCA0.SINGLE.CMP0 = 2000;
-    5488:	80 ed       	ldi	r24, 0xD0	; 208
-    548a:	97 e0       	ldi	r25, 0x07	; 7
+						TCA0.SINGLE.CMP0 = 2450;
+    5488:	82 e9       	ldi	r24, 0x92	; 146
+    548a:	99 e0       	ldi	r25, 0x09	; 9
     548c:	80 a7       	std	Z+40, r24	; 0x28
     548e:	91 a7       	std	Z+41, r25	; 0x29
-						LPM_40 = 2000;
+						LPM_40 = 2450;
     5490:	80 93 0d 40 	sts	0x400D, r24	; 0x80400d <LPM_40>
     5494:	90 93 0e 40 	sts	0x400E, r25	; 0x80400e <LPM_40+0x1>
 						break;
@@ -6729,12 +6729,12 @@ int settings(void)
     549e:	80 81       	ld	r24, Z
     54a0:	81 60       	ori	r24, 0x01	; 1
     54a2:	80 83       	st	Z, r24
-						TCA0.SINGLE.CMP0 = 1950;
-    54a4:	8e e9       	ldi	r24, 0x9E	; 158
-    54a6:	97 e0       	ldi	r25, 0x07	; 7
+						TCA0.SINGLE.CMP0 = 2400;
+    54a4:	80 e6       	ldi	r24, 0x60	; 96
+    54a6:	99 e0       	ldi	r25, 0x09	; 9
     54a8:	80 a7       	std	Z+40, r24	; 0x28
     54aa:	91 a7       	std	Z+41, r25	; 0x29
-						LPM_40 = 1950;
+						LPM_40 = 2400;
     54ac:	80 93 0d 40 	sts	0x400D, r24	; 0x80400d <LPM_40>
     54b0:	90 93 0e 40 	sts	0x400E, r25	; 0x80400e <LPM_40+0x1>
 						break;
@@ -6747,12 +6747,12 @@ int settings(void)
     54ba:	80 81       	ld	r24, Z
     54bc:	81 60       	ori	r24, 0x01	; 1
     54be:	80 83       	st	Z, r24
-						TCA0.SINGLE.CMP0 = 1900;
-    54c0:	8c e6       	ldi	r24, 0x6C	; 108
-    54c2:	97 e0       	ldi	r25, 0x07	; 7
+						TCA0.SINGLE.CMP0 = 2350;
+    54c0:	8e e2       	ldi	r24, 0x2E	; 46
+    54c2:	99 e0       	ldi	r25, 0x09	; 9
     54c4:	80 a7       	std	Z+40, r24	; 0x28
     54c6:	91 a7       	std	Z+41, r25	; 0x29
-						LPM_40 = 1900;
+						LPM_40 = 2350;
     54c8:	80 93 0d 40 	sts	0x400D, r24	; 0x80400d <LPM_40>
     54cc:	90 93 0e 40 	sts	0x400E, r25	; 0x80400e <LPM_40+0x1>
 						break;
@@ -6765,21 +6765,21 @@ int settings(void)
     54d6:	80 81       	ld	r24, Z
     54d8:	81 60       	ori	r24, 0x01	; 1
     54da:	80 83       	st	Z, r24
-						TCA0.SINGLE.CMP0 = 1850;
-    54dc:	8a e3       	ldi	r24, 0x3A	; 58
-    54de:	97 e0       	ldi	r25, 0x07	; 7
+						TCA0.SINGLE.CMP0 = 2300;
+    54dc:	8c ef       	ldi	r24, 0xFC	; 252
+    54de:	98 e0       	ldi	r25, 0x08	; 8
     54e0:	80 a7       	std	Z+40, r24	; 0x28
     54e2:	91 a7       	std	Z+41, r25	; 0x29
-						LPM_40 = 1850;
+						LPM_40 = 2300;
     54e4:	80 93 0d 40 	sts	0x400D, r24	; 0x80400d <LPM_40>
     54e8:	90 93 0e 40 	sts	0x400E, r25	; 0x80400e <LPM_40+0x1>
 						break;
     54ec:	06 c0       	rjmp	.+12     	; 0x54fa <settings+0x576>
 				
 				default:
-						LPM_40 = 2000;
-    54ee:	80 ed       	ldi	r24, 0xD0	; 208
-    54f0:	97 e0       	ldi	r25, 0x07	; 7
+						LPM_40 = 2450;
+    54ee:	82 e9       	ldi	r24, 0x92	; 146
+    54f0:	99 e0       	ldi	r25, 0x09	; 9
     54f2:	80 93 0d 40 	sts	0x400D, r24	; 0x80400d <LPM_40>
     54f6:	90 93 0e 40 	sts	0x400E, r25	; 0x80400e <LPM_40+0x1>
 						break;
@@ -6841,12 +6841,12 @@ int settings(void)
     555e:	80 81       	ld	r24, Z
     5560:	81 60       	ori	r24, 0x01	; 1
     5562:	80 83       	st	Z, r24
-						TCA0.SINGLE.CMP0 = 2400;
-    5564:	80 e6       	ldi	r24, 0x60	; 96
-    5566:	99 e0       	ldi	r25, 0x09	; 9
+						TCA0.SINGLE.CMP0 =  3400;
+    5564:	88 e4       	ldi	r24, 0x48	; 72
+    5566:	9d e0       	ldi	r25, 0x0D	; 13
     5568:	80 a7       	std	Z+40, r24	; 0x28
     556a:	91 a7       	std	Z+41, r25	; 0x29
-						LPM_50 = 2400;
+						LPM_50 = 3400;
     556c:	80 93 0b 40 	sts	0x400B, r24	; 0x80400b <LPM_50>
     5570:	90 93 0c 40 	sts	0x400C, r25	; 0x80400c <LPM_50+0x1>
 						break;
@@ -6859,12 +6859,12 @@ int settings(void)
     557a:	80 81       	ld	r24, Z
     557c:	81 60       	ori	r24, 0x01	; 1
     557e:	80 83       	st	Z, r24
-						TCA0.SINGLE.CMP0 = 2450;
-    5580:	82 e9       	ldi	r24, 0x92	; 146
-    5582:	99 e0       	ldi	r25, 0x09	; 9
+						TCA0.SINGLE.CMP0 = 3450;
+    5580:	8a e7       	ldi	r24, 0x7A	; 122
+    5582:	9d e0       	ldi	r25, 0x0D	; 13
     5584:	80 a7       	std	Z+40, r24	; 0x28
     5586:	91 a7       	std	Z+41, r25	; 0x29
-						LPM_50 = 2450;
+						LPM_50 = 3450;
     5588:	80 93 0b 40 	sts	0x400B, r24	; 0x80400b <LPM_50>
     558c:	90 93 0c 40 	sts	0x400C, r25	; 0x80400c <LPM_50+0x1>
 						break;
@@ -6877,12 +6877,12 @@ int settings(void)
     5596:	80 81       	ld	r24, Z
     5598:	81 60       	ori	r24, 0x01	; 1
     559a:	80 83       	st	Z, r24
-						TCA0.SINGLE.CMP0 = 2500;
-    559c:	84 ec       	ldi	r24, 0xC4	; 196
-    559e:	99 e0       	ldi	r25, 0x09	; 9
+						TCA0.SINGLE.CMP0 = 3500;
+    559c:	8c ea       	ldi	r24, 0xAC	; 172
+    559e:	9d e0       	ldi	r25, 0x0D	; 13
     55a0:	80 a7       	std	Z+40, r24	; 0x28
     55a2:	91 a7       	std	Z+41, r25	; 0x29
-						LPM_50 = 2500;
+						LPM_50 = 3500;
     55a4:	80 93 0b 40 	sts	0x400B, r24	; 0x80400b <LPM_50>
     55a8:	90 93 0c 40 	sts	0x400C, r25	; 0x80400c <LPM_50+0x1>
 						break;
@@ -6895,21 +6895,21 @@ int settings(void)
     55b2:	80 81       	ld	r24, Z
     55b4:	81 60       	ori	r24, 0x01	; 1
     55b6:	80 83       	st	Z, r24
-						TCA0.SINGLE.CMP0 = 2550;
-    55b8:	86 ef       	ldi	r24, 0xF6	; 246
-    55ba:	99 e0       	ldi	r25, 0x09	; 9
+						TCA0.SINGLE.CMP0 = 3600;
+    55b8:	80 e1       	ldi	r24, 0x10	; 16
+    55ba:	9e e0       	ldi	r25, 0x0E	; 14
     55bc:	80 a7       	std	Z+40, r24	; 0x28
     55be:	91 a7       	std	Z+41, r25	; 0x29
-						LPM_50 = 2550;
+						LPM_50 = 3600;
     55c0:	80 93 0b 40 	sts	0x400B, r24	; 0x80400b <LPM_50>
     55c4:	90 93 0c 40 	sts	0x400C, r25	; 0x80400c <LPM_50+0x1>
 						break;
     55c8:	06 c0       	rjmp	.+12     	; 0x55d6 <settings+0x652>
 				
 				default:
-						LPM_50 = 2400;
-    55ca:	80 e6       	ldi	r24, 0x60	; 96
-    55cc:	99 e0       	ldi	r25, 0x09	; 9
+						LPM_50 = 3400;
+    55ca:	88 e4       	ldi	r24, 0x48	; 72
+    55cc:	9d e0       	ldi	r25, 0x0D	; 13
     55ce:	80 93 0b 40 	sts	0x400B, r24	; 0x80400b <LPM_50>
     55d2:	90 93 0c 40 	sts	0x400C, r25	; 0x80400c <LPM_50+0x1>
 						break;
@@ -6971,12 +6971,12 @@ int settings(void)
     563a:	80 81       	ld	r24, Z
     563c:	81 60       	ori	r24, 0x01	; 1
     563e:	80 83       	st	Z, r24
-						TCA0.SINGLE.CMP0 = 2400;
-    5640:	80 e6       	ldi	r24, 0x60	; 96
-    5642:	99 e0       	ldi	r25, 0x09	; 9
+						TCA0.SINGLE.CMP0 = 3400;
+    5640:	88 e4       	ldi	r24, 0x48	; 72
+    5642:	9d e0       	ldi	r25, 0x0D	; 13
     5644:	80 a7       	std	Z+40, r24	; 0x28
     5646:	91 a7       	std	Z+41, r25	; 0x29
-						LPM_50 = 2400;
+						LPM_50 = 3400;
     5648:	80 93 0b 40 	sts	0x400B, r24	; 0x80400b <LPM_50>
     564c:	90 93 0c 40 	sts	0x400C, r25	; 0x80400c <LPM_50+0x1>
 						break;
@@ -6989,12 +6989,12 @@ int settings(void)
     5656:	80 81       	ld	r24, Z
     5658:	81 60       	ori	r24, 0x01	; 1
     565a:	80 83       	st	Z, r24
-						TCA0.SINGLE.CMP0 = 2350;
-    565c:	8e e2       	ldi	r24, 0x2E	; 46
-    565e:	99 e0       	ldi	r25, 0x09	; 9
+						TCA0.SINGLE.CMP0 = 3350;
+    565c:	86 e1       	ldi	r24, 0x16	; 22
+    565e:	9d e0       	ldi	r25, 0x0D	; 13
     5660:	80 a7       	std	Z+40, r24	; 0x28
     5662:	91 a7       	std	Z+41, r25	; 0x29
-						LPM_50 = 2350;
+						LPM_50 = 3350;
     5664:	80 93 0b 40 	sts	0x400B, r24	; 0x80400b <LPM_50>
     5668:	90 93 0c 40 	sts	0x400C, r25	; 0x80400c <LPM_50+0x1>
 						break;
@@ -7007,12 +7007,12 @@ int settings(void)
     5672:	80 81       	ld	r24, Z
     5674:	81 60       	ori	r24, 0x01	; 1
     5676:	80 83       	st	Z, r24
-						TCA0.SINGLE.CMP0 = 2300;
-    5678:	8c ef       	ldi	r24, 0xFC	; 252
-    567a:	98 e0       	ldi	r25, 0x08	; 8
+						TCA0.SINGLE.CMP0 = 3300;
+    5678:	84 ee       	ldi	r24, 0xE4	; 228
+    567a:	9c e0       	ldi	r25, 0x0C	; 12
     567c:	80 a7       	std	Z+40, r24	; 0x28
     567e:	91 a7       	std	Z+41, r25	; 0x29
-						LPM_50 = 2300;
+						LPM_50 = 3300;
     5680:	80 93 0b 40 	sts	0x400B, r24	; 0x80400b <LPM_50>
     5684:	90 93 0c 40 	sts	0x400C, r25	; 0x80400c <LPM_50+0x1>
 						break;
@@ -7025,21 +7025,21 @@ int settings(void)
     568e:	80 81       	ld	r24, Z
     5690:	81 60       	ori	r24, 0x01	; 1
     5692:	80 83       	st	Z, r24
-						TCA0.SINGLE.CMP0 = 2250;
-    5694:	8a ec       	ldi	r24, 0xCA	; 202
-    5696:	98 e0       	ldi	r25, 0x08	; 8
+						TCA0.SINGLE.CMP0 = 3250;
+    5694:	82 eb       	ldi	r24, 0xB2	; 178
+    5696:	9c e0       	ldi	r25, 0x0C	; 12
     5698:	80 a7       	std	Z+40, r24	; 0x28
     569a:	91 a7       	std	Z+41, r25	; 0x29
-						LPM_50 = 2250;
+						LPM_50 = 3250;
     569c:	80 93 0b 40 	sts	0x400B, r24	; 0x80400b <LPM_50>
     56a0:	90 93 0c 40 	sts	0x400C, r25	; 0x80400c <LPM_50+0x1>
 						break;
     56a4:	06 c0       	rjmp	.+12     	; 0x56b2 <settings+0x72e>
 				
 				default:
-						LPM_50 = 2400;
-    56a6:	80 e6       	ldi	r24, 0x60	; 96
-    56a8:	99 e0       	ldi	r25, 0x09	; 9
+						LPM_50 = 3400;
+    56a6:	88 e4       	ldi	r24, 0x48	; 72
+    56a8:	9d e0       	ldi	r25, 0x0D	; 13
     56aa:	80 93 0b 40 	sts	0x400B, r24	; 0x80400b <LPM_50>
     56ae:	90 93 0c 40 	sts	0x400C, r25	; 0x80400c <LPM_50+0x1>
 						break;
