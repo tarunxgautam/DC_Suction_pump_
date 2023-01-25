@@ -267,8 +267,8 @@ void pwm_change (void)
 				break;
 		
 		default:
-				Duty_cycle = LPM_30;
-				lpm30_flag = true;
+				Duty_cycle = LPM_20;
+				lpm20_flag = true;
 				print_icon(53, 40,(uint8_t*) & arial_numerical_temp_2_49x40,49, 40);								// 3
 				print_icon(66, 40,(uint8_t*) & jersey_numerical_temp_0_49x40, 49, 40);							// 0
 				print_icon(66,95,(uint8_t*) & temp_lpm_15x36,15,40);                // lpm

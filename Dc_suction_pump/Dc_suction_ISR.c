@@ -176,7 +176,7 @@ ISR(PORTE_PORT_vect)
 //			Speed_change_flag = true;
 			speed_button_press_flag = true;
 			SPEED_PORT.INTFLAGS |= SPEED_PIN;
-		}
+		} 
 }
 
 

@@ -72,24 +72,24 @@
 #define ntc_R_at_25				10000
 #define warning_temp_value		35.0
 #define alarm_temp_value		100.0
-#define high_temp_timer			30000					//0.5 minute
+#define high_temp_timer			30000	//0.5 minute
 
 
 /*		timmers		*/
-#define clock_values 23999
+#define clock_values		  23999
 #define reset_time_threshold  10000
 
 /*				lcd_bar						*/
-#define max_mmhg_value		750.0						//max value of mmhg the bar will represent
+#define max_mmhg_value		750.0			//max value of mmhg the bar will represent
 #define max_cmh2o_value     750.0
 #define max_mpa_value       0.99
 #define max_bar_height		29
-#define max_bar_length		77.0						//237.0
-#define starting_bar_width	2							//pressure bar starting updation point |___-----------|
+#define max_bar_length		77.0			//237.0
+#define starting_bar_width	2			//pressure bar starting updation point |___-----------|
 
 /*				Alarms          */
 //#define allowed_service_duration		10
-#define allowed_service_duration		21600000		// for 6 hrs
+#define allowed_service_duration		21600000  // for 6 hrs
 
 /*		AC suction protocol				*/
 #define mode_mmhg	1
@@ -98,10 +98,10 @@
 
 /*				stp						*/
 /*				stp						*/
-#define max_sens_error_val 520							//sensor giving max value cont. after reset as error
-#define min_sens_error_val 0							//sensor giving min value cont. after reset as error
-#define ams_switch_port		PORTC
-#define ams_switch_pin		(1<<4)
+#define max_sens_error_val		520		//sensor giving max value cont. after reset as error
+#define min_sens_error_val		0		//sensor giving min value cont. after reset as error
+#define ams_switch_port			PORTC
+#define ams_switch_pin			(1<<4)
 
 /*				stp_variables						*/
 #define uc_ams_reset_count_addr					0x01
@@ -112,8 +112,8 @@
 #define Powersave_status_addr					0x06
 ///////  added by tarun/////////
 
-#define total_run_time_addr						0x11	// four bites for storing seconds
-#define service_time_addr						0x15	// four bites for storing seconds
+#define total_run_time_addr						0x11 // four bites for storing seconds
+#define service_time_addr						0x15 // four bites for storing seconds
 
 
 int timeout_count = 0;
@@ -121,20 +121,20 @@ int timeout_count = 0;
 
 /*		DC suction protocol				*/
 //uint8_t jar_select = JAR1;
-bool button_motor_on_off_status = false;				//status of motor through button
-bool previous_soft_hard_reset_flag = false;				//true is software reset 
-bool previous_uc_ams_reset_flag = false;
+bool button_motor_on_off_status    = false;	//status of motor through button
+bool previous_soft_hard_reset_flag = false;	//true is software reset 
+bool previous_uc_ams_reset_flag    = false;
 
 /*		pressure sensor AMS5812			*/
-float current_pressure_mmhg = 0.0;
-float current_pressure_cmh2O =0.0;
-float current_pressure_mpa = 0.0;
+float current_pressure_mmhg  = 0.0;
+float current_pressure_cmh2O = 0.0;
+float current_pressure_mpa   = 0.0;
 float previous_pressure = 0.0, currentPressure = 0.0;
-float allowedPressureDifference = 0.0;					// Will be used in smart foot mode.
+float allowedPressureDifference = 0.0;	// Will be used in smart foot mode.
 uint16_t d_pressure = 0;
 
 /***********TIMMER VARIABLES**************/
-unsigned long currentMillis = 0, millis=0, millis1 = 0, millis2 = 0, millis3 = 0,  g_foot_sw_blink_millis = 0;
+unsigned long currentMillis = 0, millis = 0, millis1 = 0, millis2 = 0, millis3 = 0,  g_foot_sw_blink_millis = 0;
 bool _1sec = false, _300sec = false, blink_flag = false;
 bool set_ten_minutes_flag = false;
 unsigned long g_currentMillis_runTime = 0;
@@ -217,17 +217,15 @@ unsigned long long_press_pwms_set = 0;
 
 
 
+
 void mode_1(void);
 int settings(void);
 
-/*         ams functions   */   //  by tarun
+/*          ams functions					*/   //  by tarun
 void ams_reset (void);
 void ams_check (void);
-
-
-
-
 void sensor_reset(void);
+
 /*			keypad functions				*/
 void keypad_gpio_init(void);
 void power_save_button (void);
@@ -272,7 +270,7 @@ void power_save_protocol (void);
 
 /*		stp protocol	*/
 void check_pressure_sensor (void);
-void ams_check (void);								// new added
+void ams_check (void);		// new added
 //void AMS_5812_checkup (void);
 void STP (void);
 
@@ -289,12 +287,10 @@ void partitions(void);
 void show_mmgh_4digit (uint8_t,uint8_t);
 void cmH20_4digit (uint8_t , uint8_t );
 void MPa_4digit (uint8_t , uint8_t);
-///////////////////////////////////////////////
+/////////////fuctions added by tarun///////////////
 void display_runTime_serviceTime(void);
 void display_print_runservice_time(void);
 void calcutale_run_service_time(void);
-uint8_t buffer_1[] = { };
-uint8_t buffer_2[] = { };
 void lcd_pressure_bar_init(void);
 void bar_draw_delete_rectangle(uint8_t x1, uint8_t y1, uint8_t x2, uint8_t y2);
 void bar_draw_filled_rectangle(uint8_t x1, uint8_t y1, uint8_t x2, uint8_t y2);
@@ -308,7 +304,7 @@ float adc_to_temp (long);
 
 
 /*		alarms and hazard		*/
-void hazard_icon_conditions_check(void);			// all alarm icons will be turned on or off according to the conditions of different flags
+void hazard_icon_conditions_check(void);	// all alarm icons will be turned on or off according to the conditions of different flags
 void alarms_main(void);
 void NTC_check(float);
 
@@ -317,7 +313,6 @@ void NTC_check(float);
 void TCB1_init(void);
 void timmer_init (void);
 ////////fuctions added by tarun //////////////
-
 void reset_time(void);
 void calcutale_run_service_time(void);
 
@@ -327,7 +322,7 @@ void LCD_backlit_main (void);
 
 /*				lcd_pressure_bar					*/
 void lcd_pressure_bar_main(void);
-void calculating_bar_L_mmhg(void);					//to calculate the length of the need to be updated according to the unit mode selected i.e cmh2o, mpa, mmhg
+void calculating_bar_L_mmhg(void);		//to calculate the length of the need to be updated according to the unit mode selected i.e cmh2o, mpa, mmhg
 
 
 
@@ -343,10 +338,10 @@ bool lpm40_flag = false;
 bool lpm50_flag = false;
 bool lpm60_flag = false;
 
-volatile int LPM_20 = 1640;
-volatile int LPM_30 = 2000;
-volatile int LPM_40 = 2470;
-volatile int LPM_50 = 3400;
+volatile int LPM_20 = 1550;
+volatile int LPM_30 = 1800;
+volatile int LPM_40 = 2000;
+volatile int LPM_50 = 2400;
 volatile int LPM_60 = 3000;
 
 
