@@ -1419,7 +1419,7 @@ END GROUP
  *(.fini0)
                 0x00006530                _etext = .
 
-.data           0x00804000      0x4c8 load address 0x00006530
+.data           0x00804000      0x4fe load address 0x00006530
                 0x00804000                PROVIDE (__data_start, .)
  *(.data)
  .data          0x00804000        0x6 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avrxmega4\libc.a(malloc.o)
@@ -1460,218 +1460,218 @@ END GROUP
  *(.rodata)
  *(.rodata*)
  .rodata.str1.1
-                0x0080401d      0x4ab main.o
+                0x0080401d      0x4e1 main.o
  *(.gnu.linkonce.r*)
-                0x008044c8                . = ALIGN (0x2)
-                0x008044c8                _edata = .
-                0x008044c8                PROVIDE (__data_end, .)
+                0x008044fe                . = ALIGN (0x2)
+                0x008044fe                _edata = .
+                0x008044fe                PROVIDE (__data_end, .)
 
-.bss            0x008044c8       0xbb
-                0x008044c8                PROVIDE (__bss_start, .)
+.bss            0x008044fe       0xbb
+                0x008044fe                PROVIDE (__bss_start, .)
  *(.bss)
  *(.bss*)
  .bss.smart_icon_serial.5548
-                0x008044c8        0x2 main.o
+                0x008044fe        0x2 main.o
  .bss.lpm60_flag
-                0x008044ca        0x1 main.o
-                0x008044ca                lpm60_flag
+                0x00804500        0x1 main.o
+                0x00804500                lpm60_flag
  .bss.lpm50_flag
-                0x008044cb        0x1 main.o
-                0x008044cb                lpm50_flag
+                0x00804501        0x1 main.o
+                0x00804501                lpm50_flag
  .bss.lpm40_flag
-                0x008044cc        0x1 main.o
-                0x008044cc                lpm40_flag
+                0x00804502        0x1 main.o
+                0x00804502                lpm40_flag
  .bss.lpm30_flag
-                0x008044cd        0x1 main.o
-                0x008044cd                lpm30_flag
+                0x00804503        0x1 main.o
+                0x00804503                lpm30_flag
  .bss.lpm20_flag
-                0x008044ce        0x1 main.o
-                0x008044ce                lpm20_flag
+                0x00804504        0x1 main.o
+                0x00804504                lpm20_flag
  .bss.Duty_cycle
-                0x008044cf        0x2 main.o
-                0x008044cf                Duty_cycle
+                0x00804505        0x2 main.o
+                0x00804505                Duty_cycle
  .bss.long_press_pwms_set
-                0x008044d1        0x4 main.o
-                0x008044d1                long_press_pwms_set
+                0x00804507        0x4 main.o
+                0x00804507                long_press_pwms_set
  .bss.pwm_value
-                0x008044d5        0x1 main.o
-                0x008044d5                pwm_value
- .bss.countRunTime
-                0x008044d6        0x1 main.o
-                0x008044d6                countRunTime
- .bss.mode_button_flag
-                0x008044d7        0x1 main.o
-                0x008044d7                mode_button_flag
- .bss.value_decrement_flag
-                0x008044d8        0x1 main.o
-                0x008044d8                value_decrement_flag
- .bss.value_increment_flag
-                0x008044d9        0x1 main.o
-                0x008044d9                value_increment_flag
- .bss.return_val
-                0x008044da        0x2 main.o
-                0x008044da                return_val
- .bss.smart_switch_timmer
-                0x008044dc        0x4 main.o
-                0x008044dc                smart_switch_timmer
- .bss.power_save_motor_on_timmer
-                0x008044e0        0x4 main.o
-                0x008044e0                power_save_motor_on_timmer
- .bss.power_save_icon_blink_flag
-                0x008044e4        0x1 main.o
-                0x008044e4                power_save_icon_blink_flag
- .bss.power_save_mode_on_flag
-                0x008044e5        0x1 main.o
-                0x008044e5                power_save_mode_on_flag
- .bss.power_save_timer_on_flag
-                0x008044e6        0x1 main.o
-                0x008044e6                power_save_timer_on_flag
- .bss.foot_switch_press_count
-                0x008044e7        0x1 main.o
-                0x008044e7                foot_switch_press_count
- .bss.smart_switch_cont_motor_on_flag
-                0x008044e8        0x1 main.o
-                0x008044e8                smart_switch_cont_motor_on_flag
- .bss.smart_switch_normal_motor_on_flag
-                0x008044e9        0x1 main.o
-                0x008044e9                smart_switch_normal_motor_on_flag
- .bss.foot_switch_detect_isr_flag
-                0x008044ea        0x1 main.o
-                0x008044ea                foot_switch_detect_isr_flag
- .bss.foot_switch_release_flag
-                0x008044eb        0x1 main.o
-                0x008044eb                foot_switch_release_flag
- .bss.foot_switch_press_flag
-                0x008044ec        0x1 main.o
-                0x008044ec                foot_switch_press_flag
- .bss.foot_switch_connected_flag
-                0x008044ed        0x1 main.o
-                0x008044ed                foot_switch_connected_flag
- .bss.smart_switch_delete_flag
-                0x008044ee        0x1 main.o
-                0x008044ee                smart_switch_delete_flag
- .bss.smart_switch_icon_update_flag
-                0x008044ef        0x1 main.o
-                0x008044ef                smart_switch_icon_update_flag
- .bss.previous_power_save_mode_flag
-                0x008044f0        0x1 main.o
-                0x008044f0                previous_power_save_mode_flag
- .bss.update_bar_flag
-                0x008044f1        0x1 main.o
-                0x008044f1                update_bar_flag
- .bss.unit_icon_update_flag
-                0x008044f2        0x1 main.o
-                0x008044f2                unit_icon_update_flag
- .bss.update_pressure_flag
-                0x008044f3        0x1 main.o
-                0x008044f3                update_pressure_flag
- .bss.Service_alarm_flag_run
-                0x008044f4        0x1 main.o
-                0x008044f4                Service_alarm_flag_run
- .bss.Service_alarm_flag
-                0x008044f5        0x1 main.o
-                0x008044f5                Service_alarm_flag
- .bss.backlit_on_flag
-                0x008044f6        0x1 main.o
-                0x008044f6                backlit_on_flag
- .bss.ntc_raw_adc
-                0x008044f7        0x4 main.o
-                0x008044f7                ntc_raw_adc
- .bss.current   0x008044fb        0x4 main.o
-                0x008044fb                current
- .bss.R_ntc     0x008044ff        0x4 main.o
-                0x008044ff                R_ntc
- .bss.temperature
-                0x00804503        0x4 main.o
-                0x00804503                temperature
- .bss.voltage   0x00804507        0x4 main.o
-                0x00804507                voltage
- .bss.play_pause_button_press_flag
                 0x0080450b        0x1 main.o
-                0x0080450b                play_pause_button_press_flag
- .bss.button_motor_on_off_flag
+                0x0080450b                pwm_value
+ .bss.countRunTime
                 0x0080450c        0x1 main.o
-                0x0080450c                button_motor_on_off_flag
- .bss.speed_button_press_flag
+                0x0080450c                countRunTime
+ .bss.mode_button_flag
                 0x0080450d        0x1 main.o
-                0x0080450d                speed_button_press_flag
- .bss.unit_button_pressed_flag
+                0x0080450d                mode_button_flag
+ .bss.value_decrement_flag
                 0x0080450e        0x1 main.o
-                0x0080450e                unit_button_pressed_flag
- .bss.smart_switch_mode_flag
+                0x0080450e                value_decrement_flag
+ .bss.value_increment_flag
                 0x0080450f        0x1 main.o
-                0x0080450f                smart_switch_mode_flag
+                0x0080450f                value_increment_flag
+ .bss.return_val
+                0x00804510        0x2 main.o
+                0x00804510                return_val
+ .bss.smart_switch_timmer
+                0x00804512        0x4 main.o
+                0x00804512                smart_switch_timmer
+ .bss.power_save_motor_on_timmer
+                0x00804516        0x4 main.o
+                0x00804516                power_save_motor_on_timmer
+ .bss.power_save_icon_blink_flag
+                0x0080451a        0x1 main.o
+                0x0080451a                power_save_icon_blink_flag
+ .bss.power_save_mode_on_flag
+                0x0080451b        0x1 main.o
+                0x0080451b                power_save_mode_on_flag
+ .bss.power_save_timer_on_flag
+                0x0080451c        0x1 main.o
+                0x0080451c                power_save_timer_on_flag
+ .bss.foot_switch_press_count
+                0x0080451d        0x1 main.o
+                0x0080451d                foot_switch_press_count
+ .bss.smart_switch_cont_motor_on_flag
+                0x0080451e        0x1 main.o
+                0x0080451e                smart_switch_cont_motor_on_flag
+ .bss.smart_switch_normal_motor_on_flag
+                0x0080451f        0x1 main.o
+                0x0080451f                smart_switch_normal_motor_on_flag
+ .bss.foot_switch_detect_isr_flag
+                0x00804520        0x1 main.o
+                0x00804520                foot_switch_detect_isr_flag
+ .bss.foot_switch_release_flag
+                0x00804521        0x1 main.o
+                0x00804521                foot_switch_release_flag
+ .bss.foot_switch_press_flag
+                0x00804522        0x1 main.o
+                0x00804522                foot_switch_press_flag
+ .bss.foot_switch_connected_flag
+                0x00804523        0x1 main.o
+                0x00804523                foot_switch_connected_flag
+ .bss.smart_switch_delete_flag
+                0x00804524        0x1 main.o
+                0x00804524                smart_switch_delete_flag
+ .bss.smart_switch_icon_update_flag
+                0x00804525        0x1 main.o
+                0x00804525                smart_switch_icon_update_flag
+ .bss.previous_power_save_mode_flag
+                0x00804526        0x1 main.o
+                0x00804526                previous_power_save_mode_flag
+ .bss.update_bar_flag
+                0x00804527        0x1 main.o
+                0x00804527                update_bar_flag
+ .bss.unit_icon_update_flag
+                0x00804528        0x1 main.o
+                0x00804528                unit_icon_update_flag
+ .bss.update_pressure_flag
+                0x00804529        0x1 main.o
+                0x00804529                update_pressure_flag
+ .bss.Service_alarm_flag_run
+                0x0080452a        0x1 main.o
+                0x0080452a                Service_alarm_flag_run
+ .bss.Service_alarm_flag
+                0x0080452b        0x1 main.o
+                0x0080452b                Service_alarm_flag
+ .bss.backlit_on_flag
+                0x0080452c        0x1 main.o
+                0x0080452c                backlit_on_flag
+ .bss.ntc_raw_adc
+                0x0080452d        0x4 main.o
+                0x0080452d                ntc_raw_adc
+ .bss.current   0x00804531        0x4 main.o
+                0x00804531                current
+ .bss.R_ntc     0x00804535        0x4 main.o
+                0x00804535                R_ntc
+ .bss.temperature
+                0x00804539        0x4 main.o
+                0x00804539                temperature
+ .bss.voltage   0x0080453d        0x4 main.o
+                0x0080453d                voltage
+ .bss.play_pause_button_press_flag
+                0x00804541        0x1 main.o
+                0x00804541                play_pause_button_press_flag
+ .bss.button_motor_on_off_flag
+                0x00804542        0x1 main.o
+                0x00804542                button_motor_on_off_flag
+ .bss.speed_button_press_flag
+                0x00804543        0x1 main.o
+                0x00804543                speed_button_press_flag
+ .bss.unit_button_pressed_flag
+                0x00804544        0x1 main.o
+                0x00804544                unit_button_pressed_flag
+ .bss.smart_switch_mode_flag
+                0x00804545        0x1 main.o
+                0x00804545                smart_switch_mode_flag
  .bss.g_currentMillis_runTime
-                0x00804510        0x4 main.o
-                0x00804510                g_currentMillis_runTime
+                0x00804546        0x4 main.o
+                0x00804546                g_currentMillis_runTime
  .bss.blink_flag
-                0x00804514        0x1 main.o
-                0x00804514                blink_flag
- .bss._300sec   0x00804515        0x1 main.o
-                0x00804515                _300sec
- .bss._1sec     0x00804516        0x1 main.o
-                0x00804516                _1sec
+                0x0080454a        0x1 main.o
+                0x0080454a                blink_flag
+ .bss._300sec   0x0080454b        0x1 main.o
+                0x0080454b                _300sec
+ .bss._1sec     0x0080454c        0x1 main.o
+                0x0080454c                _1sec
  .bss.g_foot_sw_blink_millis
-                0x00804517        0x4 main.o
-                0x00804517                g_foot_sw_blink_millis
- .bss.millis3   0x0080451b        0x4 main.o
-                0x0080451b                millis3
- .bss.millis2   0x0080451f        0x4 main.o
-                0x0080451f                millis2
- .bss.millis1   0x00804523        0x4 main.o
-                0x00804523                millis1
- .bss.millis    0x00804527        0x4 main.o
-                0x00804527                millis
+                0x0080454d        0x4 main.o
+                0x0080454d                g_foot_sw_blink_millis
+ .bss.millis3   0x00804551        0x4 main.o
+                0x00804551                millis3
+ .bss.millis2   0x00804555        0x4 main.o
+                0x00804555                millis2
+ .bss.millis1   0x00804559        0x4 main.o
+                0x00804559                millis1
+ .bss.millis    0x0080455d        0x4 main.o
+                0x0080455d                millis
  .bss.currentMillis
-                0x0080452b        0x4 main.o
-                0x0080452b                currentMillis
+                0x00804561        0x4 main.o
+                0x00804561                currentMillis
  .bss.allowedPressureDifference
-                0x0080452f        0x4 main.o
-                0x0080452f                allowedPressureDifference
+                0x00804565        0x4 main.o
+                0x00804565                allowedPressureDifference
  .bss.currentPressure
-                0x00804533        0x4 main.o
-                0x00804533                currentPressure
+                0x00804569        0x4 main.o
+                0x00804569                currentPressure
  .bss.previous_pressure
-                0x00804537        0x4 main.o
-                0x00804537                previous_pressure
+                0x0080456d        0x4 main.o
+                0x0080456d                previous_pressure
  .bss.current_pressure_mpa
-                0x0080453b        0x4 main.o
-                0x0080453b                current_pressure_mpa
+                0x00804571        0x4 main.o
+                0x00804571                current_pressure_mpa
  .bss.current_pressure_cmh2O
-                0x0080453f        0x4 main.o
-                0x0080453f                current_pressure_cmh2O
+                0x00804575        0x4 main.o
+                0x00804575                current_pressure_cmh2O
  .bss.current_pressure_mmhg
-                0x00804543        0x4 main.o
-                0x00804543                current_pressure_mmhg
+                0x00804579        0x4 main.o
+                0x00804579                current_pressure_mmhg
  .bss.previous_uc_ams_reset_flag
-                0x00804547        0x1 main.o
-                0x00804547                previous_uc_ams_reset_flag
+                0x0080457d        0x1 main.o
+                0x0080457d                previous_uc_ams_reset_flag
  .bss.previous_soft_hard_reset_flag
-                0x00804548        0x1 main.o
-                0x00804548                previous_soft_hard_reset_flag
+                0x0080457e        0x1 main.o
+                0x0080457e                previous_soft_hard_reset_flag
  .bss.timeout_count
-                0x00804549        0x2 main.o
-                0x00804549                timeout_count
+                0x0080457f        0x2 main.o
+                0x0080457f                timeout_count
  .bss.i2c_timeout_flag
-                0x0080454b        0x1 main.o
-                0x0080454b                i2c_timeout_flag
+                0x00804581        0x1 main.o
+                0x00804581                i2c_timeout_flag
  *(COMMON)
- COMMON         0x0080454c       0x33 main.o
-                0x0080454c                buff
-                0x0080457e                alarm_motor_temp_flag
- COMMON         0x0080457f        0x4 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avrxmega4\libc.a(malloc.o)
-                0x0080457f                __brkval
-                0x00804581                __flp
-                0x00804583                PROVIDE (__bss_end, .)
+ COMMON         0x00804582       0x33 main.o
+                0x00804582                buff
+                0x008045b4                alarm_motor_temp_flag
+ COMMON         0x008045b5        0x4 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avrxmega4\libc.a(malloc.o)
+                0x008045b5                __brkval
+                0x008045b7                __flp
+                0x008045b9                PROVIDE (__bss_end, .)
                 0x00006530                __data_load_start = LOADADDR (.data)
-                0x000069f8                __data_load_end = (__data_load_start + SIZEOF (.data))
+                0x00006a2e                __data_load_end = (__data_load_start + SIZEOF (.data))
 
-.noinit         0x00804583        0x0
+.noinit         0x008045b9        0x0
                 [!provide]                PROVIDE (__noinit_start, .)
  *(.noinit*)
                 [!provide]                PROVIDE (__noinit_end, .)
-                0x00804583                _end = .
-                0x00804583                PROVIDE (__heap_start, .)
+                0x008045b9                _end = .
+                0x008045b9                PROVIDE (__heap_start, .)
 
 .eeprom         0x00810000        0x0
  *(.eeprom*)

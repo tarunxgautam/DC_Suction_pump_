@@ -338,11 +338,11 @@ bool lpm40_flag = false;
 bool lpm50_flag = false;
 bool lpm60_flag = false;
 
-volatile int LPM_20 = 1550;
-volatile int LPM_30 = 1800;
-volatile int LPM_40 = 2000;
-volatile int LPM_50 = 2400;
-volatile int LPM_60 = 3000;
+volatile int LPM_20 = 1680;
+volatile int LPM_30 = 1950;
+volatile int LPM_40 = 2300;
+volatile int LPM_50 = 2650;
+volatile int LPM_60 = 3250;
 
 
 uint8_t unit_mode_pwm = 1;

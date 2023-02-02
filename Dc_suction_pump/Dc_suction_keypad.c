@@ -11,8 +11,8 @@ void keypad_gpio_init(void)
 	POWER_SAVE_PORT.DIR		&= ~POWER_SAVE_PIN;			POWER_SAVE_PORT.PIN2CTRL	|= 0x2;
 	SMART_SW_PORT.DIR		&= ~SMART_SW_PIN;			SMART_SW_PORT.PIN2CTRL		|= 0x2;
 	SPEED_PORT.DIR          &= ~SPEED_PIN;				SPEED_PORT.PIN0CTRL         |= 0X2;
-    SMART_FOOT_LED.DIR |= (SMART_FOOT_LED_PIN);
-    POWER_SAVE_LED.DIR |= (POWER_SAVE_LED_PIN);
+    SMART_FOOT_LED.DIR |= (SMART_FOOT_LED_PIN);			//POWER_SAVE_LED.PIN5CTRL  &= (~(1 << 3)); 
+    POWER_SAVE_LED.DIR |= (POWER_SAVE_LED_PIN);			//POWER_SAVE_LED.PIN5CTRL		 =	((POWER_SAVE_LED.PIN5CTRL & (0xF7)) | (~(1 << 3)));
 
 	#ifdef _DEBUG
 	USART1_sendString("keypad_gpio_init: keypad gpio init stop");

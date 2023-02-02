@@ -140,9 +140,9 @@ void calcutale_run_service_time(void)
 
 void clear_all_keypad_flags(void)
 {
-	unit_button_pressed_flag = false; 
-	power_save_mode_on_flag = false;
-	play_pause_button_press_flag = false; 
-	smart_switch_mode_flag = false ;
-	speed_button_press_flag = false;
+	unit_button_pressed_flag		= false; 
+	power_save_mode_on_flag			= false;
+	play_pause_button_press_flag	= false; 
+	smart_switch_mode_flag			= false ;
+	speed_button_press_flag			= false;
 }
