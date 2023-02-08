@@ -80,8 +80,8 @@ void lcd_loading_page (void)
 	print_icon(53, 40,(uint8_t*) & arial_numerical_temp_2_49x40,49, 40);								// 3
 	print_icon(66, 40,(uint8_t*) & jersey_numerical_temp_0_49x40, 49, 40);							// 0
 	print_icon(66,95,(uint8_t*) & temp_lpm_15x36,15,40);                // lpm
-//	print_icon(66, 129, &battery_SOC4_15x32, 15, 33);		 // battery icon
- 	//	print_icon(12,129, & temp_right_arrow_15x40, 15, 42);	 // right jar icon
+	//print_icon(66, 129, &battery_SOC4_15x32, 15, 33);		 // battery icon
+ 	//print_icon(12,129, & temp_right_arrow_15x40, 15, 42);	 // right jar icon
  	_delay_ms(100);
 }
 
@@ -465,5 +465,30 @@ void printNumScreen_RightJustified(uint8_t x_last, uint8_t y_start, long num, ui
 	value_2 = value_2 / 3600000;
 	printNumScreen_RightJustified(70, 103, value_2, 4);
 	
+ }
+ void show_temp_4digit (uint8_t x1, uint8_t y1)
+ {
+	 int __buff_ = temperature;
+	 int digit_a = 0, digit_b = 0, digit_c = 0;/*digit_d =0*/
+	 if (__buff_ > 125)
+	 {
+		 #ifdef _DEBUG
+		 USART1_sendString("max temp");
+		 #endif
+		 
+		 temperature = 0.0;
+	 }
+
+	 digit_a = __buff_%10;
+	 __buff_ = __buff_/10;
+	 digit_b = __buff_%10;
+	 __buff_ = __buff_/ 10;
+	 digit_c = __buff_%10;
+	 __buff_ = 0;
+
+	 print_number((x1), y1, (uint8_t*)&arial_new_number_font_17x17, 17, 25, digit_c);
+	 print_number((x1+5), y1, (uint8_t*)&arial_new_number_font_17x17, 17, 25, digit_b);
+	 print_number((x1+10), y1, (uint8_t*)&arial_new_number_font_17x17, 17, 25, digit_a);
+	 //	print_number((x1+18), y1, &arial_numerical_font_49x40, 49, 40, digit_d);
  }
 

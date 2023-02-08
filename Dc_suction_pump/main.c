@@ -52,10 +52,12 @@ int main(void)
 			keypad_main();
 			foot_switch_main();
 			read_ntc();
+			_delay_ms(5); 
+			show_temp_4digit (35, 127);
 			dc_suction_protocol_main();
 			lcd_uc1698u_main_screen();
 			power_save_protocol();
-			mode_1();											// just added for pwm mode
+			//mode_1();											// just added for pwm mode
 			calcutale_run_service_time();
 	}
 	return 0;

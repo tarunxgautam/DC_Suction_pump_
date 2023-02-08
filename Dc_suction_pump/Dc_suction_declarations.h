@@ -62,7 +62,7 @@
 #define power_save_motor_off_time		1800000			// milliseconds in 30 minutes
 #define allowed_pressure_diff_mmHg		40.0 
 #define allowed_pressure_diff_cmH2O		30.0
-#define allowed_pressure_diff_MPa		2.0				// difference value of current pressure and previous pressure
+#define allowed_pressure_diff_MPa		2.0//0.2				// difference value of current pressure and previous pressure
 
 /*********************** NTC *******************************/
 #define NTC_ADC_channel			channel_0
@@ -215,9 +215,6 @@ uint8_t pwm_value = 0;
 
 unsigned long long_press_pwms_set = 0;
 
-
-
-
 void mode_1(void);
 int settings(void);
 
@@ -340,8 +337,8 @@ bool lpm60_flag = false;
 
 volatile int LPM_20 = 1680;
 volatile int LPM_30 = 1950;
-volatile int LPM_40 = 2300;
-volatile int LPM_50 = 2650;
+volatile int LPM_40 = 2500;
+volatile int LPM_50 = 2800;
 volatile int LPM_60 = 3250;
 
 
