@@ -2,8 +2,19 @@
 
 #define eeprom_erase_write		0x13
 
+void fetch_lpm_duty_from_EEPROM(void)
+{
+	LPM_20 = read_16t_data_in_eeprom_SPM(lpm20_duty_addr);
+	LPM_30 = read_16t_data_in_eeprom_SPM(lpm30_duty_addr);
+	LPM_40 = read_16t_data_in_eeprom_SPM(lpm40_duty_addr);
+	LPM_50 = read_16t_data_in_eeprom_SPM(lpm50_duty_addr);
+	LPM_60 = read_16t_data_in_eeprom_SPM(lpm60_duty_addr);
+}
+
 void eeprom_init_read(void)
 {
+	fetch_lpm_duty_from_EEPROM();
+	
 	previous_soft_hard_reset_flag = read_8t_data_in_eeprom_SPM (previous_soft_hard_reset_flag_addr);			//true is software reset
 	#ifdef eprom_debug
 	if (previous_soft_hard_reset_flag)

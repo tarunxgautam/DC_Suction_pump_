@@ -14,8 +14,7 @@ float read_ntc (void)
 		ntc_raw_adc += ADC0_read(channel_2);
 		//USART1_sendInt(ntc_raw_adc);
 	}
-	USART1_sendString("--------------VAL OF I IS:-------------------");
-	USART1_sendInt(i);
+
 	ntc_raw_adc = ntc_raw_adc / i;
 	voltage = ((ADC_REF_VOLT * ntc_raw_adc) / 4095.0);
 	
@@ -26,7 +25,7 @@ float read_ntc (void)
 	temperature = (1.0 / temperature) - 273.15;
 	
 	//USART1_sendString("******temp******");
-	USART1_sendFloat(temperature, 2);
+	//USART1_sendFloat(temperature, 2);
 	return (temperature);
 }
 

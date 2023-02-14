@@ -103,6 +103,9 @@
 #define ams_switch_port			PORTC
 #define ams_switch_pin			(1<<4)
 
+/************************************************************************/
+/* EEPROM addresses                                                                     */
+/************************************************************************/
 /*				stp_variables						*/
 #define uc_ams_reset_count_addr					0x01
 #define uc_ams_reset_flag_addr					0x03
@@ -110,11 +113,15 @@
 #define flowrate_addr							0x04
 #define Smartswitch_status_addr					0x02
 #define Powersave_status_addr					0x06
-///////  added by tarun/////////
 
+///////  added by tarun/////////
 #define total_run_time_addr						0x11 // four bites for storing seconds
 #define service_time_addr						0x15 // four bites for storing seconds
-
+#define lpm20_duty_addr							0x19 // 2 bytes
+#define lpm30_duty_addr							0x1B // 2 bytes
+#define lpm40_duty_addr							0x1D // 2 bytes
+#define lpm50_duty_addr							0x1F // 2 bytes
+#define lpm60_duty_addr							0x21 // 2 bytes
 
 int timeout_count = 0;
 
@@ -230,6 +237,7 @@ void keypad_main (void);
 void unit_change (void);
 void button_motor_on_off (void);
 void clear_all_keypad_flags(void);
+void clear_all_lpm_flags(void);
 
 
 typedef uint16_t eeprom_addr_t;		//FOR EEPROM
@@ -322,8 +330,6 @@ void lcd_pressure_bar_main(void);
 void calculating_bar_L_mmhg(void);		//to calculate the length of the need to be updated according to the unit mode selected i.e cmh2o, mpa, mmhg
 
 
-
-
 /*****  PWM ***************/
 void pwm_change (void);
 
@@ -335,12 +341,11 @@ bool lpm40_flag = false;
 bool lpm50_flag = false;
 bool lpm60_flag = false;
 
-volatile int LPM_20 = 1680;
-volatile int LPM_30 = 1950;
-volatile int LPM_40 = 2500;
-volatile int LPM_50 = 2800;
-volatile int LPM_60 = 3250;
-
+volatile int LPM_20 = 1500;
+volatile int LPM_30 = 1670;
+volatile int LPM_40 = 1975;
+volatile int LPM_50 = 2400;
+volatile int LPM_60 = 3200;
 
 uint8_t unit_mode_pwm = 1;
 

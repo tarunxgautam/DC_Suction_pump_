@@ -49,7 +49,7 @@ void MOTOR_ON_OFF(bool status)
 		TCA0.SINGLE.CTRLA |= (1 << 0);
 		TCA0.SINGLE.CMP0 = Duty_cycle;
 		countRunTime = true;
-		SPEED_PORT.PIN0CTRL = ((SPEED_PORT.PIN0CTRL) & 0xf8) | PORT_ISC_INPUT_DISABLE_gc;
+		//SPEED_PORT.PIN0CTRL = ((SPEED_PORT.PIN0CTRL) & 0xf8) | PORT_ISC_INPUT_DISABLE_gc;
 
 		g_currentMillis_runTime = millis;
 		#ifdef _DEBUG
@@ -63,14 +63,13 @@ void MOTOR_ON_OFF(bool status)
 		TCA0.SINGLE.CTRLA |= (1 << 0);
 		TCA0.SINGLE.CMP0 = 0;
 		countRunTime = false;
-		SPEED_PORT.PIN0CTRL = ((SPEED_PORT.PIN0CTRL) & 0xf8) | PORT_ISC_RISING_gc ;
+		//SPEED_PORT.PIN0CTRL = ((SPEED_PORT.PIN0CTRL) & 0xf8) | PORT_ISC_RISING_gc ;
 
 		button_motor_on_off_flag = false;
 		#ifdef _DEBUG
 		USART1_sendString("MOTOR_ON_OFF: motor turned off");
 		#endif
 	}
-	countRunTime ? USART1_sendString("************************************************************HA BHAI************************************"):USART1_sendString("********************KAISAN BA***********************");
 }
 
 void dc_suction_pressure_main (uint8_t avg)

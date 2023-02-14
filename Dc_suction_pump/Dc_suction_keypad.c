@@ -157,6 +157,7 @@ void pwm_change (void)
 					TCA0.SINGLE.CTRLA |= (1 << 0);
 					TCA0.SINGLE.CMP0 = return_val;
 				}
+				clear_all_lpm_flags();
 				lpm20_flag = true;
 				print_icon(53, 40, (uint8_t*)&arial_numerical_temp_2_49x40,49, 40);								// 3
 				print_icon(66, 40,(uint8_t*) & jersey_numerical_temp_0_49x40, 49, 40);							// 0
@@ -181,6 +182,7 @@ void pwm_change (void)
 					TCA0.SINGLE.CTRLA |= (1 << 0);
 					TCA0.SINGLE.CMP0 = return_val;
 				}
+				clear_all_lpm_flags();
 				lpm30_flag = true;
 				print_icon(53, 40, (uint8_t*)&arial_numerical_temp_3_49x40,49, 40);								// 3
 				print_icon(66, 40,(uint8_t*) & jersey_numerical_temp_0_49x40, 49, 40);							// 0
@@ -208,6 +210,7 @@ void pwm_change (void)
 				TCA0.SINGLE.CTRLA |= (1 << 0);
 				TCA0.SINGLE.CMP0 = return_val;
 				}
+				clear_all_lpm_flags();
 				lpm40_flag = true;
 				print_icon(53, 40,(uint8_t*) & arial_numerical_temp_4_49x40,49, 40);								// 4
 				print_icon(66, 40,(uint8_t*) & jersey_numerical_temp_0_49x40, 49, 40);								// 0
@@ -235,6 +238,7 @@ void pwm_change (void)
 					TCA0.SINGLE.CTRLA |= (1 << 0);
 					TCA0.SINGLE.CMP0 = return_val;
 				}
+				clear_all_lpm_flags();
 				lpm50_flag = true;
 				print_icon(53, 40,(uint8_t*) & arial_numerical_temp_5_49x40,49, 40);								// 5
 				print_icon(66, 40,(uint8_t*) & jersey_numerical_temp_0_49x40, 49, 40);							// 0
@@ -260,6 +264,7 @@ void pwm_change (void)
 					TCA0.SINGLE.CTRLA |= (1 << 0);
 					TCA0.SINGLE.CMP0 = return_val;
 				}
+				clear_all_lpm_flags();
 				lpm60_flag = true;
 				print_icon(53, 40,(uint8_t*) & arial_numerical_temp_6_49x40,49, 40);								// 6
 				print_icon(66, 40,(uint8_t*) & jersey_numerical_temp_0_49x40, 49, 40);							// 0
@@ -268,6 +273,7 @@ void pwm_change (void)
 		
 		default:
 				Duty_cycle = LPM_20;
+				clear_all_lpm_flags();
 				lpm20_flag = true;
 				print_icon(53, 40,(uint8_t*) & arial_numerical_temp_2_49x40,49, 40);								// 3
 				print_icon(66, 40,(uint8_t*) & jersey_numerical_temp_0_49x40, 49, 40);							// 0

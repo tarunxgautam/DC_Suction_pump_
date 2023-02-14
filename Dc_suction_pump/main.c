@@ -20,6 +20,7 @@
 
 int main(void)
 {
+	_delay_ms(500);
 	cli();
 	_PROTECTED_WRITE (CLKCTRL.OSCHFCTRLA, ((CLKCTRL_FRQSEL_24M_gc)|(CLKCTRL_AUTOTUNE_bm)));
 	timmer_init();
@@ -48,16 +49,14 @@ int main(void)
 
 	while (1)
 	{
-			dc_suction_pressure_main (50);						//argument given to read n times and find average, where n is the argument provided
-			keypad_main();
-			foot_switch_main();
-			read_ntc();
-			_delay_ms(5); 
-			show_temp_4digit (35, 127);
+ 			dc_suction_pressure_main (50);						//argument given to read n times and find average, where n is the argument provided
+ 			keypad_main();
+ 			foot_switch_main();
+ 			read_ntc();
 			dc_suction_protocol_main();
 			lcd_uc1698u_main_screen();
 			power_save_protocol();
-			//mode_1();											// just added for pwm mode
+			mode_1();											// just added for pwm mode
 			calcutale_run_service_time();
 	}
 	return 0;

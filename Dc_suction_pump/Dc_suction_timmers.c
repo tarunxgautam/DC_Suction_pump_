@@ -81,7 +81,6 @@ void reset_time(void)
 					{
 						play_pause_button_press_flag = false ;							// reseting the service time in at service_time_addr in EEprom
 						write_data_in_eeprom_SPM_32bits(service_time_addr, 0x00);
-						USART1_sendString("debugging- eeprom reset");
 						Service_alarm_flag = false;
 						delete_rectangle(0,0,80,150);
 						display_runTime_serviceTime();
@@ -98,25 +97,15 @@ void calcutale_run_service_time(void)
  {
 	
 		unsigned long var = 0;
-
-		USART1_sendInt(millis - g_currentMillis_runTime);
-		
+				
 		if(((millis - g_currentMillis_runTime) > 600000 ) && countRunTime ) 							// waiting for 10 minutes.
 		{
-				
-				USART1_sendString("??????????????????pt-2 CHAL GAYA //////////////////////////") ;
  			var =  (read_long_data_in_eeprom_SPM(total_run_time_addr));	
-			 USART1_sendString("print the value of time");												//For Total Run Time
-			 USART1_sendInt(var );
  			var += 600000 ;
-			 USART1_sendInt(var );
- 			 write_data_in_eeprom_SPM_32bits(total_run_time_addr, var);
-			 USART1_sendInt(read_long_data_in_eeprom_SPM(total_run_time_addr));
-
-
+			write_data_in_eeprom_SPM_32bits(total_run_time_addr, var);
+			
  			var = (read_long_data_in_eeprom_SPM(service_time_addr));									//for service time
  			var += 600000 ;
-			 USART1_sendInt(var);
  			write_data_in_eeprom_SPM_32bits(service_time_addr, var);
 			  if ( var >= allowed_service_duration)
 			  {
@@ -145,4 +134,9 @@ void clear_all_keypad_flags(void)
 	play_pause_button_press_flag	= false; 
 	smart_switch_mode_flag			= false ;
 	speed_button_press_flag			= false;
+}
+
+void clear_all_lpm_flags(void)
+{
+	lpm20_flag = lpm30_flag = lpm40_flag = lpm50_flag = lpm60_flag = false;
 }

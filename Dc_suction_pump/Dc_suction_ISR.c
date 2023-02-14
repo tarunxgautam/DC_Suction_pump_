@@ -39,7 +39,7 @@ ISR(PORTC_PORT_vect)
 		{
 			unit_button_pressed_flag = true;
 		}
-		if (UNIT_PORT.IN & UNIT_PIN)
+		if ((UNIT_PORT.IN & UNIT_PIN) && countRunTime)
 		{
 			mode_button_flag = true;
 		    long_press_pwms_set = millis;
@@ -141,6 +141,7 @@ ISR(PORTE_PORT_vect)
 		// 				}
 		//
 		value_ok_flag = true;
+		USART1_sendString("dddddddddddddddddddddddddddddddddd");
 
 		MOTOR_ON_OFF_PORT.INTFLAGS |= MOTOR_ON_OFF_PIN;
 	}
