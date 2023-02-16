@@ -101,7 +101,7 @@ int settings(void)
 	USART1_sendString("EEPROM UPDATED. Maja aaaaaaa gayaaaaaaaaa..........");
  
 	value_ok_flag = false;
-	delete_rectangle(50,130,75,147);
+	delete_rectangle(50,130,60,147);
 	USART1_sendInt(return_val);
 	mode_button_flag = false;
 	lpm20_flag = false;		

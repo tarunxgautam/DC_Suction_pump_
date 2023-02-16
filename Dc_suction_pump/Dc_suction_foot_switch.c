@@ -101,6 +101,7 @@ void smart_sensing (void)
 		foot_switch_release_flag = false;
 		smart_switch_timmer = 0;
 		foot_switch_press_count = 0;
+		button_motor_on_off_flag = true;
 	}
 	//to turn off motor on single tap after double tap
 	else if ( (foot_switch_press_flag) && (foot_switch_release_flag) && (smart_switch_cont_motor_on_flag))
@@ -115,6 +116,7 @@ void smart_sensing (void)
 		foot_switch_release_flag = false;
 		smart_switch_timmer = 0;
 		foot_switch_press_count = 0;
+		button_motor_on_off_flag = false;
 		
 		if (power_save_timer_on_flag)
 		{
@@ -136,9 +138,8 @@ void smart_sensing (void)
 		MOTOR_ON_OFF(true);
 		smart_switch_normal_motor_on_flag = true;
 		power_save_icon_blink_flag = false;
-		
-		
-		
+		button_motor_on_off_flag = true;
+	
 	}
 	//to turn off the motor on the cont. tap release
 	else if ( (foot_switch_release_flag)  && (smart_switch_normal_motor_on_flag) && (foot_switch_press_count) && (foot_switch_press_flag) )
@@ -153,6 +154,7 @@ void smart_sensing (void)
 		foot_switch_press_flag = false;
 		foot_switch_press_count = 0;
 		smart_switch_timmer = 0;
+		button_motor_on_off_flag= false;
 	}
 
 	// to detect a delay b/w tap 1 and 2
@@ -233,11 +235,13 @@ void foot_switch_sensing (void)
 		MOTOR_ON_OFF(true);
 		foot_switch_press_flag = false;
 		power_save_icon_blink_flag = false;
+		button_motor_on_off_flag = true;
 	}
 	else if ( (foot_switch_release_flag)/* && (!(foot_switch_sens_port.IN & foot_switch_sens_pin)) */)
 	{
 		MOTOR_ON_OFF(false);
 		foot_switch_release_flag = false;
+		button_motor_on_off_flag = false;
 		//		foot_switch_press_flag = false;
 	}
 }

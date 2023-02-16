@@ -143,7 +143,7 @@ void pwm_change (void)
 				#ifdef _DEBUG_Keypad
 				//USART1_sendString("unit_mode_pwm :   1800 ");
 				#endif
-				if (button_motor_on_off_flag)
+				if (button_motor_on_off_flag || countRunTime)
 				{
 					TCA0.SINGLE.CTRLA |= (1 << 0);				//these two newly added for speed to change when speed button is pressed.
 					TCA0.SINGLE.CMP0 = LPM_20;					//these two newly added for speed to change when speed button is pressed.
@@ -168,7 +168,7 @@ void pwm_change (void)
 				#ifdef _DEBUG_Keypad
 				//USART1_sendString("unit_mode_pwm :   1800 ");
 				#endif
-                if (button_motor_on_off_flag)
+                if (button_motor_on_off_flag || countRunTime)
                 {
 				  TCA0.SINGLE.CTRLA |= (1 << 0);				//these two newly added for speed to change when speed button is pressed.
 				  TCA0.SINGLE.CMP0 = LPM_30;					//these two newly added for speed to change when speed button is pressed.
@@ -197,7 +197,7 @@ void pwm_change (void)
 //				TCA0.SINGLE.CTRLA |= (1 << 0);				//these two newly added for speed to change when speed button is pressed.
 //				TCA0.SINGLE.CMP0 = LPM_40;					//these two newly added for speed to change when speed button is pressed.
                 
-				if (button_motor_on_off_flag)
+				if (button_motor_on_off_flag || countRunTime)
 				{
 					TCA0.SINGLE.CTRLA |= (1 << 0);				//these two newly added for speed to change when speed button is pressed.
 					TCA0.SINGLE.CMP0 = LPM_40;					//these two newly added for speed to change when speed button is pressed.
@@ -225,7 +225,7 @@ void pwm_change (void)
 //				TCA0.SINGLE.CTRLA |= (1 << 0);				//these two newly added for speed to change when speed button is pressed.
 //				TCA0.SINGLE.CMP0 = LPM_50;			        //these two newly added for speed to change when speed button is pressed.
 
-                if (button_motor_on_off_flag)
+                if (button_motor_on_off_flag || countRunTime)
                 {
 	                TCA0.SINGLE.CTRLA |= (1 << 0);				//these two newly added for speed to change when speed button is pressed.
 	                TCA0.SINGLE.CMP0 = LPM_50;					//these two newly added for speed to change when speed button is pressed.
@@ -252,7 +252,7 @@ void pwm_change (void)
 	    	//	TCA0.SINGLE.CTRLA |= (1 << 0);
 //				TCA0.SINGLE.CTRLA |= (1 << 0);					//these two newly added for speed to change when speed button is pressed.
 //				TCA0.SINGLE.CMP0 = LPM_60;						//these two newly added for speed to change when speed button is pressed.
-                if (button_motor_on_off_flag)
+                if (button_motor_on_off_flag || countRunTime)
                 {
 	                TCA0.SINGLE.CTRLA |= (1 << 0);				//these two newly added for speed to change when speed button is pressed.
 	                TCA0.SINGLE.CMP0 = LPM_60;					//these two newly added for speed to change when speed button is pressed.
@@ -283,7 +283,7 @@ void pwm_change (void)
 	speed_button_press_flag = false;
  }
  // just adding for speed change when motor is on
-else if ((speed_button_press_flag) && ((button_motor_on_off_flag) || (power_save_mode_on_flag) || (smart_switch_mode_flag)))
+else if ((speed_button_press_flag) && ((button_motor_on_off_flag || countRunTime) || (power_save_mode_on_flag) || (smart_switch_mode_flag)))
   {
 	if (++unit_mode_pwm > 5)
 	  {
