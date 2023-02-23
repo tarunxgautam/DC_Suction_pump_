@@ -20,7 +20,7 @@
 
 int main(void)
 {
-	_delay_ms(500);
+	//_delay_ms(500);
 	cli();
 	_PROTECTED_WRITE (CLKCTRL.OSCHFCTRLA, ((CLKCTRL_FRQSEL_24M_gc)|(CLKCTRL_AUTOTUNE_bm)));
 	timmer_init();
@@ -41,11 +41,10 @@ int main(void)
 	lcd_uc1698u_init();
 	foot_switch_init();
 	STP();
-	_delay_ms(100);
+	//_delay_ms(100);
 	sei();	
 	display_runTime_serviceTime();								 //service time and total run time display
 	lcd_loading_page();
-	USART1_sendString("//////////////////////////// start /////////////////////////////////");
 
 	while (1)
 	{
@@ -61,3 +60,4 @@ int main(void)
 	}
 	return 0;
 }
+

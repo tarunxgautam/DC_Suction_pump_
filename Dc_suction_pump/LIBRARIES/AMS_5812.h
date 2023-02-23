@@ -74,8 +74,8 @@ float AMS_psi_average (uint8_t average_no)
 
 float AMS_mmhg_average (uint8_t average_no)
 {
-	float AMS_current_psi = 0.0;
-	for (int i = 0; i<average_no; i++)
+	float AMS_current_psi = AMS_5812_psi_read();
+	for (int i = 0; i<average_no - 1; i++)
 	{
 		AMS_current_psi += AMS_5812_psi_read();
 		AMS_current_psi /= 2.0;

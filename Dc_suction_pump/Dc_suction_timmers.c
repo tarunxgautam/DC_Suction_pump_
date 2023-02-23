@@ -64,6 +64,7 @@ void reset_time(void)
 	{
 		if((PORTC.IN &= (1 << 6)) && (PORTE.IN &= (1 << 2)))
 		{
+			_delay_ms(1000);
 			delete_rectangle(0, 0, 80, 150);
 			print_icon(5, 73,(uint8_t*) &Press_font_20x48, 20,48);
 			print_icon(22, 73,(uint8_t*) &Button_font_30x64, 30,64);
@@ -71,7 +72,8 @@ void reset_time(void)
 			print_icon(50, 73,(uint8_t*) &Special_font_30x64, 30,64);
 			print_icon(6, 93,(uint8_t*) &Pattern_font_30x64, 30,64);
 			clear_all_keypad_flags();
-			while((!unit_button_pressed_flag) && (!power_save_mode_on_flag) && (!play_pause_button_press_flag) && (!smart_switch_mode_flag) && (!speed_button_press_flag ));				
+			while((!unit_button_pressed_flag) && (!power_save_mode_on_flag) && (!play_pause_button_press_flag) && (!smart_switch_mode_flag) && (!speed_button_press_flag ));	
+						
 				if(smart_switch_mode_flag)
 				{
 					smart_switch_mode_flag = false;
@@ -132,7 +134,7 @@ void clear_all_keypad_flags(void)
 	unit_button_pressed_flag		= false; 
 	power_save_mode_on_flag			= false;
 	play_pause_button_press_flag	= false; 
-	smart_switch_mode_flag			= false ;
+	smart_switch_mode_flag			= false;
 	speed_button_press_flag			= false;
 }
 

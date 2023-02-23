@@ -150,6 +150,7 @@ void pwm_change (void)
 				}
 				//				TCA0.SINGLE.CTRLA |= (1 << 0);				//these two newly added for speed to change when speed button is pressed.
 				//				TCA0.SINGLE.CMP0 = LPM_30;					//these two newly added for speed to change when speed button is pressed.
+				pressure_blockage	=	4270;				// Pressure limit of NRV at 20 LPM
 				Duty_cycle = LPM_20;				// just commented because the updated value was not coming to speed
 				if (!value_ok_flag)
 				{
@@ -172,9 +173,11 @@ void pwm_change (void)
                 {
 				  TCA0.SINGLE.CTRLA |= (1 << 0);				//these two newly added for speed to change when speed button is pressed.
 				  TCA0.SINGLE.CMP0 = LPM_30;					//these two newly added for speed to change when speed button is pressed.
+				  
                 }
 //				TCA0.SINGLE.CTRLA |= (1 << 0);				//these two newly added for speed to change when speed button is pressed.
 //				TCA0.SINGLE.CMP0 = LPM_30;					//these two newly added for speed to change when speed button is pressed.
+				pressure_blockage	=	4300;					// Pressure limit of NRV at 30 LPM
 				Duty_cycle = LPM_30;						// just commented because the updated value was not coming to speed
 				if (!value_ok_flag)
 				{
@@ -201,8 +204,9 @@ void pwm_change (void)
 				{
 					TCA0.SINGLE.CTRLA |= (1 << 0);				//these two newly added for speed to change when speed button is pressed.
 					TCA0.SINGLE.CMP0 = LPM_40;					//these two newly added for speed to change when speed button is pressed.
+					
 				}
-
+				pressure_blockage	=	4300;				// Pressure limit of NRV at 40 LPM
 				Duty_cycle = LPM_40;
 				if (!value_ok_flag)
 				{
@@ -229,8 +233,9 @@ void pwm_change (void)
                 {
 	                TCA0.SINGLE.CTRLA |= (1 << 0);				//these two newly added for speed to change when speed button is pressed.
 	                TCA0.SINGLE.CMP0 = LPM_50;					//these two newly added for speed to change when speed button is pressed.
+					
                 }
-				
+				pressure_blockage	=	4355;				// Pressure limit of NRV at 50 LPM
 				Duty_cycle = LPM_50;
 				if (!value_ok_flag)
 				{
@@ -256,7 +261,9 @@ void pwm_change (void)
                 {
 	                TCA0.SINGLE.CTRLA |= (1 << 0);				//these two newly added for speed to change when speed button is pressed.
 	                TCA0.SINGLE.CMP0 = LPM_60;					//these two newly added for speed to change when speed button is pressed.
+					
                 }
+				pressure_blockage	=	4390;				// Pressure limit of NRV at 60 LPM
 				Duty_cycle = LPM_60;
 				if (!value_ok_flag)
 				{

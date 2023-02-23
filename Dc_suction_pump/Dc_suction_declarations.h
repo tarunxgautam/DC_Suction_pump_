@@ -51,6 +51,17 @@
 /*				motor sol GPIO					*/
 // #define POWER_SAVE_MOTOR_ON_OFF_TIME    60000
 
+/*********************** ICON'S LCD CO-ORDINATES *******************************/
+#define icon_valveBlock_x	36
+#define icon_valveBlock_y	130
+#define icon_service_x		20
+#define icon_service_y		124
+#define icon_power_save_x	60
+#define icon_power_save_y	123
+#define icon_foot_x			7
+#define icon_foot_y			126
+#define icon_callibrate_x	50
+#define icon_callibrate_y	130
 
 /*				foot_switch						*/
 #define foot_switch_sens_port			PORTC
@@ -59,7 +70,7 @@
 #define foot_switch_detc_pin			(1<<3)
 #define smart_switch_press_time			1000
 #define check_before_time				0
-#define power_save_motor_off_time		1800000			// milliseconds in 30 minutes
+#define power_save_motor_off_time		10000 //1800000			// milliseconds in 30 minutes
 #define allowed_pressure_diff_mmHg		40.0 
 #define allowed_pressure_diff_cmH2O		30.0
 #define allowed_pressure_diff_MPa		2.0//0.2				// difference value of current pressure and previous pressure
@@ -89,8 +100,9 @@
 
 /*				Alarms          */
 //#define allowed_service_duration		10
-#define allowed_service_duration		21600000  // for 6 hrs
-
+#define allowed_service_duration		1800000 //21600000  // for 6 hrs
+//
+#define blockage_pressure				4430 // pressure in mmHg
 /*		AC suction protocol				*/
 #define mode_mmhg	1
 #define mode_cmh2o	2
@@ -183,6 +195,7 @@ bool backlit_on_flag = false;
 /*		alarms and hazard		*/
 bool Service_alarm_flag = false;
 bool Service_alarm_flag_run = false;
+volatile int pressure_blockage	=  0;
 
 /*		ac suction lcd uc1698u		*/
 bool  update_pressure_flag = false, unit_icon_update_flag = false, update_bar_flag = false;

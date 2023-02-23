@@ -31,15 +31,14 @@ void foot_switch_init (void)
 	}
 }
 
-void foot_switch_detect_check(void)
+bool foot_switch_detect_check(void)
 {
 	if (foot_switch_detect_isr_flag)
 	{
 		if (foot_switch_detc_port.IN & (foot_switch_detc_pin))	//checking initially if the foot switch is connected
 		{
 			foot_switch_connected_flag = true;
-//			FOOT_SW_LED_PORT.OUT |= FOOt_SW_LED_PIN;
-            PORTB.OUT |= (1<<0);
+			FOOT_SW_LED_PORT.OUT |= FOOt_SW_LED_PIN;
 			#ifdef _DEBUG
 			USART1_sendString("foot switch detected.");
 			#endif
@@ -47,8 +46,7 @@ void foot_switch_detect_check(void)
 		else
 		{
 			foot_switch_connected_flag = false;
-//			FOOT_SW_LED_PORT.OUT &= ~FOOt_SW_LED_PIN;
-            PORTB.OUT &= ~(1<<0);
+			FOOT_SW_LED_PORT.OUT &= ~FOOt_SW_LED_PIN;
 			#ifdef _DEBUG
 			USART1_sendString("foot switch not found.");
 			#endif
@@ -59,11 +57,12 @@ void foot_switch_detect_check(void)
 	
 	if (foot_switch_connected_flag)
 	{
-		PORTB.OUT |= (1<<0);
+		FOOT_SW_LED_PORT.OUT |= FOOt_SW_LED_PIN;
 		#ifdef _DEBUG
 		USART1_sendString("foot switch detected.");
 		#endif
 	}
+	return foot_switch_connected_flag;
 }
 
 /************************************************************************/
@@ -72,15 +71,17 @@ void foot_switch_detect_check(void)
 
 void foot_switch_main (void)
 {
-	if (smart_switch_mode_flag)
+	if (foot_switch_detect_check())
 	{
-		smart_sensing();
-	}
-	else if (!smart_switch_mode_flag)
-	{
-		foot_switch_sensing();
-	}
-	foot_switch_detect_check();
+		if (smart_switch_mode_flag)
+		{
+			smart_sensing();
+		}
+		else if (!smart_switch_mode_flag)
+		{
+			foot_switch_sensing();
+		}
+	}	
 }
 
 
@@ -88,7 +89,7 @@ void foot_switch_main (void)
 
 void smart_sensing (void)
 {
-	//to check if the double tap is occured
+	//to check if the double tap is occurred
 	if ( (foot_switch_press_flag) && (!smart_switch_cont_motor_on_flag) && (!smart_switch_normal_motor_on_flag) && (foot_switch_release_flag) && (foot_switch_press_count > 1) && ((millis-smart_switch_timmer) < smart_switch_press_time) )
 	{
 		#ifdef _DEBUG
@@ -173,9 +174,6 @@ void smart_sensing (void)
 }
 
 void power_save_protocol (void) //if smart switch mode and power save mode are both enabled
-
-
-
 {
 	if (power_save_mode_on_flag)
 	{
@@ -245,3 +243,8 @@ void foot_switch_sensing (void)
 		//		foot_switch_press_flag = false;
 	}
 }
+
+
+
+
+

@@ -8,7 +8,7 @@ void mode_1(void)
 		long_press_pwms_set = 0;
 		
 		USART1_sendString("Entered PWM mode");
-		print_icon(50,130,(uint8_t*) &s_alphabet_17X17,17, 25);
+		print_icon(icon_callibrate_x,icon_callibrate_y,(uint8_t*) &s_alphabet_17X17,17, 25);
 		settings();
 	}
 }
@@ -20,7 +20,7 @@ int get_int_limited(int startVal, int lowerVal, int upperVal, int changeBy)
 	
 	if (POWER_SAVE_PORT.IN & (POWER_SAVE_PIN))
 	{
-		USART1_sendString(__FUNCTION__);
+		//USART1_sendString(__FUNCTION__);
 		tempVal += changeBy;
 		if (tempVal > upperVal)
 		{
@@ -30,7 +30,7 @@ int get_int_limited(int startVal, int lowerVal, int upperVal, int changeBy)
 	}
 	else if (SMART_SW_PORT.IN & (SMART_SW_PIN))
 	{
-		USART1_sendString(__FUNCTION__);
+		//USART1_sendString(__FUNCTION__);
 		tempVal -= changeBy;
 		if (tempVal < lowerVal)
 		{
@@ -61,7 +61,7 @@ int settings(void)
 	
 	while(!value_ok_flag)
 	{
-		USART1_sendString(__FUNCTION__);
+		//USART1_sendString(__FUNCTION__);
 		if (lpm20_flag)
 		{USART1_sendString("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
 			TCA0.SINGLE.CMP0 = LPM_20 = get_int_limited(LPM_20, LPM_20 - 100, TCA0.SINGLE.PER, 5);

@@ -103,17 +103,17 @@ ISR(PORTC_PORT_vect)
 		foot_switch_sens_port.INTFLAGS |= foot_switch_sens_pin;
 	}
 	 
-		if (foot_switch_detc_port.INTFLAGS & foot_switch_detc_pin) 
-		{
-			#ifdef _DEBUG_KEYPAD
-			USART1_sendString("");
-			USART1_sendString("ISR: foot switch isr triggered.");
-			#endif
-			
-			foot_switch_detect_isr_flag = true;
-			foot_switch_detc_port.INTFLAGS |= foot_switch_detc_pin;
-			
-		}
+	if (foot_switch_detc_port.INTFLAGS & foot_switch_detc_pin) 
+	{
+		#ifdef _DEBUG_KEYPAD
+		USART1_sendString("");
+		USART1_sendString("ISR: foot switch isr triggered.");
+		#endif
+		
+		foot_switch_detect_isr_flag = true;
+		foot_switch_detc_port.INTFLAGS |= foot_switch_detc_pin;
+		
+	}
 }
 
 ISR(PORTE_PORT_vect)
@@ -141,7 +141,6 @@ ISR(PORTE_PORT_vect)
 		// 				}
 		//
 		value_ok_flag = true;
-		USART1_sendString("dddddddddddddddddddddddddddddddddd");
 
 		MOTOR_ON_OFF_PORT.INTFLAGS |= MOTOR_ON_OFF_PIN;
 	}
@@ -179,6 +178,3 @@ ISR(PORTE_PORT_vect)
 			SPEED_PORT.INTFLAGS |= SPEED_PIN;
 		} 
 }
-
-
-

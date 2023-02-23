@@ -136,7 +136,7 @@ void lcd_uc1698u_main_screen (void)
 			USART1_sendString("Power save button pressed");
 			#endif
 			POWER_SAVE_LED.OUT |= (POWER_SAVE_LED_PIN);
-			print_icon(60,120,(uint8_t*) & temp_powersave_27x40, 27, 42);      // power_save icon
+			print_icon(icon_power_save_x,icon_power_save_y,(uint8_t*) & temp_powersave_27x40, 27, 42);      // power_save icon
 		}
 		else
 		{
@@ -159,11 +159,12 @@ void lcd_uc1698u_main_screen (void)
 			{
 				POWER_SAVE_LED.OUT &= ~(POWER_SAVE_LED_PIN);
 				delete_rectangle(60, 120, 77, 150);
+				
 			}
 			else
 			{
 				POWER_SAVE_LED.OUT |= (POWER_SAVE_LED_PIN);
-				print_icon(60,120,(uint8_t*) & temp_powersave_27x40, 27, 42);      // power_save icon
+				print_icon(icon_power_save_x,icon_power_save_y,(uint8_t*) & temp_powersave_27x40, 27, 42);      // power_save icon
 			}
 			g_foot_sw_blink_millis = millis;
 		}
@@ -180,13 +181,13 @@ void lcd_uc1698u_main_screen (void)
 			}
 			switch (smart_icon_serial)
 			{
-				case 0:	print_icon(7,122,(uint8_t*) & animation_1_foot_24x33,24, 40);
+				case 0:	print_icon(icon_foot_x,icon_foot_y,(uint8_t*) & animation_1_foot_24x33,24, 40);
 				break;
 				
-				case 1:	print_icon(7,122,(uint8_t*) & animation_2_foot_24x33,24, 40);
+				case 1:	print_icon(icon_foot_x,icon_foot_y,(uint8_t*) & animation_2_foot_24x33,24, 40);
 				break;
 				
-				case 2:	print_icon(7,122,(uint8_t*) & animation_3_foot_24x33,24, 40);
+				case 2:	print_icon(icon_foot_x,icon_foot_y,(uint8_t*) & animation_3_foot_24x33,24, 40);
 				break;
 				
 				default:
@@ -211,7 +212,7 @@ void lcd_uc1698u_main_screen (void)
 	
 	if (Service_alarm_flag || Service_alarm_flag_run)
 	{
-			 print_icon(36, 124,(uint8_t*) &service_required_26x32,26,32);
+			 print_icon(icon_service_x, icon_service_y,(uint8_t*) &service_required_26x32,26,32);
 	}
 }
 
