@@ -83,6 +83,7 @@ void play_pause_button_main(void)
 		else
 		{
 			button_motor_on_off_flag= true;
+			
 			MOTOR_ON_OFF(true);
 			
 		}
@@ -359,4 +360,19 @@ else if ((speed_button_press_flag) && ((button_motor_on_off_flag || countRunTime
 	  speed_button_press_flag = false; 
   }
 }
+	void chamka_do(void)
+	{
+		SMART_FOOT_LED.OUT |= (SMART_FOOT_LED_PIN);
+		POWER_SAVE_LED.OUT |= (POWER_SAVE_LED_PIN);
+		FOOT_SW_LED_PORT.OUT|= FOOt_SW_LED_PIN;
+		SUCTION_LED_PORT.OUT|= SUCTION_LED_PIN;
 		
+	}
+// 	void bhuja_do(void)
+	// 	{
+	// 		SMART_FOOT_LED.OUT &= (SMART_FOOT_LED_PIN);
+	// 		POWER_SAVE_LED.OUT &= (POWER_SAVE_LED_PIN);
+	// 		FOOT_SW_LED_PORT.OUT	&= FOOt_SW_LED_PIN;
+	// 		SUCTION_LED_PORT.OUT	&= SUCTION_LED_PIN;
+	// 		
+	// 	}

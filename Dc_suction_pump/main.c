@@ -40,14 +40,16 @@ int main(void)
 	keypad_gpio_init();
 	lcd_uc1698u_init();
 	foot_switch_init();
+	//PORTD.DIR |= (1 << 1); 
 	STP();
-	//_delay_ms(100);
-	sei();	
+	_delay_ms(100);
+	sei();
 	display_runTime_serviceTime();								 //service time and total run time display
 	lcd_loading_page();
 
 	while (1)
 	{
+
  			dc_suction_pressure_main (50);						//argument given to read n times and find average, where n is the argument provided
  			keypad_main();
  			foot_switch_main();

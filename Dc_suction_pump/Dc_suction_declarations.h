@@ -70,7 +70,7 @@
 #define foot_switch_detc_pin			(1<<3)
 #define smart_switch_press_time			1000
 #define check_before_time				0
-#define power_save_motor_off_time		10000 //1800000			// milliseconds in 30 minutes
+#define power_save_motor_off_time		1800000			// milliseconds in 30 minutes
 #define allowed_pressure_diff_mmHg		40.0 
 #define allowed_pressure_diff_cmH2O		30.0
 #define allowed_pressure_diff_MPa		2.0//0.2				// difference value of current pressure and previous pressure
@@ -100,7 +100,7 @@
 
 /*				Alarms          */
 //#define allowed_service_duration		10
-#define allowed_service_duration		1800000 //21600000  // for 6 hrs
+#define allowed_service_duration		720000000		// time for 200 hours   //21600000  // for 6 hrs
 //
 #define blockage_pressure				4430 // pressure in mmHg
 /*		AC suction protocol				*/

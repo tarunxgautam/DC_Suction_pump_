@@ -55,6 +55,7 @@ void MOTOR_ON_OFF(bool status)
 		if (power_save_mode_on_flag)
 		{
 			update_power_save_icon_flag = true;
+			power_save_icon_blink_flag = false;
 		}
 		#ifdef _DEBUG
 		USART1_sendString("MOTOR_ON_OFF: motor turned on");

@@ -46,7 +46,7 @@ bool foot_switch_detect_check(void)
 		else
 		{
 			foot_switch_connected_flag = false;
-			FOOT_SW_LED_PORT.OUT &= ~FOOt_SW_LED_PIN;
+			FOOT_SW_LED_PORT.OUT &= ~(FOOt_SW_LED_PIN);
 			#ifdef _DEBUG
 			USART1_sendString("foot switch not found.");
 			#endif
