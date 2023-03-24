@@ -73,7 +73,7 @@ void lcd_loading_page (void)
 	lcd_pressure_bar_init();
 	EDGE();
 	partitions();
- 	current_pressure_mmhg = 0.0; //  if not 0 then disply prints fault screen at pressure values
+ 	current_pressure_mmhg = 0.0; //  if not 0 then display prints fault screen at pressure values
  	show_mmgh_4digit (6,42);
 	Duty_cycle = LPM_20;
     lpm20_flag = true;
@@ -96,6 +96,10 @@ void lcd_uc1698u_main_screen (void)
 							#ifdef	_DEBUG
 							USART1_sendString("LCD MAIN SCREEN: printing mmgh pressure.");
 							#endif
+							if(unit_icon_update_flag)
+							{
+								delete_rectangle(2,42,50,95);
+							}
 							show_mmgh_4digit (6,42);
 							break;
 			
@@ -104,13 +108,19 @@ void lcd_uc1698u_main_screen (void)
 							USART1_sendString("LCD MAIN SCREEN: printing cmh2o pressure");
 							#endif
 							
-							cmH20_4digit(6,42);
+							cmH20_4digit(2,42);
 							break;
 			
 			case mode_mpa:
+							
 							#ifdef	_DEBUG
 							USART1_sendString("LCD MAIN SCREEN: printing mpa pressure");
 							#endif
+							if(unit_icon_update_flag)
+							{
+								delete_rectangle(2,42,50,95);
+							}
+							
 							MPa_4digit(6,42);
 							break;
 			
@@ -222,7 +232,7 @@ void partitions(void)
 	print_line (0,30,79,30,true);			 // line below bar
 	print_line(0,29,79,29,true);
 //	print_double_line(51,31,51,114,false);	  //  // middle vertical line
-	print_line(51,31,51,114,false);				// middle verticle line
+	print_line(51,31,51,114,false);				// middle verticle line													31->41
 	print_line (0,114,79,114,true);          // icons partition line
 	print_line(0,115,79,115,true );			// icons partition line for highlight
 }
@@ -276,7 +286,7 @@ void show_mmgh_4digit (uint8_t x1, uint8_t y1)
 void cmH20_4digit (uint8_t x1, uint8_t y1)
 {
 	int buff = current_pressure_cmh2O;
-	int digit_a = 0, digit_b = 0, digit_c = 0;/*digit_d =0;*/
+	int digit_a = 0, digit_b = 0, digit_c = 0, digit_d =0;
 	if (buff > 750)
 	{
 		#ifdef _DEBUG
@@ -286,8 +296,8 @@ void cmH20_4digit (uint8_t x1, uint8_t y1)
 		current_pressure_cmh2O = 0.0;
 	}
 	
-	//digit_d = buff%10;
-	//buff = buff/10;
+	digit_d = buff%10;
+	buff = buff/10;
 	digit_c = buff%10;
 	buff = buff/ 10;
 	digit_b = buff%10;
@@ -295,9 +305,9 @@ void cmH20_4digit (uint8_t x1, uint8_t y1)
 	buff = 0;
 
 	print_number((x1), y1,(uint8_t*) &arial_numerical_font_49x40, 49, 40, digit_a);
-	print_number((x1+13), y1,(uint8_t*) &arial_numerical_font_49x40, 49, 40, digit_b);
-	print_number((x1+26), y1,(uint8_t*) &arial_numerical_font_49x40, 49, 40, digit_c);
-	//print_number((x1+18), y1, &jersey_numerical_font_24x24, 24, 24, digit_d);
+	print_number((x1+12), y1,(uint8_t*) &arial_numerical_font_49x40, 49, 40, digit_b);
+	print_number((x1+24), y1,(uint8_t*) &arial_numerical_font_49x40, 49, 40, digit_c);
+	print_number((x1+36), y1,(uint8_t*) &arial_numerical_font_49x40, 49, 40, digit_d);
 	if (unit_icon_update_flag)
 	{
 		print_icon(31, 95,(uint8_t*) &temp_cmh2o_13x54, 13,57);

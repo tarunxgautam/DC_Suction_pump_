@@ -79,8 +79,7 @@ void MOTOR_ON_OFF(bool status)
 #define printOverPressureIconCount 5
 char g_XcountPessureAlarm = 0; 
 unsigned long g_currentMillisPressure = 0;
-void dc_suction_pressure_main (uint8_t avg)
-{
+void dc_suction_pressure_main (uint8_t avg){
     current_pressure_mmhg = AMS_mmhg_average(avg);
     //current_pressure_mmhg = AMS_mmhg_queue_average();
     if(current_pressure_mmhg < 0)
@@ -151,7 +150,7 @@ void dc_suction_pressure_main (uint8_t avg)
 //						USART1_sendString("PRESSURE MAIN: Mpa calculating.");
 						//						#endif
 	    
-						current_pressure_mpa = (current_pressure_mmhg * 0.13332);
+						current_pressure_mpa = (current_pressure_mmhg * 0.013332);									//previous value = 0.13332
 						allowedPressureDifference = (allowed_pressure_diff_MPa * 100 );
 						
 						// 		if(current_pressure_mpa > max_mpa_value)

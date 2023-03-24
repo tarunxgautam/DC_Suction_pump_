@@ -1,6 +1,7 @@
 #ifndef AC_suction_include_and_variables
 #define AC_suction_include_and_variables
 
+#define PCB_VERSION 13 // PCB version multiplied by 10
 
 #include <util/delay.h>
 #include <avr/io.h>
@@ -24,29 +25,58 @@
 #include "LIBRARIES/UC1698U.c"
 
 /*              KEYPAD							*/
-#define SMART_FOOT_LED					PORTC
-#define SMART_FOOT_LED_PIN				(1<<2)
-#define SMART_SW_PORT                   PORTF
-#define SMART_SW_PIN                    (1<<2)
-#define UNIT_PORT						PORTC
-#define UNIT_PIN						(1<<6)
-#define SUCTION_LED_PORT				PORTE
-#define SUCTION_LED_PIN					(1<<3)
-#define MOTOR_ON_OFF_PORT				PORTE
-#define MOTOR_ON_OFF_PIN                (1<<1)
-#define POWER_SAVE_PORT                 PORTE
-#define POWER_SAVE_PIN                  (1<<2)
-#define POWER_SAVE_LED					PORTB
-#define POWER_SAVE_LED_PIN				(1<<5)
-#define FOOT_SW_LED_PORT				PORTB
-#define FOOt_SW_LED_PIN			        (1<<0)
+#if PCB_VERSION == 13
+	#define SMART_FOOT_LED					PORTC
+	#define SMART_FOOT_LED_PIN				(1<<2)
+	#define SMART_SW_PORT                   PORTF
+	#define SMART_SW_PIN                    (1<<2)
+	#define UNIT_PORT						PORTC
+	#define UNIT_PIN						(1<<6)
+	#define SUCTION_LED_PORT				PORTE
+	#define SUCTION_LED_PIN					(1<<3)
+	#define MOTOR_ON_OFF_PORT				PORTE
+	#define MOTOR_ON_OFF_PIN                (1<<1)
+	#define POWER_SAVE_PORT                 PORTE
+	#define POWER_SAVE_PIN                  (1<<2)
+	#define POWER_SAVE_LED					PORTB
+	#define POWER_SAVE_LED_PIN				(1<<5)
+	#define FOOT_SW_LED_PORT				PORTA
+	#define FOOt_SW_LED_PIN			        (1<<5)
 
-#define SPEED_PORT						PORTE
-#define SPEED_PIN						(1<<0)
+	#define SPEED_PORT						PORTE
+	#define SPEED_PIN						(1<<0)
 
-#define AMS_PORT						PORTC
-#define AMS_PIN							(1<<4)
+	#define AMS_PORT						PORTC
+	#define AMS_PIN							(1<<4)
+	
+#elif PCB_VERSION == 14
+	#define SMART_FOOT_LED					PORTC
+	#define SMART_FOOT_LED_PIN				(1<<2)
+	#define SMART_SW_PORT                   PORTF
+	#define SMART_SW_PIN                    (1<<2)
+	#define UNIT_PORT						PORTC
+	#define UNIT_PIN						(1<<6)
+	#define SUCTION_LED_PORT				PORTE
+	#define SUCTION_LED_PIN					(1<<3)
+	#define MOTOR_ON_OFF_PORT				PORTE
+	#define MOTOR_ON_OFF_PIN                (1<<1)
+	#define POWER_SAVE_PORT                 PORTE
+	#define POWER_SAVE_PIN                  (1<<2)
+	#define POWER_SAVE_LED					PORTB
+	#define POWER_SAVE_LED_PIN				(1<<5)
+	#define FOOT_SW_LED_PORT				PORTB
+	#define FOOt_SW_LED_PIN			        (1<<0)
 
+	#define SPEED_PORT						PORTE
+	#define SPEED_PIN						(1<<0)
+
+	#define AMS_PORT						PORTC
+	#define AMS_PIN							(1<<4)
+	//FAN//
+	#define FAN_PORT						PORTF
+	#define FAN_PIN							(1<<5)
+	
+#endif
 
 /*				motor sol GPIO					*/
 // #define POWER_SAVE_MOTOR_ON_OFF_TIME    60000
@@ -92,8 +122,8 @@
 
 /*				lcd_bar						*/
 #define max_mmhg_value		750.0			//max value of mmhg the bar will represent
-#define max_cmh2o_value     750.0
-#define max_mpa_value       0.99
+#define max_cmh2o_value     (1.3595 * max_mmhg_value)
+#define max_mpa_value       (0.013332 * max_mmhg_value)
 #define max_bar_height		29
 #define max_bar_length		77.0			//237.0
 #define starting_bar_width	2			//pressure bar starting updation point |___-----------|
@@ -237,6 +267,7 @@ unsigned long long_press_pwms_set = 0;
 
 void mode_1(void);
 int settings(void);
+void FAN_opt(void);
 
 /*          ams functions					*/   //  by tarun
 void ams_reset (void);

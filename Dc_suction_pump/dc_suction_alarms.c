@@ -20,3 +20,18 @@ void NTC_check(float temp)
 	}
 }
 
+// void FAN_opt(void)
+// {
+// 	if (temperature > TEMP_ALARM_RANGE1)							//temperature range is too much it should be reduced around (25-35'C).
+// 	{
+//		PORTF.OUT |= (1 << 5);										//FAN ON
+//	}
+//	else if ( temperature > (TEMP_ALARM_RANGE2))					// Threshold temperature will be according to the max. temperature of battery optimal(10-30'C) / opt(-20-60'C).
+//	{
+//		MOTOR_ON_OFF(false);										//Safety Precaution
+//	}
+//	else
+//	{
+//		PORTF.OUT &= (0 << 5);										//FAN OFF
+//	}
+//}

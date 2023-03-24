@@ -8,6 +8,7 @@ float AMS_raw(void);
 float AMS_5812_psi_read (void);
 float AMS_psi_average (uint8_t);
 float AMS_mmhg_average (uint8_t);
+float AMS_5812_temp_read(void);
 
 void AMS_5812_init(void)			// to initialize i2c, UART, and other peripherals for communication with sensor
 {
@@ -30,23 +31,64 @@ float AMS_raw(void)
 //   		_delay_ms(2);
 // 
 
-	pressure_raw = I2C_0_recieveData();
-//   	_delay_us(10);
+	pressure_raw = I2C_0_recieveData();			//   	_delay_us(10);
 	pressure_raw <<= 8;
-	pressure_raw |=I2C_0_recieveData();
-//   	_delay_us(10);
-	temp_raw = I2C_0_recieveData();
-//   	_delay_us(10);
+					TWI0.MCTRLB &= ~(1 << 4);   // Send ACK
+	pressure_raw |=I2C_0_recieveData();//   	_delay_us(10);
+					TWI0.MCTRLB &= ~(1 << 4);   // Send ACK
+	temp_raw = I2C_0_recieveData();				//   	_delay_us(10);
 	temp_raw <<= 8;
-	temp_raw |= I2C_0_recieveData();
-//   	_delay_us(10);
+					TWI0.MCTRLB &= ~(1 << 4);   // Send ACK
+	temp_raw |= I2C_0_recieveData();			//   	_delay_us(10);
 // 	TWI0.MCTRLB |= (1 << 2);   // Send NACK
 
-//   	I2C_0_stop_transmission();
+   	I2C_0_stop_transmission();
 // 	_delay_ms(1000);
 
 	return (float)(pressure_raw);
 }
+
+////////////////////////////////////////////////////////////////////
+float AMS_raw_temp(void)
+{
+	uint16_t pressure_raw = 0, temp_raw = 0;
+	
+	// 		I2C_0_sendAddress(0x78,1);  //1 for read
+	//   		_delay_ms(2);
+	//
+
+	pressure_raw = I2C_0_recieveData();			//   	_delay_us(10);
+	pressure_raw <<= 8;
+	TWI0.MCTRLB &= ~(1 << 4);   // Send ACK
+	pressure_raw |=I2C_0_recieveData();//   	_delay_us(10);
+	TWI0.MCTRLB &= ~(1 << 4);   // Send ACK
+	temp_raw = I2C_0_recieveData();				//   	_delay_us(10);
+	temp_raw <<= 8;
+	TWI0.MCTRLB &= ~(1 << 4);   // Send ACK
+	temp_raw |= I2C_0_recieveData();			//   	_delay_us(10);
+	// 	TWI0.MCTRLB |= (1 << 2);   // Send NACK
+
+	I2C_0_stop_transmission();
+	// 	_delay_ms(1000);
+
+	return (float)(temp_raw);
+}
+
+float AMS_5812_temp_read(void)
+{
+	 	uint16_t _data2;
+		uint16_t _data3 = 0;										
+	 	for (int i = 0; i<100; i++)											//
+	 	{
+	 		_data2 = AMS_raw_temp();
+			_data2 &= 0xFF;
+			_data3 += _data2 ;	 
+			_data3 /= 2;	
+		 }		 
+		//USART1_sendInt(_data3);
+		return ((((_data3 - 3277) / 26214) - 110) - 25);				// returning the temperature value from AMS5812-0150-D
+}
+
 
 float AMS_5812_psi_read (void)
 {
@@ -58,7 +100,7 @@ float AMS_5812_psi_read (void)
 // 	}
 	//USART1_sendInt(_data2);
 //	return ((AMS_raw() - 3277.0 ) / (29490.0/5.0));
-  return ((AMS_raw()-3277.0) / (262.14));         // AMS 5812-1000-D
+	return ((AMS_raw() - 3277.0) / (1747.6));         // AMS 5812-0150-D is used instead of AMS 5812-1000-D
 }
 
 float AMS_psi_average (uint8_t average_no)

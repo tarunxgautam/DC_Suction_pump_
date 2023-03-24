@@ -19,8 +19,7 @@ void keypad_gpio_init(void)
 	#endif
 }
 
-void unit_change (void)
-{
+void unit_change (void){
 	if(unit_button_pressed_flag)
 	{
 		backlit_on_flag = true;
