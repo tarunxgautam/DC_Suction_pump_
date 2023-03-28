@@ -26,6 +26,9 @@
 
 /*              KEYPAD							*/
 #if PCB_VERSION == 13
+	#define NTC_CHANNEL						channel_2
+	#define AMS_5812_CHANNEL				channel_2
+	
 	#define SMART_FOOT_LED					PORTC
 	#define SMART_FOOT_LED_PIN				(1<<2)
 	#define SMART_SW_PORT                   PORTF
@@ -50,6 +53,9 @@
 	#define AMS_PIN							(1<<4)
 	
 #elif PCB_VERSION == 14
+	#define NTC_CHANNEL						channel_2
+	#define AMS_5812_CHANNEL				channel_2
+	
 	#define SMART_FOOT_LED					PORTC
 	#define SMART_FOOT_LED_PIN				(1<<2)
 	#define SMART_SW_PORT                   PORTF
@@ -100,13 +106,13 @@
 #define foot_switch_detc_pin			(1<<3)
 #define smart_switch_press_time			1000
 #define check_before_time				0
-#define power_save_motor_off_time		1800000			// milliseconds in 30 minutes
+#define power_save_motor_off_time		1800000											// milliseconds in 30 minutes
 #define allowed_pressure_diff_mmHg		40.0 
 #define allowed_pressure_diff_cmH2O		30.0
-#define allowed_pressure_diff_MPa		2.0//0.2				// difference value of current pressure and previous pressure
+#define allowed_pressure_diff_MPa		2.0//0.2										// difference value of current pressure and previous pressure
 
 /*********************** NTC *******************************/
-#define NTC_ADC_channel			channel_0
+#define NTC_ADC_channel			NTC_CHANNEL
 #define supply_voltage			3.3
 #define ntc_series_resistance	10000
 #define beta_value				3435
@@ -214,7 +220,7 @@ unsigned long ntc_raw_adc = 0;
 #define NOMINAL_TEMPERATURE 25.0
 #define BETA_VALUE			3435.0
 #define REF_RESISTANCE		10000.0
-#define ADC_REF_VOLT		3.3
+#define NTC_ADC_REF_VOLT	3.3
 #define TEMP_ALARM_RANGE1   70
 #define TEMP_ALARM_RANGE2   71.0
 

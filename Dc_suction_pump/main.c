@@ -2,6 +2,7 @@
 #define F_CPU 24000000UL
 //#define _DEBUG 
 #define _DEBUG_Keypad
+#define AMS_5812_MODE_ANALOG
 
 #include "Dc_suction_declarations.h"
 #include "Dc_suction_keypad.c"
@@ -40,26 +41,39 @@ int main(void)
  	keypad_gpio_init();
  	lcd_uc1698u_init();
  	foot_switch_init();
- 	//PORTD.DIR |= (1 << 1); 
+ 	PORTD.DIR |= (!(1 << 2)); 
 	//PORTF.DIR |= (1 << 1);									 //Setting FAN pin as Output
- 	STP();
+ 	//STP();
  	_delay_ms(100);
  	sei();
  	display_runTime_serviceTime();								 //service time and total run time display
  	lcd_loading_page();
- 
+  
  	while (1)
  	{
- 			dc_suction_pressure_main (50);						//argument given to read n times and find average, where n is the argument provided
- 			keypad_main();
- 			foot_switch_main();
- 			read_ntc();
-			dc_suction_protocol_main();
-			lcd_uc1698u_main_screen();
-			power_save_protocol();
-			mode_1();											// just added for PWM mode \to dynamically calibrate the PWM of the motor.
-			calcutale_run_service_time();
-			//FAN_opt();										// FAN Operation using NTC.
+ 		dc_suction_pressure_main (50);						//argument given to read n times and find average, where n is the argument provided
+ 		keypad_main();
+ 		foot_switch_main();
+ 		read_ntc();
+		dc_suction_protocol_main();
+		lcd_uc1698u_main_screen();
+		power_save_protocol();
+		mode_1();											// just added for PWM mode \to dynamically calibrate the PWM of the motor.
+		calcutale_run_service_time();
+		//FAN_opt();										// FAN Operation using NTC.
+
+
+// 		SMART_FOOT_LED.OUT		|=	SMART_FOOT_LED_PIN;
+// 		SUCTION_LED_PORT.OUT	|=	SUCTION_LED_PIN;
+// 		POWER_SAVE_LED.OUT		|=	POWER_SAVE_LED_PIN;
+// 		FOOT_SW_LED_PORT.OUT	|=	FOOt_SW_LED_PIN;
+// 		_delay_ms(2000);
+// 		
+// 		SMART_FOOT_LED.OUT		&=	~SMART_FOOT_LED_PIN;
+// 		SUCTION_LED_PORT.OUT	&=	~SUCTION_LED_PIN;
+// 		POWER_SAVE_LED.OUT		&=	~POWER_SAVE_LED_PIN;
+// 		FOOT_SW_LED_PORT.OUT	&=	~FOOt_SW_LED_PIN;
+// 		_delay_ms(2000);
  	}
 	return 0;
 }

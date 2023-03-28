@@ -253,7 +253,7 @@ void EDGE(void)
 void show_mmgh_4digit (uint8_t x1, uint8_t y1)
 {
 	int __buff_ = current_pressure_mmhg;
-	int digit_a = 0, digit_b = 0, digit_c = 0;/*digit_d =0*/
+	int digit_a = 0, digit_b = 0, digit_c = 0;/*digit_d = 0*/
 	if (__buff_ > 750)
 	{
 		#ifdef _DEBUG
@@ -477,29 +477,29 @@ void printNumScreen_RightJustified(uint8_t x_last, uint8_t y_start, long num, ui
 	printNumScreen_RightJustified(70, 103, value_2, 4);
 	
  }
- void show_temp_4digit (uint8_t x1, uint8_t y1)
- {
-	 int __buff_ = temperature;
-	 int digit_a = 0, digit_b = 0, digit_c = 0;/*digit_d =0*/
-	 if (__buff_ > 125)
-	 {
-		 #ifdef _DEBUG
-		 USART1_sendString("max temp");
-		 #endif
-		 
-		 temperature = 0.0;
-	 }
-
-	 digit_a = __buff_%10;
-	 __buff_ = __buff_/10;
-	 digit_b = __buff_%10;
-	 __buff_ = __buff_/ 10;
-	 digit_c = __buff_%10;
-	 __buff_ = 0;
-
-	 print_number((x1), y1, (uint8_t*)&arial_new_number_font_17x17, 17, 25, digit_c);
-	 print_number((x1+5), y1, (uint8_t*)&arial_new_number_font_17x17, 17, 25, digit_b);
-	 print_number((x1+10), y1, (uint8_t*)&arial_new_number_font_17x17, 17, 25, digit_a);
-	 //	print_number((x1+18), y1, &arial_numerical_font_49x40, 49, 40, digit_d);
- }
+//  void show_temp_4digit (uint8_t x1, uint8_t y1)
+//  {
+// 	 int __buff_ = AMS_5812_temp_read();
+// 	 int digit_a = 0, digit_b = 0, digit_c = 0,digit_d =0;
+// // 	 if (__buff_ > 125)
+// // 	 {
+// // 		 #ifdef _DEBUG
+// // 		 USART1_sendString("max temp");
+// // 		 #endif
+// // 		 
+// // 		 temperature = 0.0;
+// // 	 }
+// 
+// 	 digit_a = __buff_%10;
+// 	 __buff_ = __buff_/10;
+// 	 digit_b = __buff_%10;
+// 	 __buff_ = __buff_/ 10;
+// 	 digit_c = __buff_%10;
+// 	 __buff_ = 0;
+// 
+// 	 print_number((x1), y1, (uint8_t*)&arial_new_number_font_17x17, 17, 25, digit_c);
+// 	 print_number((x1+5), y1, (uint8_t*)&arial_new_number_font_17x17, 17, 25, digit_b);
+// 	 print_number((x1+10), y1, (uint8_t*)&arial_new_number_font_17x17, 17, 25, digit_a);
+// 	 print_number((x1-5), y1, (uint8_t*)&arial_new_number_font_17x17, 17, 25, digit_d);
+//  }
 

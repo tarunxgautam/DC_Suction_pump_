@@ -76,6 +76,7 @@ void MOTOR_ON_OFF(bool status)
 		#endif
 	}
 }
+
 #define printOverPressureIconCount 5
 char g_XcountPessureAlarm = 0; 
 unsigned long g_currentMillisPressure = 0;
@@ -89,29 +90,6 @@ void dc_suction_pressure_main (uint8_t avg){
     }
     else if (current_pressure_mmhg > max_mmhg_value)
     {
-// 		if( abs(millis - g_currentMillisPressure) > 1000 )				// taking samples in 1 second.This is the  incomplete code for NRV Blockage system 
-// 		{
-// 			g_currentMillisPressure = millis;
-// 			/*USART1_sendFloat(current_pressure_mmhg,4);*/
-// 			if (current_pressure_mmhg >	pressure_blockage )
-// 			{
-// 				g_XcountPessureAlarm++;
-// 				
-// 				if (g_XcountPessureAlarm >= printOverPressureIconCount)
-// 				{
-// 					g_XcountPessureAlarm = printOverPressureIconCount;
-// 					USART1_sendString("############################ BLOCKAGE DETECTED ##################################");
-// 					print_icon(icon_valveBlock_x, icon_valveBlock_y, (uint8_t*)&VALVE_BLOCKED_16X26, 16, 32);
-// 				}
-// 			}
-// 			else
-// 			{
-// 				g_currentMillisPressure = 0;
-// 				delete_rectangle(icon_valveBlock_x,icon_valveBlock_y,68,146);
-// 			}
-// 			USART1_sendString_without_newline("$$$$$$$$$$ count:");
-// 			USART1_sendInt(g_XcountPessureAlarm);
-// 		}
  	    current_pressure_mmhg = max_mmhg_value;					//so that mmhg value does not exceed max mmhg value, and does not give garbage value
     }
 
