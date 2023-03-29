@@ -127,7 +127,7 @@
 #define reset_time_threshold  10000
 
 /*				lcd_bar						*/
-#define max_mmhg_value		750.0			//max value of mmhg the bar will represent
+#define max_mmhg_value		800.0			//max value of mmhg the bar will represent
 #define max_cmh2o_value     (1.3595 * max_mmhg_value)
 #define max_mpa_value       (0.013332 * max_mmhg_value)
 #define max_bar_height		29
@@ -135,16 +135,13 @@
 #define starting_bar_width	2			//pressure bar starting updation point |___-----------|
 
 /*				Alarms          */
-//#define allowed_service_duration		10
 #define allowed_service_duration		720000000		// time for 200 hours   //21600000  // for 6 hrs
-//
-#define blockage_pressure				4430 // pressure in mmHg
+
 /*		AC suction protocol				*/
 #define mode_mmhg	1
 #define mode_cmh2o	2
 #define mode_mpa	3
 
-/*				stp						*/
 /*				stp						*/
 #define max_sens_error_val		520		//sensor giving max value cont. after reset as error
 #define min_sens_error_val		0		//sensor giving min value cont. after reset as error

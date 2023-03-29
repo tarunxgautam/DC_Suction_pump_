@@ -1,13 +1,10 @@
 #ifndef AMS5812_H_
 #define AMS5812_H_
 
-// \Dc_suction_declarations.h
-// \LIBRARIES\AMS_5812.h
-
 #define AMS_ADDR				0x78  //address of sensor
 #define AMS_5812_MODE_ANALOG	1
 #define AMS_5812_MODE_DIGITAL	2
-#define AMS_5812_MODE			AMS_5812_MODE_DIGITAL
+#define AMS_5812_MODE			AMS_5812_MODE_ANALOG
 
 /*********************** AMS-5812 *******************************/
 #define AMS_5812_ADC_CHANNEL			channel_2								// ADC channel for AMS-5812
@@ -73,10 +70,18 @@ float AMS_raw(void)
 				
 	#elif AMS_5812_MODE == AMS_5812_MODE_ANALOG
 	
-		float pressure_raw = 0.0;
-		float voltage = ((AMS_5812_ADC_REF_VOLT * (float)ADC0_read(AMS_5812_ADC_CHANNEL)) / 40950.0); // Voltage after dividing
-		voltage = voltage / AMS_5812_VDR;
+		float pressure_raw = 0.0, voltage = 0.0;
+		uint32_t ADC_val_AMS_5812 = 0;
 		
+		ADC_val_AMS_5812 = ADC0_read(AMS_5812_ADC_CHANNEL);
+		
+		for (int i = 0; i < 50; i++)
+		{
+			ADC_val_AMS_5812 += ADC0_read(AMS_5812_ADC_CHANNEL);
+			ADC_val_AMS_5812 = ADC_val_AMS_5812 / 2;
+		}
+		voltage = ((AMS_5812_ADC_REF_VOLT * ADC_val_AMS_5812) / 4096.0); // Voltage after dividing
+		voltage = voltage / AMS_5812_VDR;
 		pressure_raw = ((voltage - AMS_5812_V_MIN)/((AMS_5812_V_MAX - AMS_5812_V_MIN)/(AMS_5812_P_MAX - AMS_5812_P_MIN))) + AMS_5812_P_MIN;
 		return (pressure_raw);		// Return pressure raw data
 		
@@ -88,6 +93,7 @@ float AMS_5812_psi_read (void)
 	#if AMS_5812_MODE == AMS_5812_MODE_DIGITAL
 			return (((AMS_raw() - AMS_5812_C_MIN) / ((AMS_5812_C_MAX - AMS_5812_C_MIN)/(AMS_5812_P_MAX - AMS_5812_P_MIN))) + AMS_5812_P_MIN);         // AMS 5812-0150-D is used instead of AMS 5812-1000-D
 	#elif AMS_5812_MODE == AMS_5812_MODE_ANALOG
+			
 			return AMS_raw();
 	#endif
 }

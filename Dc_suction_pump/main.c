@@ -1,7 +1,7 @@
 
 #define F_CPU 24000000UL
 //#define _DEBUG 
-#define _DEBUG_Keypad
+//#define _DEBUG_Keypad
 
 #include "Dc_suction_declarations.h"
 #include "Dc_suction_keypad.c"
