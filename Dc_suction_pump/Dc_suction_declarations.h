@@ -85,7 +85,7 @@
 #elif PCB_VERSION == 15
 
 	#define NTC_CHANNEL						channel_2
-	#define AMS_5812_CHANNEL				channel_13
+	#define AMS_5812_CHANNEL				channel_21
 	
 	#define SMART_FOOT_LED					PORTC
 	#define SMART_FOOT_LED_PIN				(1<<2)

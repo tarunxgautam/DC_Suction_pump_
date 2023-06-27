@@ -7,17 +7,17 @@
 #define AMS_5812_MODE			AMS_5812_MODE_ANALOG
 
 /*********************** AMS-5812 *******************************/
-#define AMS_5812_ADC_CHANNEL			channel_13								// ADC channel for AMS-5812
+#define AMS_5812_ADC_CHANNEL			channel_21								// ADC channel for AMS-5812
 #define AMS_5812_ADC_REF_VOLT			3.3												// ADC ref voltage
-#define AMS_5812_R1						1000											// Value of resister in ohms connected next to the sensor
-#define AMS_5812_R2						2000											// Value of resister in ohms connected AMS_5812_R1 and ground
+#define AMS_5812_R1						3300											// Value of resister in ohms connected next to the sensor
+#define AMS_5812_R2						10000											// Value of resister in ohms connected AMS_5812_R1 and ground
 #define AMS_5812_P_MIN					0.0												// Minimum pressure in PSI
 #define AMS_5812_P_MAX					15.0											// Maximum pressure in PSI
 #define AMS_5812_C_MIN					3277											// Minimum digital count
 #define AMS_5812_C_MAX					29491											// Maximum digital count
 #define AMS_5812_V_MIN					0.5												// Minimum voltage in volts on analog output pin of AMS-5812
 #define AMS_5812_V_MAX					4.5												// Maximum voltage in volts on analog output pin of AMS-5812
-#define AMS_5812_VDR					0.6666//(AMS_5812_R2 / (AMS_5812_R1 + AMS_5812_R2))		// Voltage Divider Ratio: Divides the voltage by this fraction
+#define AMS_5812_VDR					0.750//(AMS_5812_R2 / (AMS_5812_R1 + AMS_5812_R2))		// Voltage Divider Ratio: Divides the voltage by this fraction
 
 void AMS_5812_analog_init(void);
 void AMS_5812_init(void);
@@ -41,9 +41,7 @@ void AMS_5812_init(void)			// to initialize i2c, UART, and other peripherals for
 	I2C_0_master_initialization();
 		I2C_0_sendAddress(0x78,1);  //1 for read
 // 		_delay_ms(10);
-
 }
-
 
 float AMS_raw(void)
 {	
@@ -80,10 +78,14 @@ float AMS_raw(void)
 			ADC_val_AMS_5812 += ADC0_read(AMS_5812_ADC_CHANNEL);
 			ADC_val_AMS_5812 = ADC_val_AMS_5812 / 2;
 		}
+		USART1_sendFloat(ADC_val_AMS_5812,3);
 		voltage = ((AMS_5812_ADC_REF_VOLT * ADC_val_AMS_5812) / 4096.0); // Voltage after dividing
+		
 		voltage = voltage / AMS_5812_VDR;
+		USART1_sendString_without_newline("voltage :");
 		USART1_sendFloat(voltage,3);
-		pressure_raw = ((voltage - AMS_5812_V_MIN)/((AMS_5812_V_MAX - AMS_5812_V_MIN)/(AMS_5812_P_MAX - AMS_5812_P_MIN))) + AMS_5812_P_MIN;
+		pressure_raw = ((voltage - AMS_5812_V_MIN) / ( (AMS_5812_V_MAX - AMS_5812_V_MIN) / (AMS_5812_P_MAX - AMS_5812_P_MIN) ) ) + AMS_5812_P_MIN;
+		USART1_sendFloat(pressure_raw,3);
 		return (pressure_raw);		// Return pressure raw data
 		
 	#endif
