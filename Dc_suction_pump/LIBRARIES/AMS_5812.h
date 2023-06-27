@@ -7,17 +7,17 @@
 #define AMS_5812_MODE			AMS_5812_MODE_ANALOG
 
 /*********************** AMS-5812 *******************************/
-#define AMS_5812_ADC_CHANNEL			channel_2								// ADC channel for AMS-5812
+#define AMS_5812_ADC_CHANNEL			channel_13								// ADC channel for AMS-5812
 #define AMS_5812_ADC_REF_VOLT			3.3												// ADC ref voltage
-#define AMS_5812_R1						3300											// Value of resister in ohms connected next to the sensor
-#define AMS_5812_R2						10000											// Value of resister in ohms connected AMS_5812_R1 and ground
+#define AMS_5812_R1						1000											// Value of resister in ohms connected next to the sensor
+#define AMS_5812_R2						2000											// Value of resister in ohms connected AMS_5812_R1 and ground
 #define AMS_5812_P_MIN					0.0												// Minimum pressure in PSI
 #define AMS_5812_P_MAX					15.0											// Maximum pressure in PSI
 #define AMS_5812_C_MIN					3277											// Minimum digital count
 #define AMS_5812_C_MAX					29491											// Maximum digital count
 #define AMS_5812_V_MIN					0.5												// Minimum voltage in volts on analog output pin of AMS-5812
 #define AMS_5812_V_MAX					4.5												// Maximum voltage in volts on analog output pin of AMS-5812
-#define AMS_5812_VDR					0.752//(AMS_5812_R2 / (AMS_5812_R1 + AMS_5812_R2))		// Voltage Divider Ratio: Divides the voltage by this fraction
+#define AMS_5812_VDR					0.6666//(AMS_5812_R2 / (AMS_5812_R1 + AMS_5812_R2))		// Voltage Divider Ratio: Divides the voltage by this fraction
 
 void AMS_5812_analog_init(void);
 void AMS_5812_init(void);
@@ -82,6 +82,7 @@ float AMS_raw(void)
 		}
 		voltage = ((AMS_5812_ADC_REF_VOLT * ADC_val_AMS_5812) / 4096.0); // Voltage after dividing
 		voltage = voltage / AMS_5812_VDR;
+		USART1_sendFloat(voltage,3);
 		pressure_raw = ((voltage - AMS_5812_V_MIN)/((AMS_5812_V_MAX - AMS_5812_V_MIN)/(AMS_5812_P_MAX - AMS_5812_P_MIN))) + AMS_5812_P_MIN;
 		return (pressure_raw);		// Return pressure raw data
 		
@@ -91,7 +92,9 @@ float AMS_raw(void)
 float AMS_5812_psi_read (void)
 {
 	#if AMS_5812_MODE == AMS_5812_MODE_DIGITAL
+			
 			return (((AMS_raw() - AMS_5812_C_MIN) / ((AMS_5812_C_MAX - AMS_5812_C_MIN)/(AMS_5812_P_MAX - AMS_5812_P_MIN))) + AMS_5812_P_MIN);         // AMS 5812-0150-D is used instead of AMS 5812-1000-D
+	
 	#elif AMS_5812_MODE == AMS_5812_MODE_ANALOG
 			
 			return AMS_raw();

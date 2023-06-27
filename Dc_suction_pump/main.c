@@ -1,6 +1,7 @@
 
 #define F_CPU 24000000UL
-//#define _DEBUG 
+//#define _DEBUG
+#define stp_debug 
 //#define _DEBUG_Keypad
 
 #include "Dc_suction_declarations.h"
@@ -53,7 +54,7 @@ int main(void)
  		keypad_main();
  		foot_switch_main();
  		read_ntc();
-		dc_suction_protocol_main();
+		//dc_suction_protocol_main();
 		lcd_uc1698u_main_screen();
 		power_save_protocol();
 		mode_1();											// just added for PWM mode \to dynamically calibrate the PWM of the motor.

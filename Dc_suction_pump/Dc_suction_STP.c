@@ -72,8 +72,7 @@ void ams_check (void)
 	float old_current_pressure = 0.0;
 	uint8_t ams_reset_count = 0, same_pressure_read_count = 0;
 	
-	// 	if(uc_reset_count < 3)
-	// 	{		
+	
 	while ( (sensor_all_right == false) && (ams_reset_count < 3) )
 	{
 		for(int i = 0; i<10; i++)

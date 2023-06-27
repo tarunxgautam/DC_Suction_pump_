@@ -83,7 +83,8 @@ unsigned long g_currentMillisPressure = 0;
 void dc_suction_pressure_main (uint8_t avg){
     current_pressure_mmhg = AMS_mmhg_average(avg) ;
     //current_pressure_mmhg = AMS_mmhg_queue_average();
-    if(current_pressure_mmhg < 0)
+    //USART1_sendFloat(current_pressure_mmhg, 3);
+	if(current_pressure_mmhg < 0)
     {
 	    current_pressure_mmhg = 0.0;
 		

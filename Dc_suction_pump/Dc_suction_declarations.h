@@ -1,7 +1,7 @@
 #ifndef AC_suction_include_and_variables
 #define AC_suction_include_and_variables
 
-#define PCB_VERSION 13 // PCB version multiplied by 10
+#define PCB_VERSION 15 // PCB version multiplied by 10
 
 #include <util/delay.h>
 #include <avr/io.h>
@@ -81,6 +81,42 @@
 	//FAN//
 	#define FAN_PORT						PORTF
 	#define FAN_PIN							(1<<5)
+
+#elif PCB_VERSION == 15
+
+	#define NTC_CHANNEL						channel_2
+	#define AMS_5812_CHANNEL				channel_13
+	
+	#define SMART_FOOT_LED					PORTC
+	#define SMART_FOOT_LED_PIN				(1<<2)
+	#define SMART_SW_PORT                   PORTF
+	#define SMART_SW_PIN                    (1<<2)
+	#define UNIT_PORT						PORTF
+	#define UNIT_PIN						(1<<3)
+	#define SUCTION_LED_PORT				PORTE
+	#define SUCTION_LED_PIN					(1<<3)
+	#define MOTOR_ON_OFF_PORT				PORTE
+	#define MOTOR_ON_OFF_PIN                (1<<1)
+	#define POWER_SAVE_PORT                 PORTE
+	#define POWER_SAVE_PIN                  (1<<2)
+	#define POWER_SAVE_LED					PORTB
+	#define POWER_SAVE_LED_PIN				(1<<5)
+	#define FOOT_SW_LED_PORT				PORTB
+	#define FOOt_SW_LED_PIN			        (1<<0)
+	
+	#define SPEED_PORT						PORTE
+	#define SPEED_PIN						(1<<0)
+	
+	//AMS_DIGITAL_PIN//
+	#define AMS_PORT						PORTC
+	#define AMS_PIN							(1<<4)
+	//AMS_ANALOG_PIN//
+	#define AMS_ANALOG_PORT					PORTF
+	#define AMS_ANALOG_PIN					(1<<5)
+	
+	//FAN//
+	#define FAN_PORT						PORTC
+	#define FAN_PIN							(1<<6)
 	
 #endif
 
@@ -135,7 +171,7 @@
 #define starting_bar_width	2			//pressure bar starting updation point |___-----------|
 
 /*				Alarms          */
-#define allowed_service_duration		720000000		// time for 200 hours   //21600000  // for 6 hrs
+#define allowed_service_duration		3600000000	//1000 hours into microseconds //720000000		// time for 200 hours   //21600000  // for 6 hrs
 
 /*		AC suction protocol				*/
 #define mode_mmhg	1

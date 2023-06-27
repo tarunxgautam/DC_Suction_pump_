@@ -24,10 +24,7 @@ ISR(PORTF_PORT_vect)
 		//smart_switch_icon_flag = true;                   //////////// this flag should be true somewhere else
 		SMART_SW_PORT.INTFLAGS |= (SMART_SW_PIN);
 	}
-}
-
-ISR(PORTC_PORT_vect)
-{
+	
 	if (UNIT_PORT.INTFLAGS & UNIT_PIN)
 	{
 		#ifdef _DEBUG_KEYPAD
@@ -42,7 +39,7 @@ ISR(PORTC_PORT_vect)
 		if ((UNIT_PORT.IN & UNIT_PIN) && countRunTime)
 		{
 			mode_button_flag = true;
-		    long_press_pwms_set = millis;
+			long_press_pwms_set = millis;
 		}
 		else if (!(UNIT_PORT.IN & UNIT_PIN))
 		{
@@ -51,7 +48,12 @@ ISR(PORTC_PORT_vect)
 		}
 		
 		UNIT_PORT.INTFLAGS |= UNIT_PIN;
-    }
+	}
+	
+}
+
+ISR(PORTC_PORT_vect)
+{
 	if (foot_switch_sens_port.INTFLAGS & foot_switch_sens_pin)
 	{
 		// 		USART1_sendString("ISR: ")
