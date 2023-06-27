@@ -78,14 +78,11 @@ float AMS_raw(void)
 			ADC_val_AMS_5812 += ADC0_read(AMS_5812_ADC_CHANNEL);
 			ADC_val_AMS_5812 = ADC_val_AMS_5812 / 2;
 		}
-		USART1_sendFloat(ADC_val_AMS_5812,3);
 		voltage = ((AMS_5812_ADC_REF_VOLT * ADC_val_AMS_5812) / 4096.0); // Voltage after dividing
 		
 		voltage = voltage / AMS_5812_VDR;
-		USART1_sendString_without_newline("voltage :");
-		USART1_sendFloat(voltage,3);
 		pressure_raw = ((voltage - AMS_5812_V_MIN) / ( (AMS_5812_V_MAX - AMS_5812_V_MIN) / (AMS_5812_P_MAX - AMS_5812_P_MIN) ) ) + AMS_5812_P_MIN;
-		USART1_sendFloat(pressure_raw,3);
+
 		return (pressure_raw);		// Return pressure raw data
 		
 	#endif
