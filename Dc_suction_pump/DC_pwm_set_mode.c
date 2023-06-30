@@ -2,11 +2,11 @@
 
 void mode_1(void)
 {
-	if ((mode_button_flag) && ((millis - long_press_pwms_set) > button_normal_press))
+	if (((mode_button_flag) && ((millis - long_press_pwms_set) > button_normal_press)) && (i >= 2))
 	{
 		mode_button_flag = false;
 		long_press_pwms_set = 0;
-		
+		i = 0;
 		USART1_sendString("Entered PWM mode");
 		print_icon(icon_callibrate_x,icon_callibrate_y,(uint8_t*) &s_alphabet_17X17,17, 25);
 		settings();

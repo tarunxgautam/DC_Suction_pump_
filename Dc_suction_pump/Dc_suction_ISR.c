@@ -40,11 +40,13 @@ ISR(PORTF_PORT_vect)
 		{
 			mode_button_flag = true;
 			long_press_pwms_set = millis;
+			i++;
 		}
 		else if (!(UNIT_PORT.IN & UNIT_PIN))
 		{
 			long_press_pwms_set = 0;
 			mode_button_flag = false;
+			
 		}
 		
 		UNIT_PORT.INTFLAGS |= UNIT_PIN;

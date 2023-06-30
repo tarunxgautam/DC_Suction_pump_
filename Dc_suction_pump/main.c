@@ -1,5 +1,6 @@
 
 #define F_CPU 24000000UL
+int i = 0;
 //#define _DEBUG
 //#define stp_debug 
 //#define _DEBUG_Keypad
@@ -57,7 +58,7 @@ int main(void)
 		//dc_suction_protocol_main();
 		lcd_uc1698u_main_screen();
 		power_save_protocol();
-		mode_1();											// just added for PWM mode \to dynamically calibrate the PWM of the motor.
+		//mode_1();											// just added for PWM mode \to dynamically calibrate the PWM of the motor.
 		calcutale_run_service_time();
  	}
 	return 0;
