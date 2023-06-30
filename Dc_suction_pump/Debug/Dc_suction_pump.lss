@@ -2152,7 +2152,7 @@ void alarms_main (void)
     2ac6:	53 96       	adiw	r26, 0x13	; 19
     2ac8:	8c 91       	ld	r24, X
     2aca:	53 97       	sbiw	r26, 0x13	; 19
-    2acc:	82 60       	ori	r24, 0x02	; 2
+    2acc:	81 60       	ori	r24, 0x01	; 1
     2ace:	53 96       	adiw	r26, 0x13	; 19
     2ad0:	8c 93       	st	X, r24
     2ad2:	53 97       	sbiw	r26, 0x13	; 19
