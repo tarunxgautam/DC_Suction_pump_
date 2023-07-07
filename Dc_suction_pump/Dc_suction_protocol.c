@@ -89,6 +89,16 @@ void dc_suction_pressure_main (uint8_t avg){
 	    current_pressure_mmhg = 0.0;
 		
     }
+	
+	if (current_pressure_mmhg < 35 && (!countRunTime))
+	{
+		current_pressure_mmhg =0;
+	}
+	
+	if (current_pressure_mmhg > 720 && (countRunTime))
+	{
+		current_pressure_mmhg = 750;
+	}
     else if (current_pressure_mmhg > max_mmhg_value)
     {
  	    current_pressure_mmhg = max_mmhg_value;					//so that mmhg value does not exceed max mmhg value, and does not give garbage value
