@@ -69,7 +69,7 @@ void lcd_pressure_bar_main(void)
 	
 	// 	if (current_pressure_mmhg > 9)
 	//	{
-	
+	//Now we are filling the whole bar.
 	if (x2 > previous_x2)
 	{
 		if (x2 > 74)					// for bar to not exceed the length 77 pixels. even if pressure is very high
