@@ -72,12 +72,12 @@ void lcd_pressure_bar_main(void)
 	
 	if (x2 > previous_x2)
 	{
-		if (x2 > 76)					// for bar to not exceed the length 77 pixels. even if pressure is very high
+		if (x2 > 74)					// for bar to not exceed the length 77 pixels. even if pressure is very high
 		{
 			#ifdef _DEBUG
 			USART1_sendString("lcd_pressure_bar_main : pressure out of range");
 			#endif
-			x2 = 76;
+			x2 = 77;
 		}
 		bar_draw_filled_rectangle((uint8_t)(previous_x2+2), 2, (uint8_t)(x2+2), max_bar_height);
 		previous_x2 = x2;

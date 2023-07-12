@@ -7,7 +7,7 @@
 #define AMS_5812_MODE			AMS_5812_MODE_ANALOG
 
 /*********************** AMS-5812 *******************************/
-#define AMS_5812_ADC_CHANNEL			channel_13								// ADC channel for AMS-5812
+#define AMS_5812_ADC_CHANNEL			channel_21								// ADC channel for AMS-5812
 #define AMS_5812_ADC_REF_VOLT			3.3												// ADC ref voltage
 #define AMS_5812_R1						1000											// Value of resister in ohms connected next to the sensor
 #define AMS_5812_R2						2000											// Value of resister in ohms connected AMS_5812_R1 and ground

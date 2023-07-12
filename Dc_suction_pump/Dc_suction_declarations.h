@@ -85,7 +85,7 @@
 #elif PCB_VERSION == 15
 
 	#define NTC_CHANNEL						channel_2
-	#define AMS_5812_CHANNEL				channel_13
+	#define AMS_5812_CHANNEL				channel_21
 	
 	#define SMART_FOOT_LED					PORTC
 	#define SMART_FOOT_LED_PIN				(1<<2)
@@ -163,7 +163,7 @@
 #define reset_time_threshold  10000
 
 /*				lcd_bar						*/
-#define max_mmhg_value		800.0			//max value of mmhg the bar will represent
+#define max_mmhg_value		750.0			//max value of mmhg the bar will represent
 #define max_cmh2o_value     (1.3595 * max_mmhg_value)
 #define max_mpa_value       (0.013332 * max_mmhg_value)
 #define max_bar_height		29
