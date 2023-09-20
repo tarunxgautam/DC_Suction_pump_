@@ -25,30 +25,7 @@ ISR(PORTF_PORT_vect)
 		SMART_SW_PORT.INTFLAGS |= (SMART_SW_PIN);
 	}
 	
-	if (UNIT_PORT.INTFLAGS & UNIT_PIN)
-	{
-		#ifdef _DEBUG_KEYPAD
-		USART1_sendString("");
-		USART1_sendString("UNIT BUTTON PRESSED.");
-		#endif
-		
-		if ((!unit_button_pressed_flag) && ((millis - long_press_pwms_set) > 250))
-		{
-			unit_button_pressed_flag = true;
-		}
-		if ((UNIT_PORT.IN & UNIT_PIN) && countRunTime)
-		{
-			mode_button_flag = true;
-			long_press_pwms_set = millis;
-		}
-		else if (!(UNIT_PORT.IN & UNIT_PIN))
-		{
-			long_press_pwms_set = 0;
-			mode_button_flag = false;
-		}
-		
-		UNIT_PORT.INTFLAGS |= UNIT_PIN;
-	}
+	
 	
 }
 
@@ -115,6 +92,30 @@ ISR(PORTC_PORT_vect)
 		foot_switch_detect_isr_flag = true;
 		foot_switch_detc_port.INTFLAGS |= foot_switch_detc_pin;
 		
+	}
+	if (UNIT_PORT.INTFLAGS & UNIT_PIN)
+	{
+		#ifdef _DEBUG_KEYPAD
+		USART1_sendString("");
+		USART1_sendString("UNIT BUTTON PRESSED.");
+		#endif
+		
+		if ((!unit_button_pressed_flag) && ((millis - long_press_pwms_set) > 250))
+		{
+			unit_button_pressed_flag = true;
+		}
+		if ((UNIT_PORT.IN & UNIT_PIN) && countRunTime)
+		{
+			mode_button_flag = true;
+			long_press_pwms_set = millis;
+		}
+		else if (!(UNIT_PORT.IN & UNIT_PIN))
+		{
+			long_press_pwms_set = 0;
+			mode_button_flag = false;
+		}
+		
+		UNIT_PORT.INTFLAGS |= UNIT_PIN;
 	}
 }
 
