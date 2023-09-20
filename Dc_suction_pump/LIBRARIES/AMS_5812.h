@@ -7,10 +7,10 @@
 #define AMS_5812_MODE			AMS_5812_MODE_ANALOG
 
 /*********************** AMS-5812 *******************************/
-#define AMS_5812_ADC_CHANNEL			channel_2								// ADC channel for AMS-5812
+#define AMS_5812_ADC_CHANNEL			channel_21								// ADC channel for AMS-5812
 #define AMS_5812_ADC_REF_VOLT			3.3												// ADC ref voltage
-#define AMS_5812_R1						3300											// Value of resister in ohms connected next to the sensor
-#define AMS_5812_R2						10000											// Value of resister in ohms connected AMS_5812_R1 and ground
+#define AMS_5812_R1						1000											// Value of resister in ohms connected next to the sensor
+#define AMS_5812_R2						2000											// Value of resister in ohms connected AMS_5812_R1 and ground
 #define AMS_5812_P_MIN					0.0												// Minimum pressure in PSI
 #define AMS_5812_P_MAX					15.0											// Maximum pressure in PSI
 #define AMS_5812_C_MIN					3277											// Minimum digital count

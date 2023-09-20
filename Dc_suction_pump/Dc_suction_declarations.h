@@ -1,7 +1,7 @@
 #ifndef AC_suction_include_and_variables
 #define AC_suction_include_and_variables
 
-#define PCB_VERSION 14 // PCB version multiplied by 10
+#define PCB_VERSION 15 // PCB version multiplied by 10
 
 #include <util/delay.h>
 #include <avr/io.h>

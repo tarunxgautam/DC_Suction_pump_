@@ -1,7 +1,6 @@
-
 #define F_CPU 24000000UL
 //#define _DEBUG
-#define stp_debug 
+//#define stp_debug 
 //#define _DEBUG_Keypad
 
 #include "Dc_suction_declarations.h"
@@ -50,7 +49,7 @@ int main(void)
   
  	while (1)
  	{
- 		dc_suction_pressure_main (50);						//argument given to read n times and find average, where n is the argument provided
+ 		dc_suction_pressure_main  (50);						//argument given to read n times and find average, where n is the argument provided
  		keypad_main();
  		foot_switch_main();
  		//read_ntc();
